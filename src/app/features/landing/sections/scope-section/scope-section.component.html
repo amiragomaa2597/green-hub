@@ -1,26 +1,26 @@
 <section id="scope" class="section">
   <div class="container">
     <app-section-header
-      [eyebrow]="content.eyebrow"
-      [title]="content.title"
-      [hook]="hook"
-      [lead]="content.statement"
+      [eyebrow]="content().eyebrow"
+      [title]="content().title"
+      [hook]="hook()"
+      [lead]="content().statement"
     />
 
     <app-section-media
-      [src]="visual.src"
-      [alt]="visual.alt"
-      [caption]="visual.caption"
+      [src]="visual().src"
+      [alt]="visual().alt"
+      [caption]="visual().caption"
     />
 
     <div class="grid-2">
       <article class="panel reveal-delay-1" appRevealOnScroll>
         <div class="scope-head">
           <span class="icon-bubble icon-bubble--ok"><app-icon name="check" [size]="20" /></span>
-          <h3>Includes</h3>
+          <h3>{{ ui().includes }}</h3>
         </div>
         <ul class="list-check">
-          @for (item of content.includes; track item) {
+          @for (item of content().includes; track item) {
             <li>{{ item }}</li>
           }
         </ul>
@@ -28,19 +28,19 @@
       <article class="panel reveal-delay-2" appRevealOnScroll>
         <div class="scope-head">
           <span class="icon-bubble icon-bubble--no"><app-icon name="x" [size]="20" /></span>
-          <h3>Excludes</h3>
+          <h3>{{ ui().excludes }}</h3>
         </div>
         <ul class="list-cross">
-          @for (item of content.excludes; track item) {
+          @for (item of content().excludes; track item) {
             <li>{{ item }}</li>
           }
         </ul>
       </article>
     </div>
 
-    <h3 class="deliverables-title">Scope Deliverables</h3>
+    <h3 class="deliverables-title">{{ ui().deliverables }}</h3>
     <div class="grid-3">
-      @for (item of content.deliverables; track item.title; let i = $index) {
+      @for (item of content().deliverables; track item.title; let i = $index) {
         <article
           class="panel panel--media deliverable"
           [class]="'reveal-delay-' + ((i % 3) + 1)"

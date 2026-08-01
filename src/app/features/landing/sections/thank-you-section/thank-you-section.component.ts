@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { PROJECT_META } from '../../../../core/content/hero.content';
 import { TEAM_CONTENT } from '../../../../core/content/team.content';
+import { LanguageService } from '../../../../core/services/language.service';
 
 @Component({
   selector: 'app-thank-you-section',
@@ -9,6 +10,8 @@ import { TEAM_CONTENT } from '../../../../core/content/team.content';
   styleUrl: './thank-you-section.component.scss',
 })
 export class ThankYouSectionComponent {
-  readonly meta = PROJECT_META;
-  readonly names = TEAM_CONTENT.thankYouNames;
+  private readonly language = inject(LanguageService);
+
+  readonly meta = computed(() => PROJECT_META[this.language.lang()]);
+  readonly names = computed(() => TEAM_CONTENT[this.language.lang()].thankYouNames);
 }

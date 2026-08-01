@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { CORE_PILLARS, PROJECT_META } from '../../../../core/content/hero.content';
+import { LanguageService } from '../../../../core/services/language.service';
 import { IconComponent, IconName } from '../../../../shared/components/icon/icon.component';
 
 @Component({
@@ -10,8 +11,10 @@ import { IconComponent, IconName } from '../../../../shared/components/icon/icon
   styleUrl: './hero-section.component.scss',
 })
 export class HeroSectionComponent {
-  readonly meta = PROJECT_META;
-  readonly pillars = CORE_PILLARS;
+  private readonly language = inject(LanguageService);
+
+  readonly meta = computed(() => PROJECT_META[this.language.lang()]);
+  readonly pillars = computed(() => CORE_PILLARS[this.language.lang()]);
 
   iconOf(name?: string): IconName {
     return (name ?? 'leaf') as IconName;

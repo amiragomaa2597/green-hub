@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { STAKEHOLDERS_CONTENT } from '../../../../core/content/stakeholders.content';
 import { SECTION_HOOKS } from '../../../../core/content/hooks.content';
 import { SECTION_VISUALS } from '../../../../core/content/visual.content';
+import { UI_LABELS } from '../../../../core/content/ui.content';
+import { LanguageService } from '../../../../core/services/language.service';
 import { SectionHeaderComponent } from '../../../../shared/components/section-header/section-header.component';
 import { SectionMediaComponent } from '../../../../shared/components/section-media/section-media.component';
 import { RevealOnScrollDirective } from '../../../../shared/directives/reveal-on-scroll.directive';
@@ -14,7 +16,10 @@ import { RevealOnScrollDirective } from '../../../../shared/directives/reveal-on
   styleUrl: './stakeholders-section.component.scss',
 })
 export class StakeholdersSectionComponent {
-  readonly content = STAKEHOLDERS_CONTENT;
-  readonly hook = SECTION_HOOKS.stakeholders;
-  readonly visual = SECTION_VISUALS.stakeholders;
+  private readonly language = inject(LanguageService);
+
+  readonly content = computed(() => STAKEHOLDERS_CONTENT[this.language.lang()]);
+  readonly hook = computed(() => SECTION_HOOKS[this.language.lang()].stakeholders);
+  readonly visual = computed(() => SECTION_VISUALS[this.language.lang()].stakeholders);
+  readonly ui = computed(() => UI_LABELS[this.language.lang()]);
 }

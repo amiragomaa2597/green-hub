@@ -1,28 +1,47 @@
 <header class="nav" [class.nav--scrolled]="scrolled" [class.nav--menu-open]="menuOpen">
   <div class="container nav__inner">
     <a class="nav__brand" href="#hero" (click)="closeMenu()">
-      <img [src]="logo" alt="The Green Hub logo" class="nav__logo" />
-      <span>{{ brand }}</span>
+      <img [src]="meta().logo" [alt]="meta().brand + ' logo'" class="nav__logo" />
+      <span>{{ meta().brand }}</span>
     </a>
 
-    <button
-      class="nav__toggle"
-      type="button"
-      [class.is-open]="menuOpen"
-      [attr.aria-expanded]="menuOpen"
-      [attr.aria-controls]="'nav-drawer'"
-      aria-label="Toggle navigation"
-      (click)="toggleMenu()"
-    >
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+    <div class="nav__actions">
+      <button
+        class="nav__lang"
+        type="button"
+        [attr.aria-label]="langToggleAria()"
+        (click)="toggleLang()"
+      >
+        {{ nextLabel() }}
+      </button>
 
-    <nav class="nav__links nav__links--desktop" aria-label="Primary">
-      @for (item of items; track item.href) {
+      <button
+        class="nav__toggle"
+        type="button"
+        [class.is-open]="menuOpen"
+        [attr.aria-expanded]="menuOpen"
+        [attr.aria-controls]="'nav-drawer'"
+        [attr.aria-label]="ui().toggleNav"
+        (click)="toggleMenu()"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <nav class="nav__links nav__links--desktop" [attr.aria-label]="ui().primaryNav">
+      @for (item of items(); track item.href) {
         <a [href]="item.href">{{ item.label }}</a>
       }
+      <button
+        class="nav__lang nav__lang--desktop"
+        type="button"
+        [attr.aria-label]="langToggleAria()"
+        (click)="toggleLang()"
+      >
+        {{ nextLabel() }}
+      </button>
     </nav>
   </div>
 </header>
@@ -39,21 +58,21 @@
   class="nav__drawer"
   [class.is-open]="menuOpen"
   [attr.aria-hidden]="!menuOpen"
-  aria-label="Site navigation"
+  [attr.aria-label]="ui().siteNav"
 >
   <div class="nav__drawer-top">
     <a class="nav__drawer-brand" href="#hero" (click)="closeMenu()">
-      <img [src]="logo" alt="" class="nav__logo" />
+      <img [src]="meta().logo" alt="" class="nav__logo" />
       <div>
-        <strong>{{ brand }}</strong>
-        <small>{{ tagline }}</small>
+        <strong>{{ meta().brand }}</strong>
+        <small>{{ meta().tagline }}</small>
       </div>
     </a>
 
     <button
       class="nav__drawer-close"
       type="button"
-      aria-label="Close navigation"
+      [attr.aria-label]="ui().closeNav"
       (click)="closeMenu()"
     >
       <span></span>
@@ -61,8 +80,8 @@
     </button>
   </div>
 
-  <nav class="nav__drawer-nav" aria-label="Mobile primary">
-    @for (item of items; track item.href; let i = $index) {
+  <nav class="nav__drawer-nav" [attr.aria-label]="ui().mobileNav">
+    @for (item of items(); track item.href; let i = $index) {
       <a
         class="nav__drawer-link"
         [href]="item.href"
@@ -77,6 +96,14 @@
   </nav>
 
   <div class="nav__drawer-foot">
-    <p>{{ subtitle }}</p>
+    <button
+      class="nav__lang nav__lang--drawer"
+      type="button"
+      [attr.aria-label]="langToggleAria()"
+      (click)="toggleLang()"
+    >
+      {{ nextLabel() }}
+    </button>
+    <p>{{ meta().subtitle }}</p>
   </div>
 </aside>

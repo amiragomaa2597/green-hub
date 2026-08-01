@@ -5,11 +5,14 @@ import {
   ElementRef,
   OnDestroy,
   ViewChild,
+  computed,
   inject,
 } from '@angular/core';
 import { BUDGET_CONTENT } from '../../../../core/content/budget.content';
 import { SECTION_HOOKS } from '../../../../core/content/hooks.content';
 import { SECTION_VISUALS } from '../../../../core/content/visual.content';
+import { UI_LABELS } from '../../../../core/content/ui.content';
+import { LanguageService } from '../../../../core/services/language.service';
 import { SectionHeaderComponent } from '../../../../shared/components/section-header/section-header.component';
 import { SectionMediaComponent } from '../../../../shared/components/section-media/section-media.component';
 import { RevealOnScrollDirective } from '../../../../shared/directives/reveal-on-scroll.directive';
@@ -41,16 +44,20 @@ export class BudgetSectionComponent implements AfterViewInit, OnDestroy {
   @ViewChild('distributionPanel') distributionPanel?: ElementRef<HTMLElement>;
 
   private readonly cdr = inject(ChangeDetectorRef);
+  private readonly language = inject(LanguageService);
 
-  readonly content = BUDGET_CONTENT;
-  readonly hook = SECTION_HOOKS.budget;
-  readonly visual = SECTION_VISUALS.budget;
-  chartActive = false;
-  hoveredIndex: number | null = null;
-
-  readonly segments: ChartSegment[] = (() => {
+  readonly content = computed(() => BUDGET_CONTENT[this.language.lang()]);
+  readonly hook = computed(() => SECTION_HOOKS[this.language.lang()].budget);
+  readonly visual = computed(() => SECTION_VISUALS[this.language.lang()].budget);
+  readonly ui = computed(() => UI_LABELS[this.language.lang()]);
+  readonly budgetLead = computed(() => {
+    const c = this.content();
+    const labels = this.ui();
+    return `${labels.timeline}: ${c.duration} · ${labels.startDate}: ${c.startDate} · ${labels.finishDate}: ${c.finishDate}`;
+  });
+  readonly segments = computed<ChartSegment[]>(() => {
     let cursor = 0;
-    return this.content.items.map((item, index) => {
+    return this.content().items.map((item, index) => {
       const segment: ChartSegment = {
         ...item,
         dashOffset: 25 - cursor,
@@ -59,7 +66,10 @@ export class BudgetSectionComponent implements AfterViewInit, OnDestroy {
       cursor += item.percentage;
       return segment;
     });
-  })();
+  });
+
+  chartActive = false;
+  hoveredIndex: number | null = null;
 
   private observer?: IntersectionObserver;
 

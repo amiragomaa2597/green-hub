@@ -1,16 +1,16 @@
 <section id="impact" class="section">
   <div class="container">
     <app-section-header
-      [eyebrow]="content.eyebrow"
-      [title]="content.title"
-      [hook]="hook"
-      [lead]="content.intro"
+      [eyebrow]="content().eyebrow"
+      [title]="content().title"
+      [hook]="hook()"
+      [lead]="content().intro"
     />
 
     <app-section-media
-      [src]="visual.src"
-      [alt]="visual.alt"
-      [caption]="visual.caption"
+      [src]="visual().src"
+      [alt]="visual().alt"
+      [caption]="visual().caption"
     />
 
     <div class="impact-layout">
@@ -18,12 +18,12 @@
         <span class="impact-orb">
           <app-icon name="leaf" [size]="36" />
         </span>
-        <h3>Sustainable Impact</h3>
-        <p>{{ content.highlight }}</p>
+        <h3>{{ ui().sustainableImpact }}</h3>
+        <p>{{ content().highlight }}</p>
       </aside>
 
       <div class="impact-list">
-        @for (area of content.areas; track area.title; let i = $index) {
+        @for (area of content().areas; track area.title; let i = $index) {
           <article
             class="panel panel--media impact-item"
             [class]="'reveal-delay-' + ((i % 3) + 1)"

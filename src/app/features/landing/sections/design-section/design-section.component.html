@@ -1,22 +1,22 @@
 <section id="design" class="section section--alt">
   <div class="container">
     <app-section-header
-      [eyebrow]="content.eyebrow"
-      [title]="content.title"
-      [hook]="hook"
-      [lead]="content.intro"
+      [eyebrow]="content().eyebrow"
+      [title]="content().title"
+      [hook]="hook()"
+      [lead]="content().intro"
     />
 
     <div class="design-banner" appRevealOnScroll>
-      <img [src]="image" alt="The Green Hub exterior plaza" />
+      <img [src]="image()" [alt]="content().title" />
       <div class="design-banner__copy">
         <app-icon name="building" [size]="28" />
-        <p>Architecture, renewable systems, and community space in one living campus.</p>
+        <p>{{ ui().designCampusLead }}</p>
       </div>
     </div>
 
     <div class="design-grid">
-      @for (block of content.blocks; track block.title; let i = $index) {
+      @for (block of content().blocks; track block.title; let i = $index) {
         <article
           class="panel panel--media"
           [class]="'reveal-delay-' + ((i % 3) + 1)"

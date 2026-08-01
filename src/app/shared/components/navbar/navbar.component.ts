@@ -1,5 +1,7 @@
-import { Component, HostListener, OnDestroy } from '@angular/core';
+import { Component, HostListener, OnDestroy, computed, inject } from '@angular/core';
 import { NAV_ITEMS, PROJECT_META } from '../../../core/content/hero.content';
+import { UI_LABELS } from '../../../core/content/ui.content';
+import { LanguageService } from '../../../core/services/language.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,11 +10,17 @@ import { NAV_ITEMS, PROJECT_META } from '../../../core/content/hero.content';
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent implements OnDestroy {
-  readonly brand = PROJECT_META.brand;
-  readonly logo = PROJECT_META.logo;
-  readonly tagline = PROJECT_META.tagline;
-  readonly subtitle = PROJECT_META.subtitle;
-  readonly items = NAV_ITEMS;
+  private readonly languageService = inject(LanguageService);
+
+  readonly lang = this.languageService.lang;
+  readonly nextLabel = this.languageService.nextLabel;
+  readonly meta = computed(() => PROJECT_META[this.lang()]);
+  readonly items = computed(() => NAV_ITEMS[this.lang()]);
+  readonly ui = computed(() => UI_LABELS[this.lang()]);
+  readonly langToggleAria = computed(() =>
+    this.lang() === 'ar' ? this.ui().switchToEnglish : this.ui().switchToArabic
+  );
+
   menuOpen = false;
   scrolled = false;
 
@@ -26,6 +34,10 @@ export class NavbarComponent implements OnDestroy {
     if (this.menuOpen) {
       this.closeMenu();
     }
+  }
+
+  toggleLang(): void {
+    this.languageService.toggle();
   }
 
   toggleMenu(): void {

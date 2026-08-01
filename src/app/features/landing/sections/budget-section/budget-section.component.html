@@ -1,38 +1,38 @@
 <section id="budget" class="section section--alt">
   <div class="container">
     <app-section-header
-      [eyebrow]="content.eyebrow"
-      [title]="content.title"
-      [hook]="hook"
-      lead="Timeline: {{ content.duration }} · Start Date: {{ content.startDate }} · Finish Date: {{ content.finishDate }}"
+      [eyebrow]="content().eyebrow"
+      [title]="content().title"
+      [hook]="hook()"
+      [lead]="budgetLead()"
     />
 
     <app-section-media
-      [src]="visual.src"
-      [alt]="visual.alt"
-      [caption]="visual.caption"
+      [src]="visual().src"
+      [alt]="visual().alt"
+      [caption]="visual().caption"
     />
 
     <div class="meta-strip" appRevealOnScroll>
-      <div><span>Timeline</span><strong>{{ content.duration }}</strong></div>
-      <div><span>Start Date</span><strong>{{ content.startDate }}</strong></div>
-      <div><span>Finish Date</span><strong>{{ content.finishDate }}</strong></div>
+      <div><span>{{ ui().timeline }}</span><strong>{{ content().duration }}</strong></div>
+      <div><span>{{ ui().startDate }}</span><strong>{{ content().startDate }}</strong></div>
+      <div><span>{{ ui().finishDate }}</span><strong>{{ content().finishDate }}</strong></div>
     </div>
 
     <div class="budget-layout">
       <div appRevealOnScroll>
-        <h3 class="budget-heading">{{ content.costBreakdownTitle }}</h3>
+        <h3 class="budget-heading">{{ content().costBreakdownTitle }}</h3>
         <div class="table-wrap">
         <table class="data-table">
           <thead>
             <tr>
-              <th>Category</th>
-              <th>Amount (EGP)</th>
-              <th>% of Total</th>
+              <th>{{ ui().category }}</th>
+              <th>{{ ui().amountEgp }}</th>
+              <th>{{ ui().percentOfTotal }}</th>
             </tr>
           </thead>
           <tbody>
-            @for (item of content.items; track item.category; let i = $index) {
+            @for (item of content().items; track item.category; let i = $index) {
               <tr>
                 <td>{{ item.category }}</td>
                 <td>
@@ -52,9 +52,9 @@
               </tr>
             }
             <tr class="total-row">
-              <td>Total Project Budget</td>
+              <td>{{ ui().totalProjectBudget }}</td>
               <td>
-                <span [appCountUp]="content.total" [countDuration]="1600"></span>
+                <span [appCountUp]="content().total" [countDuration]="1600"></span>
               </td>
               <td>
                 <span
@@ -77,13 +77,13 @@
         appRevealOnScroll
       >
         <div class="distribution__glow" aria-hidden="true"></div>
-        <h3>{{ content.distributionTitle }}</h3>
+        <h3>{{ content().distributionTitle }}</h3>
 
         <div class="chart">
           <div class="chart__ring" aria-hidden="true"></div>
-          <svg class="chart__svg" viewBox="0 0 36 36" role="img" aria-label="Budget distribution chart">
+          <svg class="chart__svg" viewBox="0 0 36 36" role="img" [attr.aria-label]="content().distributionTitle">
             <circle class="chart__track" cx="18" cy="18" r="15.9155" />
-            @for (segment of segments; track segment.category; let i = $index) {
+            @for (segment of segments(); track segment.category; let i = $index) {
               <circle
                 class="chart__segment"
                 [class.is-dimmed]="hoveredIndex !== null && hoveredIndex !== i"
@@ -103,9 +103,9 @@
           </svg>
 
           <div class="chart__center">
-            <span>Total Budget</span>
+            <span>{{ ui().totalBudget }}</span>
             <strong>
-              <span [appCountUp]="content.total" [countDuration]="1800"></span>
+              <span [appCountUp]="content().total" [countDuration]="1800"></span>
               <small> EGP</small>
             </strong>
             <em>
@@ -120,7 +120,7 @@
         </div>
 
         <ul class="legend">
-          @for (segment of segments; track segment.category; let i = $index) {
+          @for (segment of segments(); track segment.category; let i = $index) {
             <li
               [class.is-focused]="hoveredIndex === i"
               [class.is-dimmed]="hoveredIndex !== null && hoveredIndex !== i"

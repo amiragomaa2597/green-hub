@@ -1,4 +1,6 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges, computed, inject } from '@angular/core';
+import { UI_LABELS } from '../../../../../core/content/ui.content';
+import { LanguageService } from '../../../../../core/services/language.service';
 import { RiskItem } from '../../../../../core/models/project.models';
 import { RevealOnScrollDirective } from '../../../../../shared/directives/reveal-on-scroll.directive';
 import { CountUpDirective } from '../../../../../shared/directives/count-up.directive';
@@ -13,6 +15,8 @@ type RiskFilter = 'All' | 'High' | 'Medium' | 'Mitigate' | 'Transfer' | 'Share';
   styleUrl: './risk-console.component.scss',
 })
 export class RiskConsoleComponent implements OnChanges {
+  private readonly language = inject(LanguageService);
+
   @Input({ required: true }) risks: RiskItem[] = [];
   @Input({ required: true }) summary!: {
     totalCostImpact: number;
@@ -21,16 +25,21 @@ export class RiskConsoleComponent implements OnChanges {
     goal: string;
   };
 
+  readonly ui = computed(() => UI_LABELS[this.language.lang()]);
+  readonly filterDefs = computed(() => {
+    const labels = this.ui();
+    return [
+      { key: 'All' as const, label: labels.filterAll },
+      { key: 'High' as const, label: labels.filterHigh },
+      { key: 'Medium' as const, label: labels.filterMedium },
+      { key: 'Mitigate' as const, label: labels.filterMitigate },
+      { key: 'Transfer' as const, label: labels.filterTransfer },
+      { key: 'Share' as const, label: labels.filterShare },
+    ];
+  });
+
   filter: RiskFilter = 'All';
   selectedId = 1;
-  readonly filters: RiskFilter[] = [
-    'All',
-    'High',
-    'Medium',
-    'Mitigate',
-    'Transfer',
-    'Share',
-  ];
 
   ngOnChanges(): void {
     if (!this.risks.length) {
@@ -102,5 +111,30 @@ export class RiskConsoleComponent implements OnChanges {
       (risk.costImpact / this.maxCost) * 70 * probabilityWeight +
         (this.weeksOf(risk.timeImpact) / this.maxWeeks) * 30
     );
+  }
+
+  probabilityLabel(value: string): string {
+    const labels = this.ui();
+    if (value === 'High') {
+      return labels.high;
+    }
+    if (value === 'Medium') {
+      return labels.medium;
+    }
+    return value;
+  }
+
+  strategyLabel(value: string): string {
+    const labels = this.ui();
+    if (value === 'Mitigate') {
+      return labels.mitigate;
+    }
+    if (value === 'Transfer') {
+      return labels.transfer;
+    }
+    if (value === 'Share') {
+      return labels.share;
+    }
+    return value;
   }
 }

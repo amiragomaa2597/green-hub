@@ -1,10 +1,8 @@
 <div class="wbs-journey" appRevealOnScroll>
   <div class="wbs-journey__intro">
-    <p class="wbs-journey__label">Work Breakdown Structure</p>
-    <h3>Project Journey Map</h3>
-    <p class="wbs-journey__hint">
-      Follow the path from initiation to monitoring — tap any station to open its work packages.
-    </p>
+    <p class="wbs-journey__label">{{ ui().wbsLabel }}</p>
+    <h3>{{ ui().journeyMap }}</h3>
+    <p class="wbs-journey__hint">{{ ui().journeyHint }}</p>
   </div>
 
   <div class="journey">
@@ -12,7 +10,7 @@
       <span class="journey__root-glow" aria-hidden="true"></span>
       <span class="journey__root-badge">WBS 0</span>
       <strong>{{ rootTitle }}</strong>
-      <em>{{ packages.length }} work packages · one delivery path</em>
+      <em>{{ packages.length }} {{ ui().workPackages }}</em>
     </div>
 
     <ol class="journey__path">
@@ -38,7 +36,7 @@
           <article class="station__card">
             <button type="button" class="station__head" (click)="toggle(pkg.id)">
               <div>
-                <span class="station__weeks">Weeks {{ pkg.weeks }}</span>
+                <span class="station__weeks">{{ ui().weeksLabel }} {{ pkg.weeks }}</span>
                 <h4>{{ pkg.title }}</h4>
               </div>
               <span class="station__chevron" aria-hidden="true"></span>
@@ -60,8 +58,8 @@
     </ol>
 
     <div class="journey__finish">
-      <span>Handover ready</span>
-      <strong>Sustainable delivery complete</strong>
+      <span>{{ ui().handoverReady }}</span>
+      <strong>{{ ui().sustainableDelivery }}</strong>
     </div>
   </div>
 </div>

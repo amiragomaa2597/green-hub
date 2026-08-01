@@ -2,24 +2,24 @@
   <div class="hero__frame" aria-hidden="true">
     <div
       class="hero__media"
-      [style.background-image]="'url(' + meta.heroImage + ')'"
+      [style.background-image]="'url(' + meta().heroImage + ')'"
     ></div>
     <div class="hero__veil"></div>
   </div>
 
   <div class="container hero__content hero-anim">
-    <img class="hero__logo" [src]="meta.logo" alt="The Green Hub logo" />
-    <p class="hero__brand">{{ meta.brandCaps }}</p>
-    <h1>{{ meta.subtitle }}</h1>
-    <p class="hero__tagline">{{ meta.tagline }}</p>
+    <img class="hero__logo" [src]="meta().logo" [alt]="meta().brand + ' logo'" />
+    <p class="hero__brand">{{ meta().brandCaps }}</p>
+    <h1>{{ meta().subtitle }}</h1>
+    <p class="hero__tagline">{{ meta().tagline }}</p>
 
     <div class="hero__cta">
-      <a class="btn btn--primary" href="#about">Explore the project</a>
-      <a class="btn btn--ghost" href="#impact">See the impact</a>
+      <a class="btn btn--primary" href="#about">{{ meta().exploreCta }}</a>
+      <a class="btn btn--ghost" href="#impact">{{ meta().impactCta }}</a>
     </div>
 
     <ul class="hero__pillars">
-      @for (pillar of pillars; track pillar.title) {
+      @for (pillar of pillars(); track pillar.title) {
         <li>
           <span class="hero__pillar-icon">
             <app-icon [name]="iconOf(pillar.icon)" [size]="18" />
@@ -31,20 +31,20 @@
 
     <dl class="hero__meta">
       <div>
-        <dt><app-icon name="users" [size]="16" /> Project</dt>
-        <dd>{{ meta.project }}</dd>
+        <dt><app-icon name="users" [size]="16" /> {{ meta().metaProject }}</dt>
+        <dd>{{ meta().project }}</dd>
       </div>
       <div>
-        <dt><app-icon name="grad" [size]="16" /> Program</dt>
-        <dd>{{ meta.program }}</dd>
+        <dt><app-icon name="grad" [size]="16" /> {{ meta().metaProgram }}</dt>
+        <dd>{{ meta().program }}</dd>
       </div>
       <div>
-        <dt><app-icon name="person" [size]="16" /> Instructor</dt>
-        <dd>{{ meta.instructor }}</dd>
+        <dt><app-icon name="person" [size]="16" /> {{ meta().metaInstructor }}</dt>
+        <dd>{{ meta().instructor }}</dd>
       </div>
       <div>
-        <dt><app-icon name="calendar" [size]="16" /> Date</dt>
-        <dd>{{ meta.date }}</dd>
+        <dt><app-icon name="calendar" [size]="16" /> {{ meta().metaDate }}</dt>
+        <dd>{{ meta().date }}</dd>
       </div>
     </dl>
   </div>

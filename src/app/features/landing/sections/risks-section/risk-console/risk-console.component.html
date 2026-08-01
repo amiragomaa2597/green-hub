@@ -1,30 +1,27 @@
 <div class="console" appRevealOnScroll>
   <div class="console__intro">
-    <p class="console__label">Risk Defense Console</p>
-    <h3>Scan the threats. Lock the response.</h3>
-    <p>
-      Explore the Top 8 risks on an interactive board — filter by pressure level or strategy,
-      then open any threat to see impact and mitigation.
-    </p>
+    <p class="console__label">{{ ui().riskConsoleLabel }}</p>
+    <h3>{{ ui().riskConsoleTitle }}</h3>
+    <p>{{ ui().riskConsoleBody }}</p>
   </div>
 
-  <div class="filters" role="toolbar" aria-label="Risk filters">
-    @for (item of filters; track item) {
+  <div class="filters" role="toolbar" [attr.aria-label]="ui().riskConsoleLabel">
+    @for (item of filterDefs(); track item.key) {
       <button
         type="button"
         class="filter"
-        [class.is-active]="filter === item"
-        (click)="setFilter(item)"
+        [class.is-active]="filter === item.key"
+        (click)="setFilter(item.key)"
       >
-        {{ item }}
+        {{ item.label }}
       </button>
     }
   </div>
 
   <div class="radar panel" aria-label="Risk severity rail">
     <div class="radar__scale">
-      <span>Lower exposure</span>
-      <span>Higher exposure</span>
+      <span>{{ ui().lowerExposure }}</span>
+      <span>{{ ui().higherExposure }}</span>
     </div>
     <div class="radar__track">
       @for (risk of filtered; track risk.id) {
@@ -44,7 +41,7 @@
         </button>
       }
     </div>
-    <p class="radar__note">Node size & position reflect relative cost impact.</p>
+    <p class="radar__note">{{ ui().radarNote }}</p>
   </div>
 
   <div class="console__body">
@@ -60,7 +57,7 @@
           <span class="threat__id">R{{ risk.id }}</span>
           <span class="threat__copy">
             <strong>{{ risk.risk }}</strong>
-            <em>{{ risk.probability }} · {{ risk.strategy }}</em>
+            <em>{{ probabilityLabel(risk.probability) }} · {{ strategyLabel(risk.strategy) }}</em>
           </span>
           <span class="threat__meter" aria-hidden="true">
             <i [style.width.%]="severityScore(risk)"></i>
@@ -73,7 +70,7 @@
       <article class="spotlight panel" [class.is-high]="risk.probability === 'High'">
         <header class="spotlight__head">
           <div>
-            <span class="spotlight__code">Risk {{ risk.id }}</span>
+            <span class="spotlight__code">{{ ui().riskPrefix }} {{ risk.id }}</span>
             <h4>{{ risk.risk }}</h4>
             <p>{{ risk.description }}</p>
           </div>
@@ -83,16 +80,16 @@
               [class.badge--high]="risk.probability === 'High'"
               [class.badge--medium]="risk.probability === 'Medium'"
             >
-              {{ risk.probability }} Probability
+              {{ probabilityLabel(risk.probability) }} {{ ui().probabilitySuffix }}
             </span>
-            <span class="strategy-pill">{{ risk.strategy }}</span>
+            <span class="strategy-pill">{{ strategyLabel(risk.strategy) }}</span>
           </div>
         </header>
 
         <div class="gauges">
           <div class="gauge">
             <div class="gauge__meta">
-              <span>Cost Impact</span>
+              <span>{{ ui().costImpact }}</span>
               <strong>
                 <span [appCountUp]="risk.costImpact" [countDuration]="1200"></span>
                 EGP
@@ -105,11 +102,11 @@
 
           <div class="gauge">
             <div class="gauge__meta">
-              <span>Time Impact</span>
+              <span>{{ ui().timeImpact }}</span>
               <strong>
                 <span
                   [appCountUp]="weeksOf(risk.timeImpact)"
-                  countSuffix=" Weeks"
+                  [countSuffix]="ui().weeksSuffix"
                   [countDuration]="1000"
                   [countSeparator]="false"
                 ></span>
@@ -123,17 +120,17 @@
 
         <div class="spotlight__grid">
           <div>
-            <span>Owner</span>
+            <span>{{ ui().owner }}</span>
             <strong>{{ risk.owner }}</strong>
           </div>
           <div>
-            <span>Severity Index</span>
+            <span>{{ ui().severityIndex }}</span>
             <strong>{{ severityScore(risk) }} / 100</strong>
           </div>
         </div>
 
         <div class="shield">
-          <span class="shield__label">Mitigation Response</span>
+          <span class="shield__label">{{ ui().mitigationResponse }}</span>
           <p>{{ risk.mitigation }}</p>
         </div>
       </article>
@@ -142,32 +139,32 @@
 
   <div class="summary">
     <div>
-      <span>Total Potential Cost Impact</span>
+      <span>{{ ui().totalPotentialCost }}</span>
       <strong>
         <span [appCountUp]="summary.totalCostImpact" [countDuration]="1800"></span>
         EGP
       </strong>
     </div>
     <div>
-      <span>Total Potential Delay</span>
+      <span>{{ ui().totalPotentialDelay }}</span>
       <strong>
         <span
           [appCountUp]="summary.totalDelay"
-          countSuffix=" Weeks"
+          [countSuffix]="ui().weeksSuffix"
           [countDuration]="1600"
           [countSeparator]="false"
         ></span>
       </strong>
     </div>
     <div>
-      <span>Total Mitigation Cost</span>
+      <span>{{ ui().totalMitigationCost }}</span>
       <strong>
         <span [appCountUp]="summary.totalMitigationCost" [countDuration]="1700"></span>
         EGP
       </strong>
     </div>
     <div class="summary__goal">
-      <span>Our Goal</span>
+      <span>{{ ui().ourGoal }}</span>
       <strong>{{ summary.goal }}</strong>
     </div>
   </div>

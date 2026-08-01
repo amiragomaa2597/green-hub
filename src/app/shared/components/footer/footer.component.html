@@ -1,13 +1,13 @@
 <footer class="site-footer">
   <div class="container site-footer__inner">
     <div class="site-footer__brand">
-      <img [src]="meta.logo" alt="The Green Hub logo" />
+      <img [src]="meta().logo" [alt]="meta().brand + ' logo'" />
       <div>
-        <strong>{{ meta.brandCaps }}</strong>
-        <p>{{ meta.project }}</p>
+        <strong>{{ meta().brandCaps }}</strong>
+        <p>{{ meta().project }}</p>
       </div>
     </div>
-    <p>{{ meta.tagline }}</p>
-    <p>{{ meta.date }}</p>
+    <p>{{ meta().tagline }}</p>
+    <p>{{ meta().date }}</p>
   </div>
 </footer>

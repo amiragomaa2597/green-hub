@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Outfit:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Outfit:wght@300;400;500;600;700&display=swap');
 
 :root {
   --forest: #0f2f22;
@@ -30,6 +30,11 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+html[dir='rtl'] {
+  --font-display: 'Cairo', 'Segoe UI', Tahoma, sans-serif;
+  --font-body: 'Cairo', 'Segoe UI', Tahoma, sans-serif;
 }
 
 body {
@@ -100,10 +105,19 @@ p {
   margin-bottom: 0.75rem;
 }
 
+html[dir='rtl'] .eyebrow {
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
 .section-title {
   font-size: clamp(2rem, 4vw, 3rem);
   color: var(--forest);
   max-width: 16ch;
+}
+
+html[dir='rtl'] .section-title {
+  max-width: 22ch;
 }
 
 .section-lead {
@@ -203,7 +217,7 @@ table.data-table {
 table.data-table th,
 table.data-table td {
   padding: 0.9rem 1rem;
-  text-align: left;
+  text-align: start;
   border-bottom: 1px solid rgba(31, 107, 69, 0.1);
   vertical-align: top;
 }
@@ -251,14 +265,14 @@ table.data-table tr:last-child td {
 .list-check li,
 .list-cross li {
   position: relative;
-  padding-left: 1.5rem;
+  padding-inline-start: 1.5rem;
   margin-bottom: 0.65rem;
 }
 
 .list-check li::before {
   content: '✓';
   position: absolute;
-  left: 0;
+  inset-inline-start: 0;
   color: var(--leaf);
   font-weight: 700;
 }
@@ -266,7 +280,7 @@ table.data-table tr:last-child td {
 .list-cross li::before {
   content: '×';
   position: absolute;
-  left: 0;
+  inset-inline-start: 0;
   color: var(--forest);
   font-weight: 700;
 }

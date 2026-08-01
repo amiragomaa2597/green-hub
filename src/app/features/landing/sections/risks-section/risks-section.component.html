@@ -1,18 +1,18 @@
 <section id="risks" class="section section--alt">
   <div class="container">
     <app-section-header
-      [eyebrow]="content.eyebrow"
-      [title]="content.title"
-      [hook]="hook"
-      [lead]="content.motto"
+      [eyebrow]="content().eyebrow"
+      [title]="content().title"
+      [hook]="hook()"
+      [lead]="content().motto"
     />
 
     <app-section-media
-      [src]="visual.src"
-      [alt]="visual.alt"
-      [caption]="visual.caption"
+      [src]="visual().src"
+      [alt]="visual().alt"
+      [caption]="visual().caption"
     />
 
-    <app-risk-console [risks]="content.risks" [summary]="content.summary" />
+    <app-risk-console [risks]="content().risks" [summary]="content().summary" />
   </div>
 </section>

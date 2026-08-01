@@ -1,31 +1,31 @@
 <section id="stakeholders" class="section">
   <div class="container">
     <app-section-header
-      [eyebrow]="content.eyebrow"
-      [title]="content.title"
-      [hook]="hook"
+      [eyebrow]="content().eyebrow"
+      [title]="content().title"
+      [hook]="hook()"
     />
 
     <app-section-media
-      [src]="visual.src"
-      [alt]="visual.alt"
-      [caption]="visual.caption"
+      [src]="visual().src"
+      [alt]="visual().alt"
+      [caption]="visual().caption"
     />
 
-    <h3>{{ content.registerTitle }}</h3>
+    <h3>{{ content().registerTitle }}</h3>
     <div class="table-wrap" appRevealOnScroll>
       <table class="data-table">
         <thead>
           <tr>
-            <th>Stakeholder</th>
-            <th>Role / Interest</th>
-            <th>Influence (Power)</th>
-            <th>Interest (Level)</th>
-            <th>Engagement Strategy</th>
+            <th>{{ ui().stakeholder }}</th>
+            <th>{{ ui().roleInterest }}</th>
+            <th>{{ ui().influencePower }}</th>
+            <th>{{ ui().interestLevel }}</th>
+            <th>{{ ui().engagementStrategy }}</th>
           </tr>
         </thead>
         <tbody>
-          @for (row of content.register; track row.name) {
+          @for (row of content().register; track row.name) {
             <tr>
               <td>{{ row.name }}</td>
               <td>{{ row.role }}</td>
@@ -38,9 +38,9 @@
       </table>
     </div>
 
-    <h3>{{ content.matrixTitle }}</h3>
+    <h3>{{ content().matrixTitle }}</h3>
     <div class="matrix">
-      @for (quad of content.matrix; track quad.title) {
+      @for (quad of content().matrix; track quad.title) {
         <article class="panel" appRevealOnScroll>
           <p class="eyebrow">{{ quad.strategy }}</p>
           <h4>{{ quad.title }}</h4>

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { PROJECT_META } from '../../../core/content/hero.content';
+import { LanguageService } from '../../../core/services/language.service';
 
 @Component({
   selector: 'app-footer',
@@ -8,5 +9,7 @@ import { PROJECT_META } from '../../../core/content/hero.content';
   styleUrl: './footer.component.scss',
 })
 export class FooterComponent {
-  readonly meta = PROJECT_META;
+  private readonly language = inject(LanguageService);
+
+  readonly meta = computed(() => PROJECT_META[this.language.lang()]);
 }

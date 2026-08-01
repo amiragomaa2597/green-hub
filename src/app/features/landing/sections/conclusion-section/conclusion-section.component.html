@@ -1,21 +1,21 @@
 <section id="conclusion" class="section section--alt">
   <div class="container">
     <app-section-header
-      [eyebrow]="content.eyebrow"
-      [title]="content.title"
-      [hook]="hook"
-      [lead]="content.quote"
+      [eyebrow]="content().eyebrow"
+      [title]="content().title"
+      [hook]="hook()"
+      [lead]="content().quote"
     />
 
     <app-section-media
-      [src]="visual.src"
-      [alt]="visual.alt"
-      [caption]="visual.caption"
+      [src]="visual().src"
+      [alt]="visual().alt"
+      [caption]="visual().caption"
     />
 
-    <h3>Key Takeaways</h3>
+    <h3>{{ ui().keyTakeaways }}</h3>
     <div class="takeaways">
-      @for (item of content.takeaways; track item.title) {
+      @for (item of content().takeaways; track item.title) {
         <article class="panel" appRevealOnScroll>
           <span class="icon-bubble">
             <app-icon [name]="iconOf(item.icon)" [size]="22" />
@@ -28,14 +28,14 @@
 
     <article class="legacy panel" appRevealOnScroll>
       <span class="legacy__icon"><app-icon name="award" [size]="28" /></span>
-      <h3>{{ content.title }}</h3>
-      <p>{{ content.thanks }}</p>
-      <p class="legacy__closing">{{ content.closing }}</p>
+      <h3>{{ content().title }}</h3>
+      <p>{{ content().thanks }}</p>
+      <p class="legacy__closing">{{ content().closing }}</p>
     </article>
 
-    <h3>Project Summary</h3>
+    <h3>{{ ui().projectSummary }}</h3>
     <div class="summary-grid">
-      @for (item of content.summary; track item.label) {
+      @for (item of content().summary; track item.label) {
         <article class="panel" appRevealOnScroll>
           <span class="icon-bubble">
             <app-icon [name]="iconOf(item.icon)" [size]="20" />
@@ -45,7 +45,7 @@
             @if (item.count != null) {
               <span
                 [appCountUp]="item.count"
-                [countSuffix]="item.suffix"
+                [countSuffix]="item.suffix ?? ''"
                 [countDuration]="1400"
                 [countSeparator]="item.count >= 1000"
               ></span>

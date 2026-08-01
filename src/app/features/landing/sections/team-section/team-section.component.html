@@ -1,29 +1,29 @@
 <section id="team" class="section section--alt">
   <div class="container">
     <app-section-header
-      [eyebrow]="content.eyebrow"
-      [title]="content.title"
-      [hook]="hook"
-      lead="Instructor / Advisor and project team roles for The Green Hub."
+      [eyebrow]="content().eyebrow"
+      [title]="content().title"
+      [hook]="hook()"
+      [lead]="ui().teamLead"
     />
 
     <app-section-media
-      [src]="visual.src"
-      [alt]="visual.alt"
-      [caption]="visual.caption"
+      [src]="visual().src"
+      [alt]="visual().alt"
+      [caption]="visual().caption"
     />
 
     <article class="advisor panel" appRevealOnScroll>
       <span class="icon-bubble"><app-icon name="grad" [size]="24" /></span>
       <div>
-        <p class="eyebrow">Instructor / Advisor</p>
-        <h3>{{ content.advisor.name }}</h3>
-        <p>{{ content.advisor.role }}</p>
+        <p class="eyebrow">{{ ui().instructorAdvisor }}</p>
+        <h3>{{ content().advisor.name }}</h3>
+        <p>{{ content().advisor.role }}</p>
       </div>
     </article>
 
     <div class="team-grid">
-      @for (member of content.members; track member.name; let i = $index) {
+      @for (member of content().members; track member.name; let i = $index) {
         <article class="panel team-card" [class]="'reveal-delay-' + ((i % 3) + 1)" appRevealOnScroll>
           <span class="icon-bubble">
             <app-icon [name]="iconOf(member.icon)" [size]="22" />
@@ -35,17 +35,17 @@
     </div>
 
     <div class="obs" appRevealOnScroll>
-      <h3>Organizational Breakdown Structure (OBS)</h3>
-      <p class="obs__note">{{ content.obsNote }}</p>
+      <h3>{{ ui().obsTitle }}</h3>
+      <p class="obs__note">{{ content().obsNote }}</p>
 
       <div class="obs__pm">
         <app-icon name="person" [size]="22" />
-        <span>Project Manager</span>
-        <strong>Armia Kamal</strong>
+        <span>{{ ui().projectManager }}</span>
+        <strong>{{ content().pmName }}</strong>
       </div>
 
       <div class="obs__peers">
-        @for (peer of content.obsPeers; track peer.role) {
+        @for (peer of content().obsPeers; track peer.role) {
           <article>
             <span class="icon-bubble">
               <app-icon [name]="iconOf(peer.icon)" [size]="20" />

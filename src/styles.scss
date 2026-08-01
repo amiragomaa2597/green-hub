@@ -43,6 +43,10 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+body.nav-drawer-open {
+  overflow: hidden;
+}
+
 img {
   max-width: 100%;
   display: block;

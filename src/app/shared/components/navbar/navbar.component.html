@@ -1,4 +1,4 @@
-<header class="nav" [class.nav--scrolled]="scrolled">
+<header class="nav" [class.nav--scrolled]="scrolled" [class.nav--menu-open]="menuOpen">
   <div class="container nav__inner">
     <a class="nav__brand" href="#hero" (click)="closeMenu()">
       <img [src]="logo" alt="The Green Hub logo" class="nav__logo" />
@@ -8,7 +8,9 @@
     <button
       class="nav__toggle"
       type="button"
+      [class.is-open]="menuOpen"
       [attr.aria-expanded]="menuOpen"
+      [attr.aria-controls]="'nav-drawer'"
       aria-label="Toggle navigation"
       (click)="toggleMenu()"
     >
@@ -17,10 +19,64 @@
       <span></span>
     </button>
 
-    <nav class="nav__links" [class.is-open]="menuOpen" aria-label="Primary">
+    <nav class="nav__links nav__links--desktop" aria-label="Primary">
       @for (item of items; track item.href) {
-        <a [href]="item.href" (click)="closeMenu()">{{ item.label }}</a>
+        <a [href]="item.href">{{ item.label }}</a>
       }
     </nav>
   </div>
 </header>
+
+<div
+  class="nav__backdrop"
+  [class.is-open]="menuOpen"
+  (click)="closeMenu()"
+  aria-hidden="true"
+></div>
+
+<aside
+  id="nav-drawer"
+  class="nav__drawer"
+  [class.is-open]="menuOpen"
+  [attr.aria-hidden]="!menuOpen"
+  aria-label="Site navigation"
+>
+  <div class="nav__drawer-top">
+    <a class="nav__drawer-brand" href="#hero" (click)="closeMenu()">
+      <img [src]="logo" alt="" class="nav__logo" />
+      <div>
+        <strong>{{ brand }}</strong>
+        <small>{{ tagline }}</small>
+      </div>
+    </a>
+
+    <button
+      class="nav__drawer-close"
+      type="button"
+      aria-label="Close navigation"
+      (click)="closeMenu()"
+    >
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <nav class="nav__drawer-nav" aria-label="Mobile primary">
+    @for (item of items; track item.href; let i = $index) {
+      <a
+        class="nav__drawer-link"
+        [href]="item.href"
+        [style.--i]="i"
+        (click)="closeMenu()"
+      >
+        <span class="nav__drawer-index">{{ padIndex(i + 1) }}</span>
+        <span class="nav__drawer-label">{{ item.label }}</span>
+        <span class="nav__drawer-arrow" aria-hidden="true">→</span>
+      </a>
+    }
+  </nav>
+
+  <div class="nav__drawer-foot">
+    <p>{{ subtitle }}</p>
+  </div>
+</aside>

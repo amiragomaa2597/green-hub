@@ -1,3 +1,7 @@
+:host {
+  display: contents;
+}
+
 .nav {
   position: sticky;
   top: 0;
@@ -6,10 +10,14 @@
   backdrop-filter: blur(14px);
   background: rgba(247, 250, 248, 0.78);
   border-bottom: 1px solid transparent;
-  transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
-.nav--scrolled {
+.nav--scrolled,
+.nav--menu-open {
   background: rgba(247, 250, 248, 0.96);
   border-bottom-color: rgba(15, 47, 34, 0.08);
   box-shadow: 0 10px 30px rgba(15, 47, 34, 0.08);
@@ -40,76 +48,322 @@
 }
 
 .nav__toggle {
+  position: relative;
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
   gap: 5px;
-  width: 2.5rem;
-  height: 2.5rem;
-  border: 0;
-  background: transparent;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid rgba(15, 47, 34, 0.1);
+  border-radius: 0.85rem;
+  background: rgba(255, 255, 255, 0.55);
   cursor: pointer;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.nav__toggle:hover {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(31, 107, 69, 0.22);
 }
 
 .nav__toggle span {
   display: block;
   height: 2px;
-  width: 1.35rem;
+  width: 1.15rem;
   background: var(--forest);
   margin-inline: auto;
+  border-radius: 999px;
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.2s ease,
+    width 0.25s ease;
+  transform-origin: center;
 }
 
-.nav__links {
+.nav__toggle.is-open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav__toggle.is-open span:nth-child(2) {
+  opacity: 0;
+  width: 0;
+}
+
+.nav__toggle.is-open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.nav__links--desktop {
   display: none;
-  position: absolute;
-  top: var(--header-h);
-  left: 0;
-  right: 0;
-  background: rgba(247, 250, 248, 0.98);
-  border-bottom: 1px solid rgba(15, 47, 34, 0.08);
-  padding: 1rem;
-  flex-direction: column;
-  gap: 0.35rem;
-  max-height: calc(100vh - var(--header-h));
-  overflow: auto;
 }
 
-.nav__links a {
-  padding: 0.7rem 0.85rem;
-  border-radius: 0.75rem;
-  color: var(--forest);
-  font-weight: 500;
+.nav__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 45;
+  background:
+    radial-gradient(circle at top right, rgba(143, 206, 173, 0.18), transparent 42%),
+    rgba(10, 33, 24, 0.42);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
 }
 
-.nav__links a:hover {
-  background: rgba(31, 107, 69, 0.08);
+.nav__backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
 }
 
-.nav__links.is-open {
+.nav__drawer {
+  position: fixed;
+  top: max(0.65rem, env(safe-area-inset-top));
+  right: max(0.65rem, env(safe-area-inset-right));
+  bottom: max(0.65rem, env(safe-area-inset-bottom));
+  z-index: 50;
+  width: min(21.5rem, calc(100vw - 1.3rem));
   display: flex;
+  flex-direction: column;
+  padding: 1.15rem 1rem 1.1rem;
+  background:
+    linear-gradient(165deg, rgba(255, 255, 255, 0.92) 0%, rgba(236, 247, 241, 0.9) 52%, rgba(247, 250, 248, 0.94) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 1.5rem;
+  box-shadow:
+    0 28px 70px rgba(15, 47, 34, 0.22),
+    0 2px 0 rgba(255, 255, 255, 0.55) inset;
+  backdrop-filter: blur(18px);
+  transform: translateX(calc(100% + 1.25rem));
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  overflow: hidden;
+}
+
+.nav__drawer::before {
+  content: '';
+  position: absolute;
+  inset: auto -18% -12% auto;
+  width: 14rem;
+  height: 14rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(143, 206, 173, 0.42), transparent 68%);
+  pointer-events: none;
+}
+
+.nav__drawer::after {
+  content: '';
+  position: absolute;
+  top: -4rem;
+  left: -3rem;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(196, 163, 90, 0.14), transparent 70%);
+  pointer-events: none;
+}
+
+.nav__drawer.is-open {
+  transform: translateX(0);
+}
+
+.nav__drawer-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  position: relative;
+}
+
+.nav__drawer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+  color: var(--forest);
+}
+
+.nav__drawer-brand strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  line-height: 1.2;
+}
+
+.nav__drawer-brand small {
+  display: block;
+  margin-top: 0.2rem;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+
+.nav__drawer-close {
+  position: relative;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex: 0 0 auto;
+  border: 1px solid rgba(15, 47, 34, 0.1);
+  border-radius: 0.8rem;
+  background: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.nav__drawer-close:hover {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(31, 107, 69, 0.22);
+}
+
+.nav__drawer-close span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0.95rem;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--forest);
+}
+
+.nav__drawer-close span:first-child {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.nav__drawer-close span:last-child {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.nav__drawer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  overflow: auto;
+  flex: 1;
+  min-height: 0;
+  padding-right: 0.15rem;
+  position: relative;
+}
+
+.nav__drawer-link {
+  --i: 0;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.8rem 0.85rem;
+  border-radius: 0.95rem;
+  color: var(--forest);
+  border: 1px solid transparent;
+  opacity: 0;
+  transform: translateX(1.25rem);
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: 0s;
+}
+
+.nav__drawer.is-open .nav__drawer-link {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: calc(0.08s + (var(--i) * 0.03s));
+}
+
+.nav__drawer-link:hover,
+.nav__drawer-link:focus-visible {
+  background: rgba(255, 255, 255, 0.72);
+  border-color: rgba(31, 107, 69, 0.12);
+  outline: none;
+}
+
+.nav__drawer-link:hover .nav__drawer-arrow,
+.nav__drawer-link:focus-visible .nav__drawer-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.nav__drawer-index {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--leaf);
+  opacity: 0.75;
+}
+
+.nav__drawer-label {
+  font-weight: 600;
+  font-size: 1.02rem;
+  letter-spacing: -0.01em;
+}
+
+.nav__drawer-arrow {
+  color: var(--leaf);
+  opacity: 0;
+  transform: translateX(-0.35rem);
+  transition:
+    opacity 0.2s ease,
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nav__drawer-foot {
+  position: relative;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(15, 47, 34, 0.08);
+}
+
+.nav__drawer-foot p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.45;
 }
 
 @media (min-width: 1100px) {
-  .nav__toggle {
+  .nav__toggle,
+  .nav__backdrop,
+  .nav__drawer {
     display: none;
   }
 
-  .nav__links {
+  .nav__links--desktop {
     display: flex;
     position: static;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-end;
-    background: transparent;
-    border: 0;
-    padding: 0;
-    max-height: none;
-    overflow: visible;
     gap: 0.15rem;
   }
 
-  .nav__links a {
+  .nav__links--desktop a {
     padding: 0.45rem 0.55rem;
+    border-radius: 0.75rem;
+    color: var(--forest);
+    font-weight: 500;
     font-size: 0.9rem;
+  }
+
+  .nav__links--desktop a:hover {
+    background: rgba(31, 107, 69, 0.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav__toggle span,
+  .nav__backdrop,
+  .nav__drawer,
+  .nav__drawer-link,
+  .nav__drawer-arrow {
+    transition: none;
+  }
+
+  .nav__drawer-link {
+    opacity: 1;
+    transform: none;
   }
 }

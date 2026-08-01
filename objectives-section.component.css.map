@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/features/landing/sections/objectives-section/objectives-section.component.scss"],
-  "sourcesContent": [".objective-card {\n  min-height: 100%;\n  transition: transform 0.25s ease, box-shadow 0.25s ease;\n}\n\n.objective-card .media-thumb {\n  aspect-ratio: 4 / 3;\n}\n\n.objective-card:hover {\n  transform: translateY(-4px);\n  box-shadow: 0 22px 40px rgba(15, 47, 34, 0.14);\n}\n\n.icon-bubble {\n  width: 3rem;\n  height: 3rem;\n  border-radius: 1rem;\n  display: grid;\n  place-items: center;\n  margin-bottom: 0.85rem;\n  background: linear-gradient(145deg, var(--mist), #d8f3e4);\n  color: var(--leaf);\n}\n\n.objective-card__index {\n  display: inline-block;\n  font-family: var(--font-display);\n  color: var(--leaf);\n  font-size: 1.2rem;\n  margin-bottom: 0.35rem;\n}\n\n.objective-card h3 {\n  color: var(--forest);\n  font-size: 1.3rem;\n}\n\n.objective-card p {\n  margin: 0;\n  color: var(--muted);\n}\n"],
-  "mappings": ";AAAA,CAAA;AACE,cAAA;AACA,cAAA,UAAA,MAAA,IAAA,EAAA,WAAA,MAAA;;AAGF,CALA,eAKA,CAAA;AACE,gBAAA,CAAA,CAAA;;AAGF,CATA,cASA;AACE,aAAA,WAAA;AACA,cAAA,EAAA,KAAA,KAAA,KAAA,EAAA,EAAA,EAAA,EAAA,EAAA,EAAA;;AAGF,CAAA;AACE,SAAA;AACA,UAAA;AACA,iBAAA;AACA,WAAA;AACA,eAAA;AACA,iBAAA;AACA;IAAA;MAAA,MAAA;MAAA,IAAA,OAAA;MAAA;AACA,SAAA,IAAA;;AAGF,CAAA;AACE,WAAA;AACA,eAAA,IAAA;AACA,SAAA,IAAA;AACA,aAAA;AACA,iBAAA;;AAGF,CAjCA,eAiCA;AACE,SAAA,IAAA;AACA,aAAA;;AAGF,CAtCA,eAsCA;AACE,UAAA;AACA,SAAA,IAAA;;",
-  "names": []
-}

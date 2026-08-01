@@ -1,0 +1,60 @@
+<section id="team" class="section section--alt">
+  <div class="container">
+    <app-section-header
+      [eyebrow]="content.eyebrow"
+      [title]="content.title"
+      [hook]="hook"
+      lead="Instructor / Advisor and project team roles for The Green Hub."
+    />
+
+    <app-section-media
+      [src]="visual.src"
+      [alt]="visual.alt"
+      [caption]="visual.caption"
+    />
+
+    <article class="advisor panel" appRevealOnScroll>
+      <span class="icon-bubble"><app-icon name="grad" [size]="24" /></span>
+      <div>
+        <p class="eyebrow">Instructor / Advisor</p>
+        <h3>{{ content.advisor.name }}</h3>
+        <p>{{ content.advisor.role }}</p>
+      </div>
+    </article>
+
+    <div class="team-grid">
+      @for (member of content.members; track member.name; let i = $index) {
+        <article class="panel team-card" [class]="'reveal-delay-' + ((i % 3) + 1)" appRevealOnScroll>
+          <span class="icon-bubble">
+            <app-icon [name]="iconOf(member.icon)" [size]="22" />
+          </span>
+          <strong>{{ member.role }}</strong>
+          <span>{{ member.name }}</span>
+        </article>
+      }
+    </div>
+
+    <div class="obs" appRevealOnScroll>
+      <h3>Organizational Breakdown Structure (OBS)</h3>
+      <p class="obs__note">{{ content.obsNote }}</p>
+
+      <div class="obs__pm">
+        <app-icon name="person" [size]="22" />
+        <span>Project Manager</span>
+        <strong>Armia Kamal</strong>
+      </div>
+
+      <div class="obs__peers">
+        @for (peer of content.obsPeers; track peer.role) {
+          <article>
+            <span class="icon-bubble">
+              <app-icon [name]="iconOf(peer.icon)" [size]="20" />
+            </span>
+            <strong>{{ peer.role }}</strong>
+            <span>{{ peer.name }}</span>
+          </article>
+        }
+      </div>
+    </div>
+  </div>
+</section>

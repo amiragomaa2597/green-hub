@@ -1,0 +1,26 @@
+<header class="nav" [class.nav--scrolled]="scrolled">
+  <div class="container nav__inner">
+    <a class="nav__brand" href="#hero" (click)="closeMenu()">
+      <img [src]="logo" alt="The Green Hub logo" class="nav__logo" />
+      <span>{{ brand }}</span>
+    </a>
+
+    <button
+      class="nav__toggle"
+      type="button"
+      [attr.aria-expanded]="menuOpen"
+      aria-label="Toggle navigation"
+      (click)="toggleMenu()"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="nav__links" [class.is-open]="menuOpen" aria-label="Primary">
+      @for (item of items; track item.href) {
+        <a [href]="item.href" (click)="closeMenu()">{{ item.label }}</a>
+      }
+    </nav>
+  </div>
+</header>

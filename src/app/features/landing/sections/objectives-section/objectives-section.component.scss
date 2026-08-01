@@ -1,0 +1,42 @@
+.objective-card {
+  min-height: 100%;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.objective-card .media-thumb {
+  aspect-ratio: 4 / 3;
+}
+
+.objective-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 40px rgba(15, 47, 34, 0.14);
+}
+
+.icon-bubble {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 1rem;
+  display: grid;
+  place-items: center;
+  margin-bottom: 0.85rem;
+  background: linear-gradient(145deg, var(--mist), #d8f3e4);
+  color: var(--leaf);
+}
+
+.objective-card__index {
+  display: inline-block;
+  font-family: var(--font-display);
+  color: var(--leaf);
+  font-size: 1.2rem;
+  margin-bottom: 0.35rem;
+}
+
+.objective-card h3 {
+  color: var(--forest);
+  font-size: 1.3rem;
+}
+
+.objective-card p {
+  margin: 0;
+  color: var(--muted);
+}

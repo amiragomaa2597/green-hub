@@ -1,0 +1,63 @@
+<section id="scope" class="section">
+  <div class="container">
+    <app-section-header
+      [eyebrow]="content.eyebrow"
+      [title]="content.title"
+      [hook]="hook"
+      [lead]="content.statement"
+    />
+
+    <app-section-media
+      [src]="visual.src"
+      [alt]="visual.alt"
+      [caption]="visual.caption"
+    />
+
+    <div class="grid-2">
+      <article class="panel reveal-delay-1" appRevealOnScroll>
+        <div class="scope-head">
+          <span class="icon-bubble icon-bubble--ok"><app-icon name="check" [size]="20" /></span>
+          <h3>Includes</h3>
+        </div>
+        <ul class="list-check">
+          @for (item of content.includes; track item) {
+            <li>{{ item }}</li>
+          }
+        </ul>
+      </article>
+      <article class="panel reveal-delay-2" appRevealOnScroll>
+        <div class="scope-head">
+          <span class="icon-bubble icon-bubble--no"><app-icon name="x" [size]="20" /></span>
+          <h3>Excludes</h3>
+        </div>
+        <ul class="list-cross">
+          @for (item of content.excludes; track item) {
+            <li>{{ item }}</li>
+          }
+        </ul>
+      </article>
+    </div>
+
+    <h3 class="deliverables-title">Scope Deliverables</h3>
+    <div class="grid-3">
+      @for (item of content.deliverables; track item.title; let i = $index) {
+        <article
+          class="panel panel--media deliverable"
+          [class]="'reveal-delay-' + ((i % 3) + 1)"
+          appRevealOnScroll
+        >
+          <div class="media-thumb">
+            <img [src]="item.image" [alt]="item.title" loading="lazy" />
+          </div>
+          <div class="panel__body">
+            <span class="icon-bubble">
+              <app-icon [name]="iconOf(item.icon)" [size]="22" />
+            </span>
+            <h4>{{ item.title }}</h4>
+            <p>{{ item.description }}</p>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

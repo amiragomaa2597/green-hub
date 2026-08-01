@@ -1,0 +1,174 @@
+<div class="console" appRevealOnScroll>
+  <div class="console__intro">
+    <p class="console__label">Risk Defense Console</p>
+    <h3>Scan the threats. Lock the response.</h3>
+    <p>
+      Explore the Top 8 risks on an interactive board — filter by pressure level or strategy,
+      then open any threat to see impact and mitigation.
+    </p>
+  </div>
+
+  <div class="filters" role="toolbar" aria-label="Risk filters">
+    @for (item of filters; track item) {
+      <button
+        type="button"
+        class="filter"
+        [class.is-active]="filter === item"
+        (click)="setFilter(item)"
+      >
+        {{ item }}
+      </button>
+    }
+  </div>
+
+  <div class="radar panel" aria-label="Risk severity rail">
+    <div class="radar__scale">
+      <span>Lower exposure</span>
+      <span>Higher exposure</span>
+    </div>
+    <div class="radar__track">
+      @for (risk of filtered; track risk.id) {
+        <button
+          type="button"
+          class="radar__node"
+          [class.is-active]="selectedId === risk.id"
+          [class.is-high]="risk.probability === 'High'"
+          [class.is-medium]="risk.probability === 'Medium'"
+          [style.--size.%]="costPercent(risk.costImpact)"
+          [style.left.%]="costPercent(risk.costImpact) * 0.82 + 6"
+          [attr.aria-pressed]="selectedId === risk.id"
+          [attr.title]="risk.risk"
+          (click)="select(risk.id)"
+        >
+          <span>{{ risk.id }}</span>
+        </button>
+      }
+    </div>
+    <p class="radar__note">Node size & position reflect relative cost impact.</p>
+  </div>
+
+  <div class="console__body">
+    <aside class="threat-list" aria-label="Risk list">
+      @for (risk of filtered; track risk.id) {
+        <button
+          type="button"
+          class="threat"
+          [class.is-active]="selectedId === risk.id"
+          [class.is-high]="risk.probability === 'High'"
+          (click)="select(risk.id)"
+        >
+          <span class="threat__id">R{{ risk.id }}</span>
+          <span class="threat__copy">
+            <strong>{{ risk.risk }}</strong>
+            <em>{{ risk.probability }} · {{ risk.strategy }}</em>
+          </span>
+          <span class="threat__meter" aria-hidden="true">
+            <i [style.width.%]="severityScore(risk)"></i>
+          </span>
+        </button>
+      }
+    </aside>
+
+    @for (risk of [selected]; track risk.id) {
+      <article class="spotlight panel" [class.is-high]="risk.probability === 'High'">
+        <header class="spotlight__head">
+          <div>
+            <span class="spotlight__code">Risk {{ risk.id }}</span>
+            <h4>{{ risk.risk }}</h4>
+            <p>{{ risk.description }}</p>
+          </div>
+          <div class="spotlight__badges">
+            <span
+              class="badge"
+              [class.badge--high]="risk.probability === 'High'"
+              [class.badge--medium]="risk.probability === 'Medium'"
+            >
+              {{ risk.probability }} Probability
+            </span>
+            <span class="strategy-pill">{{ risk.strategy }}</span>
+          </div>
+        </header>
+
+        <div class="gauges">
+          <div class="gauge">
+            <div class="gauge__meta">
+              <span>Cost Impact</span>
+              <strong>
+                <span [appCountUp]="risk.costImpact" [countDuration]="1200"></span>
+                EGP
+              </strong>
+            </div>
+            <div class="gauge__bar">
+              <i [style.width.%]="costPercent(risk.costImpact)"></i>
+            </div>
+          </div>
+
+          <div class="gauge">
+            <div class="gauge__meta">
+              <span>Time Impact</span>
+              <strong>
+                <span
+                  [appCountUp]="weeksOf(risk.timeImpact)"
+                  countSuffix=" Weeks"
+                  [countDuration]="1000"
+                  [countSeparator]="false"
+                ></span>
+              </strong>
+            </div>
+            <div class="gauge__bar gauge__bar--time">
+              <i [style.width.%]="timePercent(weeksOf(risk.timeImpact))"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="spotlight__grid">
+          <div>
+            <span>Owner</span>
+            <strong>{{ risk.owner }}</strong>
+          </div>
+          <div>
+            <span>Severity Index</span>
+            <strong>{{ severityScore(risk) }} / 100</strong>
+          </div>
+        </div>
+
+        <div class="shield">
+          <span class="shield__label">Mitigation Response</span>
+          <p>{{ risk.mitigation }}</p>
+        </div>
+      </article>
+    }
+  </div>
+
+  <div class="summary">
+    <div>
+      <span>Total Potential Cost Impact</span>
+      <strong>
+        <span [appCountUp]="summary.totalCostImpact" [countDuration]="1800"></span>
+        EGP
+      </strong>
+    </div>
+    <div>
+      <span>Total Potential Delay</span>
+      <strong>
+        <span
+          [appCountUp]="summary.totalDelay"
+          countSuffix=" Weeks"
+          [countDuration]="1600"
+          [countSeparator]="false"
+        ></span>
+      </strong>
+    </div>
+    <div>
+      <span>Total Mitigation Cost</span>
+      <strong>
+        <span [appCountUp]="summary.totalMitigationCost" [countDuration]="1700"></span>
+        EGP
+      </strong>
+    </div>
+    <div class="summary__goal">
+      <span>Our Goal</span>
+      <strong>{{ summary.goal }}</strong>
+    </div>
+  </div>
+</div>

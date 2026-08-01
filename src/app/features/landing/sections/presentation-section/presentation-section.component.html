@@ -1,0 +1,92 @@
+<section id="presentation" class="section section--alt">
+  <div class="container">
+    <app-section-header
+      [eyebrow]="content.eyebrow"
+      [title]="content.title"
+      [hook]="hook"
+      [lead]="content.lead"
+    />
+
+    <app-section-media
+      [src]="visual.src"
+      [alt]="visual.alt"
+      [caption]="visual.caption"
+    />
+
+    <article class="deck panel" appRevealOnScroll>
+      <div class="deck__preview">
+        <img [src]="visual.src" [alt]="visual.alt" class="deck__photo" />
+        <img [src]="logo" alt="The Green Hub logo" class="deck__logo" />
+        <div class="deck__badge">
+          <app-icon name="file" [size]="18" />
+          <span>{{ content.fileType }}</span>
+        </div>
+      </div>
+
+      <div class="deck__body">
+        <h3>{{ content.fileName }}</h3>
+        <p>{{ content.project }}</p>
+        <ul class="deck__meta">
+          <li>
+            <app-icon name="file" [size]="16" />
+            {{ content.fileType }}
+          </li>
+          <li>
+            <app-icon name="eye" [size]="16" />
+            {{ content.pages }}
+          </li>
+        </ul>
+
+        <div class="deck__actions">
+          <button type="button" class="btn btn--primary" (click)="openViewer()">
+            <app-icon name="eye" [size]="18" />
+            View presentation
+          </button>
+          <a
+            class="btn btn--secondary"
+            [href]="content.filePath"
+            [download]="content.fileName"
+          >
+            <app-icon name="download" [size]="18" />
+            Download PDF
+          </a>
+          <button type="button" class="btn btn--ghost" (click)="openInNewTab()">
+            Open in new tab
+          </button>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+@if (viewerOpen) {
+  <div class="viewer" role="dialog" aria-modal="true" aria-label="Presentation viewer">
+    <div class="viewer__backdrop" (click)="closeViewer()"></div>
+    <div class="viewer__panel">
+      <header class="viewer__bar">
+        <div>
+          <strong>{{ content.fileName }}</strong>
+          <span>{{ content.project }}</span>
+        </div>
+        <div class="viewer__bar-actions">
+          <a
+            class="btn btn--secondary btn--small"
+            [href]="content.filePath"
+            [download]="content.fileName"
+          >
+            <app-icon name="download" [size]="16" />
+            Download
+          </a>
+          <button type="button" class="btn btn--ghost btn--small" (click)="closeViewer()">
+            Close
+          </button>
+        </div>
+      </header>
+      <iframe
+        class="viewer__frame"
+        [src]="pdfUrl"
+        title="The Green Hub Final Presentation PDF"
+      ></iframe>
+    </div>
+  </div>
+}

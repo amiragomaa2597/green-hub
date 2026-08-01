@@ -1,0 +1,67 @@
+<div class="wbs-journey" appRevealOnScroll>
+  <div class="wbs-journey__intro">
+    <p class="wbs-journey__label">Work Breakdown Structure</p>
+    <h3>Project Journey Map</h3>
+    <p class="wbs-journey__hint">
+      Follow the path from initiation to monitoring — tap any station to open its work packages.
+    </p>
+  </div>
+
+  <div class="journey">
+    <div class="journey__root">
+      <span class="journey__root-glow" aria-hidden="true"></span>
+      <span class="journey__root-badge">WBS 0</span>
+      <strong>{{ rootTitle }}</strong>
+      <em>{{ packages.length }} work packages · one delivery path</em>
+    </div>
+
+    <ol class="journey__path">
+      @for (pkg of packages; track pkg.id; let i = $index; let last = $last) {
+        <li
+          class="station"
+          [class.station--left]="i % 2 === 0"
+          [class.station--right]="i % 2 === 1"
+          [class.is-open]="isActive(pkg.id)"
+          [class.is-last]="last"
+          [style.--tone]="pkg.color"
+        >
+          <button
+            type="button"
+            class="station__node"
+            [attr.aria-expanded]="isActive(pkg.id)"
+            (click)="toggle(pkg.id)"
+          >
+            <span class="station__pulse" aria-hidden="true"></span>
+            <span class="station__id">{{ pkg.id }}</span>
+          </button>
+
+          <article class="station__card">
+            <button type="button" class="station__head" (click)="toggle(pkg.id)">
+              <div>
+                <span class="station__weeks">Weeks {{ pkg.weeks }}</span>
+                <h4>{{ pkg.title }}</h4>
+              </div>
+              <span class="station__chevron" aria-hidden="true"></span>
+            </button>
+
+            @if (isActive(pkg.id)) {
+              <div class="station__tasks">
+                @for (task of pkg.tasks; track task; let ti = $index) {
+                  <span class="task-chip" [style.animation-delay]="0.04 * ti + 's'">
+                    <em>{{ taskCode(pkg.id, ti) }}</em>
+                    {{ task }}
+                  </span>
+                }
+              </div>
+            }
+          </article>
+        </li>
+      }
+    </ol>
+
+    <div class="journey__finish">
+      <span>Handover ready</span>
+      <strong>Sustainable delivery complete</strong>
+    </div>
+  </div>
+</div>

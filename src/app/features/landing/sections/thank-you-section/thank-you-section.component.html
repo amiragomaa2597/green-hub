@@ -1,0 +1,20 @@
+<section id="thank-you" class="thank-you">
+  <div
+    class="thank-you__media"
+    [style.background-image]="'url(' + meta.secondaryImage + ')'"
+    aria-hidden="true"
+  ></div>
+  <div class="thank-you__veil" aria-hidden="true"></div>
+
+  <div class="container thank-you__content">
+    <img class="thank-you__logo" [src]="meta.logo" alt="The Green Hub logo" />
+    <h2>Thank You</h2>
+    <p class="thank-you__tagline">Together for a greener tomorrow</p>
+    <p class="thank-you__credit">The Green Hub — MBA Team Final Project, Group 5</p>
+    <ul>
+      @for (name of names; track name) {
+        <li>{{ name }}</li>
+      }
+    </ul>
+  </div>
+</section>

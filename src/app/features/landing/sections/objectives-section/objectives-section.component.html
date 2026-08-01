@@ -1,0 +1,38 @@
+<section id="objectives" class="section">
+  <div class="container">
+    <app-section-header
+      [eyebrow]="content.eyebrow"
+      [title]="content.title"
+      [hook]="hook"
+      [lead]="content.intro"
+    />
+
+    <app-section-media
+      [src]="visual.src"
+      [alt]="visual.alt"
+      [caption]="visual.caption"
+    />
+
+    <div class="grid-4">
+      @for (area of content.areas; track area.title; let i = $index) {
+        <article
+          class="panel panel--media objective-card"
+          [class]="'reveal-delay-' + ((i % 3) + 1)"
+          appRevealOnScroll
+        >
+          <div class="media-thumb">
+            <img [src]="area.image" [alt]="area.title" loading="lazy" />
+          </div>
+          <div class="panel__body">
+            <span class="icon-bubble">
+              <app-icon [name]="iconOf(area.icon)" [size]="24" />
+            </span>
+            <span class="objective-card__index">0{{ i + 1 }}</span>
+            <h3>{{ area.title }}</h3>
+            <p>{{ area.description }}</p>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

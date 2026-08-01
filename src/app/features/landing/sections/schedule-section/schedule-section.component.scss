@@ -1,0 +1,165 @@
+h3 {
+  color: var(--forest);
+  margin: 2rem 0 1rem;
+  font-size: 1.45rem;
+}
+
+.meta-strip {
+  display: grid;
+  gap: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.meta-strip div {
+  padding: 1rem 1.15rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(31, 107, 69, 0.12);
+}
+
+.meta-strip span {
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.meta-strip strong {
+  color: var(--forest);
+  font-size: 1.05rem;
+}
+
+.gantt {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.gantt-row__label {
+  display: grid;
+  gap: 0.15rem;
+  margin-bottom: 0.4rem;
+}
+
+.gantt-row__label strong {
+  color: var(--forest);
+}
+
+.gantt-row__label span {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.gantt-row__track {
+  position: relative;
+  height: 0.85rem;
+  border-radius: 999px;
+  background: rgba(31, 107, 69, 0.08);
+  overflow: hidden;
+}
+
+.gantt-bar__fill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  border-radius: 999px;
+  transform-origin: left center;
+}
+
+.gantt.is-active .gantt-bar__fill {
+  animation: gantt-grow 1.05s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--bar-delay, 0s);
+}
+
+.gantt-bar__fill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.45),
+    transparent
+  );
+  transform: translateX(-120%);
+}
+
+.gantt.is-active .gantt-bar__fill::after {
+  animation: gantt-shimmer 1.2s ease var(--bar-delay, 0s) both;
+}
+
+.milestones {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.milestones article {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.milestones .icon-bubble {
+  width: 2.3rem;
+  height: 2.3rem;
+  border-radius: 0.8rem;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(145deg, var(--mist), #d8f3e4);
+  color: var(--leaf);
+  flex-shrink: 0;
+}
+
+.milestones strong {
+  display: block;
+  color: var(--forest);
+}
+
+.milestones span {
+  color: var(--leaf);
+  font-weight: 600;
+}
+
+@keyframes gantt-grow {
+  from {
+    width: 0;
+  }
+  to {
+    width: var(--bar-width);
+  }
+}
+
+@keyframes gantt-shimmer {
+  to {
+    transform: translateX(120%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gantt.is-active .gantt-bar__fill,
+  .gantt.is-active .gantt-bar__fill::after {
+    animation: none !important;
+  }
+
+  .gantt.is-active .gantt-bar__fill {
+    width: var(--bar-width);
+  }
+}
+
+@media (min-width: 768px) {
+  .meta-strip {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .milestones {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .milestones {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

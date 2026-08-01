@@ -1,0 +1,46 @@
+<section id="design" class="section section--alt">
+  <div class="container">
+    <app-section-header
+      [eyebrow]="content.eyebrow"
+      [title]="content.title"
+      [hook]="hook"
+      [lead]="content.intro"
+    />
+
+    <div class="design-banner" appRevealOnScroll>
+      <img [src]="image" alt="The Green Hub exterior plaza" />
+      <div class="design-banner__copy">
+        <app-icon name="building" [size]="28" />
+        <p>Architecture, renewable systems, and community space in one living campus.</p>
+      </div>
+    </div>
+
+    <div class="design-grid">
+      @for (block of content.blocks; track block.title; let i = $index) {
+        <article
+          class="panel panel--media"
+          [class]="'reveal-delay-' + ((i % 3) + 1)"
+          appRevealOnScroll
+        >
+          <div class="media-thumb">
+            <img [src]="block.image" [alt]="block.title" loading="lazy" />
+          </div>
+          <div class="panel__body">
+            <div class="design-card__head">
+              <span class="icon-bubble">
+                <app-icon [name]="iconOf(block.icon)" [size]="22" />
+              </span>
+              <h3>{{ block.title }}</h3>
+            </div>
+            <p>{{ block.description }}</p>
+            <ul class="list-check">
+              @for (point of block.points; track point) {
+                <li>{{ point }}</li>
+              }
+            </ul>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

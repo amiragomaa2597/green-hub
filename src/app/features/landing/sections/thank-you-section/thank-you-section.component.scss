@@ -1,0 +1,74 @@
+.thank-you {
+  position: relative;
+  min-height: 80vh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  color: white;
+  text-align: center;
+}
+
+.thank-you__media {
+  position: absolute;
+  inset: 0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.thank-you__veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10, 33, 24, 0.5), rgba(10, 33, 24, 0.82));
+}
+
+.thank-you__content {
+  position: relative;
+  z-index: 1;
+  padding: 4rem 0;
+}
+
+.thank-you__logo {
+  width: clamp(96px, 16vw, 124px);
+  height: clamp(96px, 16vw, 124px);
+  object-fit: contain;
+  margin: 0 auto 1rem;
+  padding: 0.45rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+}
+
+.thank-you h2 {
+  font-size: clamp(3rem, 8vw, 5rem);
+  margin-bottom: 0.5rem;
+}
+
+.thank-you__tagline {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.thank-you__credit {
+  color: rgba(255, 255, 255, 0.82);
+  margin-bottom: 1.5rem;
+}
+
+.thank-you ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.65rem;
+  padding: 0;
+  margin: 0;
+}
+
+.thank-you li {
+  padding: 0.55rem 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+}

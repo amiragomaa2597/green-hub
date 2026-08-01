@@ -1,0 +1,115 @@
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  height: var(--header-h);
+  backdrop-filter: blur(14px);
+  background: rgba(247, 250, 248, 0.78);
+  border-bottom: 1px solid transparent;
+  transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.nav--scrolled {
+  background: rgba(247, 250, 248, 0.96);
+  border-bottom-color: rgba(15, 47, 34, 0.08);
+  box-shadow: 0 10px 30px rgba(15, 47, 34, 0.08);
+}
+
+.nav__inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.nav__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--forest);
+}
+
+.nav__logo {
+  width: 2.4rem;
+  height: 2.4rem;
+  object-fit: contain;
+}
+
+.nav__toggle {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.nav__toggle span {
+  display: block;
+  height: 2px;
+  width: 1.35rem;
+  background: var(--forest);
+  margin-inline: auto;
+}
+
+.nav__links {
+  display: none;
+  position: absolute;
+  top: var(--header-h);
+  left: 0;
+  right: 0;
+  background: rgba(247, 250, 248, 0.98);
+  border-bottom: 1px solid rgba(15, 47, 34, 0.08);
+  padding: 1rem;
+  flex-direction: column;
+  gap: 0.35rem;
+  max-height: calc(100vh - var(--header-h));
+  overflow: auto;
+}
+
+.nav__links a {
+  padding: 0.7rem 0.85rem;
+  border-radius: 0.75rem;
+  color: var(--forest);
+  font-weight: 500;
+}
+
+.nav__links a:hover {
+  background: rgba(31, 107, 69, 0.08);
+}
+
+.nav__links.is-open {
+  display: flex;
+}
+
+@media (min-width: 1100px) {
+  .nav__toggle {
+    display: none;
+  }
+
+  .nav__links {
+    display: flex;
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    max-height: none;
+    overflow: visible;
+    gap: 0.15rem;
+  }
+
+  .nav__links a {
+    padding: 0.45rem 0.55rem;
+    font-size: 0.9rem;
+  }
+}

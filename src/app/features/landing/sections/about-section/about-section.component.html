@@ -1,0 +1,41 @@
+<section id="about" class="section section--alt">
+  <div class="container">
+    <app-section-header
+      [eyebrow]="content.eyebrow"
+      [title]="content.title"
+      [hook]="hook"
+      [lead]="content.lead"
+    />
+
+    <div class="about-visual" appRevealOnScroll>
+      <img [src]="image" alt="The Green Hub courtyard and building" />
+      <div class="about-visual__badge">
+        <app-icon name="leaf" [size]="20" />
+        <span>Sustainable Community Center</span>
+      </div>
+    </div>
+
+    <div class="grid-2 about-grid">
+      <article class="panel" appRevealOnScroll>
+        <h3>{{ content.aboutHubTitle }}</h3>
+        <p>{{ content.aboutHubBody }}</p>
+        <p>{{ content.body }}</p>
+        <blockquote>{{ content.quote }}</blockquote>
+      </article>
+
+      <aside class="pillar-list">
+        @for (item of content.overviewPillars; track item.title; let i = $index) {
+          <div class="pillar-list__item" [class]="'reveal-delay-' + (i + 1)" appRevealOnScroll>
+            <span class="icon-bubble">
+              <app-icon [name]="iconOf(item.icon)" [size]="22" />
+            </span>
+            <div>
+              <h3>{{ item.title }}</h3>
+              <p>{{ item.description }}</p>
+            </div>
+          </div>
+        }
+      </aside>
+    </div>
+  </div>
+</section>

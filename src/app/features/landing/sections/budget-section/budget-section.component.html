@@ -1,0 +1,166 @@
+<section id="budget" class="section section--alt">
+  <div class="container">
+    <app-section-header
+      [eyebrow]="content.eyebrow"
+      [title]="content.title"
+      [hook]="hook"
+      lead="Timeline: {{ content.duration }} · Start Date: {{ content.startDate }} · Finish Date: {{ content.finishDate }}"
+    />
+
+    <app-section-media
+      [src]="visual.src"
+      [alt]="visual.alt"
+      [caption]="visual.caption"
+    />
+
+    <div class="meta-strip" appRevealOnScroll>
+      <div><span>Timeline</span><strong>{{ content.duration }}</strong></div>
+      <div><span>Start Date</span><strong>{{ content.startDate }}</strong></div>
+      <div><span>Finish Date</span><strong>{{ content.finishDate }}</strong></div>
+    </div>
+
+    <div class="budget-layout">
+      <div appRevealOnScroll>
+        <h3 class="budget-heading">{{ content.costBreakdownTitle }}</h3>
+        <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Amount (EGP)</th>
+              <th>% of Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of content.items; track item.category; let i = $index) {
+              <tr>
+                <td>{{ item.category }}</td>
+                <td>
+                  <span
+                    [appCountUp]="item.amount"
+                    [countDuration]="1200 + i * 120"
+                  ></span>
+                </td>
+                <td>
+                  <span
+                    [appCountUp]="item.percentage"
+                    countSuffix="%"
+                    [countDuration]="1000 + i * 100"
+                    [countSeparator]="false"
+                  ></span>
+                </td>
+              </tr>
+            }
+            <tr class="total-row">
+              <td>Total Project Budget</td>
+              <td>
+                <span [appCountUp]="content.total" [countDuration]="1600"></span>
+              </td>
+              <td>
+                <span
+                  [appCountUp]="100"
+                  countSuffix="%"
+                  [countDuration]="1400"
+                  [countSeparator]="false"
+                ></span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+
+      <aside
+        #distributionPanel
+        class="distribution"
+        [class.is-active]="chartActive"
+        appRevealOnScroll
+      >
+        <div class="distribution__glow" aria-hidden="true"></div>
+        <h3>{{ content.distributionTitle }}</h3>
+
+        <div class="chart">
+          <div class="chart__ring" aria-hidden="true"></div>
+          <svg class="chart__svg" viewBox="0 0 36 36" role="img" aria-label="Budget distribution chart">
+            <circle class="chart__track" cx="18" cy="18" r="15.9155" />
+            @for (segment of segments; track segment.category; let i = $index) {
+              <circle
+                class="chart__segment"
+                [class.is-dimmed]="hoveredIndex !== null && hoveredIndex !== i"
+                [class.is-focused]="hoveredIndex === i"
+                cx="18"
+                cy="18"
+                r="15.9155"
+                [attr.stroke]="segment.color"
+                [style.--pct]="segment.percentage"
+                [style.--gap]="100 - segment.percentage"
+                [style.--offset]="segment.dashOffset"
+                [style.--draw-delay]="segment.delay + 's'"
+                (mouseenter)="setHover(i)"
+                (mouseleave)="setHover(null)"
+              />
+            }
+          </svg>
+
+          <div class="chart__center">
+            <span>Total Budget</span>
+            <strong>
+              <span [appCountUp]="content.total" [countDuration]="1800"></span>
+              <small> EGP</small>
+            </strong>
+            <em>
+              <span
+                [appCountUp]="100"
+                countSuffix="%"
+                [countDuration]="1500"
+                [countSeparator]="false"
+              ></span>
+            </em>
+          </div>
+        </div>
+
+        <ul class="legend">
+          @for (segment of segments; track segment.category; let i = $index) {
+            <li
+              [class.is-focused]="hoveredIndex === i"
+              [class.is-dimmed]="hoveredIndex !== null && hoveredIndex !== i"
+              [style.--item-delay]="segment.delay + 's'"
+              (mouseenter)="setHover(i)"
+              (mouseleave)="setHover(null)"
+            >
+              <span class="swatch" [style.background]="segment.color"></span>
+              <div class="legend__copy">
+                <div class="legend__top">
+                  <strong>{{ segment.category }}</strong>
+                  <em>
+                    <span
+                      [appCountUp]="segment.percentage"
+                      countSuffix="%"
+                      [countDuration]="1100 + i * 100"
+                      [countSeparator]="false"
+                    ></span>
+                  </em>
+                </div>
+                <div class="budget-bar">
+                  <div
+                    class="budget-bar__fill"
+                    [style.--bar-width]="segment.percentage + '%'"
+                    [style.background]="segment.color"
+                    [style.--bar-delay]="segment.delay + 's'"
+                  ></div>
+                </div>
+                <small>
+                  <span
+                    [appCountUp]="segment.amount"
+                    [countDuration]="1200 + i * 100"
+                  ></span>
+                  EGP
+                </small>
+              </div>
+            </li>
+          }
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>

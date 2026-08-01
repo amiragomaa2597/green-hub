@@ -1,0 +1,124 @@
+.advisor {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1.25rem;
+  background: linear-gradient(135deg, var(--forest), #1a4d35);
+  color: var(--white);
+}
+
+.advisor .eyebrow,
+.advisor p {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.advisor h3 {
+  color: var(--white);
+  font-size: 1.8rem;
+  margin-bottom: 0.2rem;
+}
+
+.advisor .icon-bubble {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--mint);
+}
+
+.icon-bubble {
+  width: 2.7rem;
+  height: 2.7rem;
+  border-radius: 0.9rem;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(145deg, var(--mist), #d8f3e4);
+  color: var(--leaf);
+  flex-shrink: 0;
+}
+
+.team-grid {
+  display: grid;
+  gap: 0.85rem;
+  margin-bottom: 2rem;
+}
+
+.team-card {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.team-card strong {
+  color: var(--forest);
+}
+
+.team-card span:last-child {
+  color: var(--muted);
+}
+
+.obs h3 {
+  color: var(--forest);
+  margin-bottom: 0.5rem;
+}
+
+.obs__note {
+  color: var(--muted);
+  margin-bottom: 1.25rem;
+}
+
+.obs__pm {
+  display: grid;
+  justify-items: center;
+  gap: 0.3rem;
+  margin: 0 auto 1.25rem;
+  max-width: 280px;
+  padding: 1.1rem 1.25rem;
+  border-radius: 1rem;
+  background: var(--forest);
+  color: var(--white);
+  text-align: center;
+}
+
+.obs__pm span {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+.obs__peers {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.obs__peers article {
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(31, 107, 69, 0.16);
+  background: rgba(255, 255, 255, 0.8);
+  display: grid;
+  gap: 0.35rem;
+  justify-items: start;
+}
+
+.obs__peers strong {
+  color: var(--forest);
+  font-size: 0.92rem;
+}
+
+.obs__peers span:last-child {
+  color: var(--muted);
+}
+
+@media (min-width: 768px) {
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .obs__peers {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .team-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

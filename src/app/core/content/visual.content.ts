@@ -1,0 +1,84 @@
+/** Stock photography for section visuals (Unsplash — not PDF slides). */
+export const SECTION_VISUALS = {
+  objectives: {
+    src: 'assets/images/sections/obj-design.jpg',
+    alt: 'Sustainable modern building with greenery',
+    caption: 'Clean energy, smart systems, community value, and responsible design.',
+  },
+  team: {
+    src: 'assets/images/sections/team-collaboration.jpg',
+    alt: 'Project team collaborating around a table',
+    caption: 'A coordinated team delivering The Green Hub from planning to handover.',
+  },
+  scope: {
+    src: 'assets/images/sections/scope-construction.jpg',
+    alt: 'Sustainable construction site and architectural plans',
+    caption: 'What we deliver — and what stays outside the project boundary.',
+  },
+  schedule: {
+    src: 'assets/images/sections/schedule-planning.jpg',
+    alt: 'Project planning workspace with timeline materials',
+    caption: 'Forty weeks from initiation to handover and post-project monitoring.',
+  },
+  budget: {
+    src: 'assets/images/sections/budget-finance.jpg',
+    alt: 'Financial planning documents and calculator',
+    caption: 'A clear cost structure for construction, systems, and community programs.',
+  },
+  stakeholders: {
+    src: 'assets/images/sections/stakeholders-meeting.jpg',
+    alt: 'Stakeholders collaborating in a workshop',
+    caption: 'Engage the right people with the right strategy at every stage.',
+  },
+  risks: {
+    src: 'assets/images/sections/risks-safety.jpg',
+    alt: 'Construction professionals reviewing site safety',
+    caption: 'Identify, assess, and mitigate — zero surprises, on time, on budget.',
+  },
+  impact: {
+    src: 'assets/images/sections/impact-nature.jpg',
+    alt: 'Sunlight through a lush green forest canopy',
+    caption: 'Beyond construction: lasting environmental and social value.',
+  },
+  conclusion: {
+    src: 'assets/images/sections/conclusion-future.jpg',
+    alt: 'Solar panels in a green landscape under open sky',
+    caption: 'A successful project. A sustainable legacy.',
+  },
+  presentation: {
+    src: 'assets/images/sections/presentation-docs.jpg',
+    alt: 'Notebook and study materials for a formal presentation',
+    caption: 'View or download the full MBA final presentation PDF.',
+  },
+} as const;
+
+export const OBJECTIVE_IMAGES = [
+  'assets/images/sections/obj-solar.jpg',
+  'assets/images/sections/obj-smart.jpg',
+  'assets/images/sections/obj-community.jpg',
+  'assets/images/sections/obj-design.jpg',
+] as const;
+
+export const DELIVERABLE_IMAGES = [
+  'assets/images/sections/deliverable-building.jpg',
+  'assets/images/sections/obj-solar.jpg',
+  'assets/images/sections/obj-smart.jpg',
+  'assets/images/sections/obj-community.jpg',
+  'assets/images/sections/deliverable-education.jpg',
+  'assets/images/sections/impact-nature.jpg',
+] as const;
+
+export const IMPACT_IMAGES = [
+  'assets/images/sections/impact-carbon.jpg',
+  'assets/images/sections/impact-energy.jpg',
+  'assets/images/sections/impact-water.jpg',
+  'assets/images/sections/impact-people.jpg',
+  'assets/images/sections/impact-growth.jpg',
+] as const;
+
+export const DESIGN_BLOCK_IMAGES = [
+  'assets/images/sections/design-site.jpg',
+  'assets/images/sections/design-building.jpg',
+  'assets/images/sections/design-features.jpg',
+  'assets/images/sections/design-smart.jpg',
+] as const;

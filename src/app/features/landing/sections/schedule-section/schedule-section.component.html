@@ -1,0 +1,73 @@
+<section id="schedule" class="section">
+  <div class="container">
+    <app-section-header
+      [eyebrow]="content.eyebrow"
+      [title]="content.title"
+      [hook]="hook"
+      lead="Duration {{ content.duration }} · Start {{ content.startDate }} · Finish {{ content.finishDate }}"
+    />
+
+    <app-section-media
+      [src]="visual.src"
+      [alt]="visual.alt"
+      [caption]="visual.caption"
+    />
+
+    <div class="meta-strip" appRevealOnScroll>
+      <div>
+        <span>Duration</span>
+        <strong>
+          <span
+            [appCountUp]="content.totalWeeks"
+            countSuffix=" Weeks"
+            [countDuration]="1200"
+            [countSeparator]="false"
+          ></span>
+        </strong>
+      </div>
+      <div><span>Start</span><strong>{{ content.startDate }}</strong></div>
+      <div><span>Finish</span><strong>{{ content.finishDate }}</strong></div>
+    </div>
+
+    <app-wbs-journey [rootTitle]="content.wbsRoot" [packages]="content.wbs" />
+
+    <h3>{{ content.ganttTitle }}</h3>
+    <div
+      #ganttPanel
+      class="gantt panel"
+      [class.is-active]="ganttActive"
+      appRevealOnScroll
+    >
+      @for (row of content.gantt; track row.phase; let i = $index) {
+        <div class="gantt-row">
+          <div class="gantt-row__label">
+            <strong>{{ row.phase }}</strong>
+            <span>{{ row.duration }} · Wk {{ row.start }}–{{ row.end }}</span>
+          </div>
+          <div class="gantt-row__track">
+            <div
+              class="gantt-bar__fill"
+              [style.left.%]="barLeft(row.start)"
+              [style.--bar-width]="barWidth(row.start, row.end) + '%'"
+              [style.background]="content.wbs[i].color"
+              [style.--bar-delay]="0.08 + i * 0.08 + 's'"
+            ></div>
+          </div>
+        </div>
+      }
+    </div>
+
+    <h3>Key Milestones</h3>
+    <div class="milestones">
+      @for (item of content.milestones; track item.title) {
+        <article class="panel" appRevealOnScroll>
+          <span class="icon-bubble"><app-icon name="check" [size]="18" /></span>
+          <div>
+            <strong>{{ item.title }}</strong>
+            <span>{{ item.week }}</span>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

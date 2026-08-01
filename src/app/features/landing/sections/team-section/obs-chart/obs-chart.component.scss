@@ -127,6 +127,11 @@ html[dir='rtl'] .obs__pm em {
   line-height: 1.25;
 }
 
+.obs__pm > span:last-child {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.78);
+}
+
 .obs__spine {
   position: relative;
   display: grid;
@@ -237,11 +242,23 @@ html[dir='rtl'] .obs__level-bar span {
   color: var(--leaf);
 }
 
+.obs__peer-copy {
+  display: grid;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
 .obs__peers strong {
   color: var(--forest);
   font-size: 0.9rem;
   line-height: 1.3;
   font-weight: 600;
+}
+
+.obs__peers span:last-child {
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.3;
 }
 
 @keyframes obs-pm-in {

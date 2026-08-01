@@ -3,6 +3,7 @@ import { RevealOnScrollDirective } from '../../../../../shared/directives/reveal
 import { IconComponent, IconName } from '../../../../../shared/components/icon/icon.component';
 
 export interface ObsPeer {
+  name: string;
   role: string;
   icon: string;
 }
@@ -19,6 +20,7 @@ export class ObsChartComponent {
   @Input({ required: true }) title!: string;
   @Input({ required: true }) note!: string;
   @Input({ required: true }) pmRole!: string;
+  @Input({ required: true }) pmName!: string;
   @Input({ required: true }) equalLabel!: string;
   @Input({ required: true }) peers!: ObsPeer[];
 

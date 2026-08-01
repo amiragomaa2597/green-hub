@@ -22,23 +22,12 @@
       </div>
     </article>
 
-    <div class="team-grid">
-      @for (member of content().members; track member.name; let i = $index) {
-        <article class="panel team-card" [class]="'reveal-delay-' + ((i % 3) + 1)" appRevealOnScroll>
-          <span class="icon-bubble">
-            <app-icon [name]="iconOf(member.icon)" [size]="22" />
-          </span>
-          <strong>{{ member.role }}</strong>
-          <span>{{ member.name }}</span>
-        </article>
-      }
-    </div>
-
     <app-obs-chart
       [badge]="ui().obsBadge"
       [title]="ui().obsTitle"
       [note]="content().obsNote"
       [pmRole]="ui().projectManager"
+      [pmName]="content().pmName"
       [equalLabel]="ui().obsEqualLevel"
       [peers]="content().obsPeers"
     />

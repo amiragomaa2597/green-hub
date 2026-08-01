@@ -15,6 +15,7 @@
       </span>
       <em>{{ badge }}</em>
       <strong>{{ pmRole }}</strong>
+      <span>{{ pmName }}</span>
     </div>
 
     <div class="obs__spine" aria-hidden="true">
@@ -28,12 +29,15 @@
       </div>
 
       <ul class="obs__peers">
-        @for (peer of peers; track peer.role; let i = $index) {
+        @for (peer of peers; track peer.name; let i = $index) {
           <li [style.--i]="i">
             <span class="obs__peer-icon">
               <app-icon [name]="iconOf(peer.icon)" [size]="18" />
             </span>
-            <strong>{{ peer.role }}</strong>
+            <div class="obs__peer-copy">
+              <strong>{{ peer.role }}</strong>
+              <span>{{ peer.name }}</span>
+            </div>
           </li>
         }
       </ul>

@@ -34,33 +34,3 @@
   flex-shrink: 0;
 }
 
-.team-grid {
-  display: grid;
-  gap: 0.85rem;
-  margin-bottom: 2rem;
-}
-
-.team-card {
-  display: grid;
-  gap: 0.35rem;
-}
-
-.team-card strong {
-  color: var(--forest);
-}
-
-.team-card span:last-child {
-  color: var(--muted);
-}
-
-@media (min-width: 768px) {
-  .team-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 900px) {
-  .team-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}

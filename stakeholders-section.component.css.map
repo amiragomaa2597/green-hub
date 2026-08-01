@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/features/landing/sections/stakeholders-section/stakeholders-section.component.scss"],
+  "sourcesContent": ["h3 {\n  color: var(--forest);\n  margin: 2rem 0 1rem;\n}\n\n.matrix {\n  display: grid;\n  gap: 1rem;\n}\n\n.matrix h4 {\n  color: var(--forest);\n  margin-bottom: 0.75rem;\n}\n\n.matrix ul {\n  margin: 0;\n  padding-left: 1.1rem;\n  color: var(--muted);\n}\n\n@media (min-width: 900px) {\n  .matrix {\n    grid-template-columns: repeat(2, 1fr);\n  }\n}\n"],
+  "mappings": ";AAAA;AACE,SAAA,IAAA;AACA,UAAA,KAAA,EAAA;;AAGF,CAAA;AACE,WAAA;AACA,OAAA;;AAGF,CALA,OAKA;AACE,SAAA,IAAA;AACA,iBAAA;;AAGF,CAVA,OAUA;AACE,UAAA;AACA,gBAAA;AACA,SAAA,IAAA;;AAGF,QAAA,WAAA;AACE,GAjBF;AAkBI,2BAAA,OAAA,CAAA,EAAA;;;",
+  "names": []
+}

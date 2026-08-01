@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/shared/components/section-header/section-header.component.scss"],
+  "sourcesContent": [".section-header {\n  margin-bottom: 2rem;\n}\n\n.section-hook {\n  margin: 0 0 0.85rem;\n  max-width: 40rem;\n  font-family: var(--font-display);\n  font-size: clamp(1.2rem, 2.4vw, 1.55rem);\n  font-weight: 500;\n  line-height: 1.35;\n  color: var(--forest);\n  font-style: italic;\n}\n\n.section-hook::before {\n  content: '';\n  display: block;\n  width: 2.5rem;\n  height: 3px;\n  margin-bottom: 0.75rem;\n  border-radius: 999px;\n  background: linear-gradient(90deg, var(--leaf), var(--mint));\n}\n"],
+  "mappings": ";AAAA,CAAA;AACE,iBAAA;;AAGF,CAAA;AACE,UAAA,EAAA,EAAA;AACA,aAAA;AACA,eAAA,IAAA;AACA,aAAA,MAAA,MAAA,EAAA,KAAA,EAAA;AACA,eAAA;AACA,eAAA;AACA,SAAA,IAAA;AACA,cAAA;;AAGF,CAXA,YAWA;AACE,WAAA;AACA,WAAA;AACA,SAAA;AACA,UAAA;AACA,iBAAA;AACA,iBAAA;AACA;IAAA;MAAA,KAAA;MAAA,IAAA,OAAA;MAAA,IAAA;;",
+  "names": []
+}

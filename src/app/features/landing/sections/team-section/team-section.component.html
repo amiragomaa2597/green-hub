@@ -34,27 +34,13 @@
       }
     </div>
 
-    <div class="obs" appRevealOnScroll>
-      <h3>{{ ui().obsTitle }}</h3>
-      <p class="obs__note">{{ content().obsNote }}</p>
-
-      <div class="obs__pm">
-        <app-icon name="person" [size]="22" />
-        <span>{{ ui().projectManager }}</span>
-        <strong>{{ content().pmName }}</strong>
-      </div>
-
-      <div class="obs__peers">
-        @for (peer of content().obsPeers; track peer.role) {
-          <article>
-            <span class="icon-bubble">
-              <app-icon [name]="iconOf(peer.icon)" [size]="20" />
-            </span>
-            <strong>{{ peer.role }}</strong>
-            <span>{{ peer.name }}</span>
-          </article>
-        }
-      </div>
-    </div>
+    <app-obs-chart
+      [badge]="ui().obsBadge"
+      [title]="ui().obsTitle"
+      [note]="content().obsNote"
+      [pmRole]="ui().projectManager"
+      [equalLabel]="ui().obsEqualLevel"
+      [peers]="content().obsPeers"
+    />
   </div>
 </section>

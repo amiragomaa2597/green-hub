@@ -1,0 +1,42 @@
+<section class="obs" appRevealOnScroll aria-labelledby="obs-heading">
+  <div class="obs__mark" aria-hidden="true">OBS</div>
+
+  <header class="obs__header">
+    <span class="obs__badge">{{ badge }}</span>
+    <h3 id="obs-heading">{{ title }}</h3>
+    <p>{{ note }}</p>
+  </header>
+
+  <div class="obs__tree">
+    <div class="obs__pm">
+      <span class="obs__pm-ring" aria-hidden="true"></span>
+      <span class="obs__pm-icon">
+        <app-icon name="person" [size]="22" />
+      </span>
+      <em>{{ badge }}</em>
+      <strong>{{ pmRole }}</strong>
+    </div>
+
+    <div class="obs__spine" aria-hidden="true">
+      <span class="obs__spine-line"></span>
+      <span class="obs__spine-dot"></span>
+    </div>
+
+    <div class="obs__level">
+      <div class="obs__level-bar">
+        <span>{{ equalLabel }}</span>
+      </div>
+
+      <ul class="obs__peers">
+        @for (peer of peers; track peer.role; let i = $index) {
+          <li [style.--i]="i">
+            <span class="obs__peer-icon">
+              <app-icon [name]="iconOf(peer.icon)" [size]="18" />
+            </span>
+            <strong>{{ peer.role }}</strong>
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+</section>

@@ -7,7 +7,9 @@ export const UI_LABELS: Localized<{
   deliverables: string;
   sustainableCenter: string;
   instructorAdvisor: string;
+  obsBadge: string;
   obsTitle: string;
+  obsEqualLevel: string;
   projectManager: string;
   teamLead: string;
   designCampusLead: string;
@@ -88,7 +90,9 @@ export const UI_LABELS: Localized<{
     deliverables: 'Scope Deliverables',
     sustainableCenter: 'Sustainable Community Center',
     instructorAdvisor: 'Instructor / Advisor',
-    obsTitle: 'Organizational Breakdown Structure (OBS)',
+    obsBadge: 'OBS',
+    obsTitle: 'Organizational Breakdown Structure',
+    obsEqualLevel: 'Same level · equal authority',
     projectManager: 'Project Manager',
     teamLead: 'Instructor / Advisor and project team roles for The Green Hub.',
     designCampusLead:
@@ -172,7 +176,9 @@ export const UI_LABELS: Localized<{
     deliverables: 'مخرجات النطاق',
     sustainableCenter: 'مركز مجتمعي مستدام',
     instructorAdvisor: 'المشرف / المستشار',
-    obsTitle: 'الهيكل التنظيمي (OBS)',
+    obsBadge: 'OBS',
+    obsTitle: 'الهيكل التنظيمي',
+    obsEqualLevel: 'نفس المستوى · سلطة متساوية',
     projectManager: 'مدير المشروع',
     teamLead: 'أدوار المشرف وفريق المشروع لجرين هب.',
     designCampusLead: 'عمارة وأنظمة متجددة ومساحات مجتمعية في حرم حيّ واحد.',

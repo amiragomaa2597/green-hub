@@ -8,6 +8,7 @@ import { SectionHeaderComponent } from '../../../../shared/components/section-he
 import { SectionMediaComponent } from '../../../../shared/components/section-media/section-media.component';
 import { RevealOnScrollDirective } from '../../../../shared/directives/reveal-on-scroll.directive';
 import { IconComponent, IconName } from '../../../../shared/components/icon/icon.component';
+import { ObsChartComponent } from './obs-chart/obs-chart.component';
 
 @Component({
   selector: 'app-team-section',
@@ -17,6 +18,7 @@ import { IconComponent, IconName } from '../../../../shared/components/icon/icon
     SectionMediaComponent,
     RevealOnScrollDirective,
     IconComponent,
+    ObsChartComponent,
   ],
   templateUrl: './team-section.component.html',
   styleUrl: './team-section.component.scss',

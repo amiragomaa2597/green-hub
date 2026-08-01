@@ -1,13 +1,18 @@
 import { Localized } from '../i18n/language.types';
 import { TeamMember } from '../models/project.models';
 
+export interface ObsRole {
+  role: string;
+  icon: string;
+}
+
 export interface TeamContent {
   eyebrow: string;
   title: string;
   advisor: TeamMember;
   members: Array<TeamMember & { icon: string }>;
   obsNote: string;
-  obsPeers: Array<TeamMember & { icon: string }>;
+  obsPeers: ObsRole[];
   thankYouNames: string[];
   pmName: string;
 }
@@ -31,14 +36,14 @@ export const TEAM_CONTENT: Localized<TeamContent> = {
       { name: 'Amira Gomaa', role: 'QA & Governance Officer', icon: 'shield' },
     ],
     obsNote:
-      "Per the instructor's rule: PM at the top, same horizontal level = same authority, titles not names.",
+      'OBS maps authority by role: Project Manager at the top; every role on the same row shares equal authority. Titles define the structure — names live in the team roster above.',
     obsPeers: [
-      { name: 'Ata Mohamed', role: 'Planning & Scheduling Lead', icon: 'calendar' },
-      { name: 'Ahab', role: 'Scope & Risk Officer', icon: 'target' },
-      { name: 'Salwa Michel', role: 'Finance & Partners Officer', icon: 'coins' },
-      { name: 'Shehab Badr', role: 'QA & Audit Assistant', icon: 'bag' },
-      { name: 'Michael Atef', role: 'Construction Lead', icon: 'building' },
-      { name: 'Amira Gomaa', role: 'QA & Governance Officer', icon: 'shield' },
+      { role: 'Planning & Scheduling Lead', icon: 'calendar' },
+      { role: 'Scope & Risk Officer', icon: 'target' },
+      { role: 'Finance & Partners Officer', icon: 'coins' },
+      { role: 'QA & Audit Assistant', icon: 'bag' },
+      { role: 'Construction Lead', icon: 'building' },
+      { role: 'QA & Governance Officer', icon: 'shield' },
     ],
     thankYouNames: [
       'Armia Kamal',
@@ -68,14 +73,14 @@ export const TEAM_CONTENT: Localized<TeamContent> = {
       { name: 'أميرة جمعة', role: 'مسؤولة الجودة والحوكمة', icon: 'shield' },
     ],
     obsNote:
-      'وفق قاعدة المشرف: مدير المشروع في الأعلى، والمستوى الأفقي الواحد يعني سلطة متساوية، والعناوين لا الأسماء.',
+      'OBS يوضح هيكل السلطة حسب الدور: مدير المشروع في الأعلى، وكل دور في الصف نفسه يملك سلطة متساوية. العناوين ترسم الهيكل — والأسماء في قائمة الفريق أعلاه.',
     obsPeers: [
-      { name: 'عطا محمد', role: 'مسؤول التخطيط والجدولة', icon: 'calendar' },
-      { name: 'إيهاب', role: 'مسؤول النطاق والمخاطر', icon: 'target' },
-      { name: 'سلوى ميشيل', role: 'مسؤولة المالية والشركاء', icon: 'coins' },
-      { name: 'شهاب بدر', role: 'مساعد الجودة والمراجعة', icon: 'bag' },
-      { name: 'مايكل عاطف', role: 'مسؤول الإنشاءات', icon: 'building' },
-      { name: 'أميرة جمعة', role: 'مسؤولة الجودة والحوكمة', icon: 'shield' },
+      { role: 'مسؤول التخطيط والجدولة', icon: 'calendar' },
+      { role: 'مسؤول النطاق والمخاطر', icon: 'target' },
+      { role: 'مسؤولة المالية والشركاء', icon: 'coins' },
+      { role: 'مساعد الجودة والمراجعة', icon: 'bag' },
+      { role: 'مسؤول الإنشاءات', icon: 'building' },
+      { role: 'مسؤولة الجودة والحوكمة', icon: 'shield' },
     ],
     thankYouNames: [
       'أرميا كمال',

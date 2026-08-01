@@ -27,18 +27,21 @@
 .budget-heading {
   color: var(--forest);
   margin: 0 0 0.85rem;
-  font-size: 1.35rem;
+  font-size: clamp(1.15rem, 4vw, 1.35rem);
 }
 
 .budget-layout {
   display: grid;
   gap: 1.25rem;
+  min-width: 0;
 }
 
-@media (min-width: 768px) {
-  .meta-strip {
-    grid-template-columns: repeat(3, 1fr);
-  }
+.cost-table-wrap {
+  overflow-x: visible;
+}
+
+:host table.cost-table.data-table {
+  min-width: 0;
 }
 
 .total-row td {
@@ -47,15 +50,108 @@
   color: var(--forest);
 }
 
+@media (max-width: 719px) {
+  .cost-table-wrap {
+    border: 0;
+    background: transparent;
+    border-radius: 0;
+  }
+
+  .cost-table,
+  .cost-table thead,
+  .cost-table tbody,
+  .cost-table tr,
+  .cost-table th,
+  .cost-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .cost-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .cost-table tbody {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .cost-table tr {
+    padding: 0.9rem 1rem;
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(31, 107, 69, 0.12);
+  }
+
+  .cost-table td {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.75rem;
+    align-items: baseline;
+    padding: 0.35rem 0;
+    border-bottom: 0;
+    word-break: break-word;
+  }
+
+  .cost-table td + td {
+    border-top: 1px solid rgba(31, 107, 69, 0.08);
+    padding-top: 0.55rem;
+    margin-top: 0.2rem;
+  }
+
+  .cost-table td::before {
+    content: attr(data-label);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  .cost-table td:first-child {
+    font-weight: 600;
+    color: var(--forest);
+    padding-top: 0;
+  }
+
+  .cost-table td:first-child::before {
+    display: none;
+  }
+
+  .cost-table .total-row {
+    background: var(--mist);
+    border-color: rgba(31, 107, 69, 0.18);
+  }
+
+  .cost-table .total-row td {
+    background: transparent;
+  }
+}
+
+@media (min-width: 768px) {
+  .meta-strip {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 .distribution {
   position: relative;
   overflow: hidden;
   border-radius: calc(var(--radius) + 0.2rem);
-  padding: 1.4rem 1.25rem 1.35rem;
+  padding: clamp(1.1rem, 3.5vw, 1.4rem) clamp(0.95rem, 3vw, 1.25rem) 1.35rem;
   background:
     linear-gradient(165deg, rgba(255, 255, 255, 0.96), rgba(232, 245, 238, 0.88));
   border: 1px solid rgba(31, 107, 69, 0.12);
   box-shadow: var(--shadow);
+  min-width: 0;
 }
 
 .distribution__glow {
@@ -79,7 +175,8 @@
 
 .chart {
   position: relative;
-  width: min(260px, 78%);
+  width: min(260px, 100%);
+  max-width: 78%;
   aspect-ratio: 1;
   margin: 0 auto 1.4rem;
 }
@@ -177,8 +274,9 @@
 
 .chart__center strong {
   color: var(--forest);
-  font-size: clamp(0.86rem, 2.4vw, 1rem);
+  font-size: clamp(0.78rem, 3.2vw, 1rem);
   line-height: 1.2;
+  overflow-wrap: anywhere;
 }
 
 .chart__center strong small {
@@ -253,15 +351,21 @@
   margin-bottom: 0.4rem;
 }
 
+.legend__copy {
+  min-width: 0;
+}
+
 .legend strong {
   font-size: 0.9rem;
   color: var(--forest);
+  overflow-wrap: anywhere;
 }
 
 .legend em {
   font-style: normal;
   font-weight: 700;
   color: var(--leaf);
+  flex-shrink: 0;
 }
 
 .legend small {

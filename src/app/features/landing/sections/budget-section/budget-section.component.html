@@ -22,51 +22,51 @@
     <div class="budget-layout">
       <div appRevealOnScroll>
         <h3 class="budget-heading">{{ content().costBreakdownTitle }}</h3>
-        <div class="table-wrap">
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>{{ ui().category }}</th>
-              <th>{{ ui().amountEgp }}</th>
-              <th>{{ ui().percentOfTotal }}</th>
-            </tr>
-          </thead>
-          <tbody>
-            @for (item of content().items; track item.category; let i = $index) {
+        <div class="table-wrap cost-table-wrap">
+          <table class="data-table cost-table">
+            <thead>
               <tr>
-                <td>{{ item.category }}</td>
-                <td>
-                  <span
-                    [appCountUp]="item.amount"
-                    [countDuration]="1200 + i * 120"
-                  ></span>
+                <th>{{ ui().category }}</th>
+                <th>{{ ui().amountEgp }}</th>
+                <th>{{ ui().percentOfTotal }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (item of content().items; track item.category; let i = $index) {
+                <tr>
+                  <td [attr.data-label]="ui().category">{{ item.category }}</td>
+                  <td [attr.data-label]="ui().amountEgp">
+                    <span
+                      [appCountUp]="item.amount"
+                      [countDuration]="1200 + i * 120"
+                    ></span>
+                  </td>
+                  <td [attr.data-label]="ui().percentOfTotal">
+                    <span
+                      [appCountUp]="item.percentage"
+                      countSuffix="%"
+                      [countDuration]="1000 + i * 100"
+                      [countSeparator]="false"
+                    ></span>
+                  </td>
+                </tr>
+              }
+              <tr class="total-row">
+                <td [attr.data-label]="ui().category">{{ ui().totalProjectBudget }}</td>
+                <td [attr.data-label]="ui().amountEgp">
+                  <span [appCountUp]="content().total" [countDuration]="1600"></span>
                 </td>
-                <td>
+                <td [attr.data-label]="ui().percentOfTotal">
                   <span
-                    [appCountUp]="item.percentage"
+                    [appCountUp]="100"
                     countSuffix="%"
-                    [countDuration]="1000 + i * 100"
+                    [countDuration]="1400"
                     [countSeparator]="false"
                   ></span>
                 </td>
               </tr>
-            }
-            <tr class="total-row">
-              <td>{{ ui().totalProjectBudget }}</td>
-              <td>
-                <span [appCountUp]="content().total" [countDuration]="1600"></span>
-              </td>
-              <td>
-                <span
-                  [appCountUp]="100"
-                  countSuffix="%"
-                  [countDuration]="1400"
-                  [countSeparator]="false"
-                ></span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+            </tbody>
+          </table>
         </div>
       </div>
 

@@ -34,15 +34,16 @@
       @for (item of items(); track item.href) {
         <a [href]="item.href">{{ item.label }}</a>
       }
-      <button
-        class="nav__lang nav__lang--desktop"
-        type="button"
-        [attr.aria-label]="langToggleAria()"
-        (click)="toggleLang()"
-      >
-        {{ nextLabel() }}
-      </button>
     </nav>
+
+    <button
+      class="nav__lang nav__lang--desktop"
+      type="button"
+      [attr.aria-label]="langToggleAria()"
+      (click)="toggleLang()"
+    >
+      {{ nextLabel() }}
+    </button>
   </div>
 </header>
 

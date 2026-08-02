@@ -7,7 +7,6 @@ import { SECTION_VISUALS } from '../../../../core/content/visual.content';
 import { UI_LABELS } from '../../../../core/content/ui.content';
 import { LanguageService } from '../../../../core/services/language.service';
 import { SectionHeaderComponent } from '../../../../shared/components/section-header/section-header.component';
-import { SectionMediaComponent } from '../../../../shared/components/section-media/section-media.component';
 import { RevealOnScrollDirective } from '../../../../shared/directives/reveal-on-scroll.directive';
 import { IconComponent } from '../../../../shared/components/icon/icon.component';
 
@@ -16,7 +15,6 @@ import { IconComponent } from '../../../../shared/components/icon/icon.component
   standalone: true,
   imports: [
     SectionHeaderComponent,
-    SectionMediaComponent,
     RevealOnScrollDirective,
     IconComponent,
   ],

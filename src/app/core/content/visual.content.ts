@@ -23,7 +23,7 @@ export const SECTION_VISUALS: Localized<Record<SectionVisualKey, SectionVisual>>
   {
     en: {
       objectives: {
-        src: 'assets/images/sections/obj-design.jpg',
+        src: 'assets/images/sections/campus-living-wall.jpg',
         alt: 'Sustainable modern building with greenery',
         caption:
           'Clean energy, smart systems, community value, and responsible design.',
@@ -80,7 +80,7 @@ export const SECTION_VISUALS: Localized<Record<SectionVisualKey, SectionVisual>>
     },
     ar: {
       objectives: {
-        src: 'assets/images/sections/obj-design.jpg',
+        src: 'assets/images/sections/campus-living-wall.jpg',
         alt: 'مبنى حديث مستدام مع مساحات خضراء',
         caption: 'طاقة نظيفة وأنظمة ذكية وقيمة مجتمعية وتصميم مسؤول.',
       },

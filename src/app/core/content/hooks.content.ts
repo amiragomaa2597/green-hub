@@ -12,6 +12,7 @@ export type SectionHooks = {
   risks: string;
   impact: string;
   conclusion: string;
+  opinions: string;
   presentation: string;
 };
 
@@ -22,7 +23,7 @@ export const SECTION_HOOKS: Localized<SectionHooks> = {
     objectives:
       'Can one project deliver environmental, social, and economic value together?',
     team: 'Who turns a green vision into a delivered project?',
-    scope: 'What are we building — and what are we intentionally leaving out?',
+    scope: 'Draw the fence. Arm the systems. Clear every acceptance gate.',
     design: 'How do renewable systems and smart controls shape the campus?',
     schedule: 'How do you deliver a sustainable campus in just 40 weeks?',
     budget: 'Where does every dollar — and every Egyptian pound — go in a $1.2M / 60M EGP green project?',
@@ -30,13 +31,14 @@ export const SECTION_HOOKS: Localized<SectionHooks> = {
     risks: 'What could stop The Green Hub — and how do we stop it first?',
     impact: 'What lasting value remains after construction ends?',
     conclusion: 'What does a successful sustainable project look like?',
+    opinions: 'Would you invest — or what would you tell the team?',
     presentation: 'Want the full deck behind The Green Hub?',
   },
   ar: {
     about: 'ماذا لو عمل مركز مجتمعي بالكامل على الطاقة النظيفة؟',
     objectives: 'هل يمكن لمشروع واحد أن يحقق قيمة بيئية واجتماعية واقتصادية معًا؟',
     team: 'من يحوّل الرؤية الخضراء إلى مشروع مُسلَّم؟',
-    scope: 'ماذا نبني — وما الذي نستبعده عمدًا؟',
+    scope: 'ارسم الحدود. فعّل الأنظمة. افتح كل بوابة قبول.',
     design: 'كيف تشكّل الأنظمة المتجددة والتحكم الذكي الحرم؟',
     schedule: 'كيف نسلّم حرمًا مستدامًا في 40 أسبوعًا فقط؟',
     budget: 'أين يذهب كل دولار وكل جنيه في مشروع أخضر بميزانية 1.2 مليون دولار / 60 مليون جنيه؟',
@@ -44,6 +46,7 @@ export const SECTION_HOOKS: Localized<SectionHooks> = {
     risks: 'ما الذي قد يوقف جرين هب — وكيف نوقفه نحن أولًا؟',
     impact: 'ما القيمة الباقية بعد انتهاء البناء؟',
     conclusion: 'كيف يبدو مشروع مستدام ناجح؟',
+    opinions: 'هل ستستثمر — أو ماذا تقول للفريق؟',
     presentation: 'هل تريد العرض الكامل وراء جرين هب؟',
   },
 };

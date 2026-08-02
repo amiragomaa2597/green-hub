@@ -3,6 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
+  NgZone,
   OnDestroy,
   ViewChild,
   computed,
@@ -39,6 +40,7 @@ export class ScheduleSectionComponent implements AfterViewInit, OnDestroy {
   @ViewChild('ganttPanel') ganttPanel?: ElementRef<HTMLElement>;
 
   private readonly cdr = inject(ChangeDetectorRef);
+  private readonly zone = inject(NgZone);
   private readonly language = inject(LanguageService);
 
   readonly content = computed(() => SCHEDULE_CONTENT[this.language.lang()]);
@@ -60,9 +62,13 @@ export class ScheduleSectionComponent implements AfterViewInit, OnDestroy {
       return;
     }
 
-    this.observer = whenInView(node, () => {
-      this.ganttActive = true;
-      this.cdr.markForCheck();
+    this.zone.runOutsideAngular(() => {
+      this.observer = whenInView(node, () => {
+        this.zone.run(() => {
+          this.ganttActive = true;
+          this.cdr.detectChanges();
+        });
+      });
     });
   }
 

@@ -92,7 +92,7 @@ export const RISKS_CONTENT: Localized<RisksContent> = {
         timeImpact: '4 Weeks',
         owner: 'Sustainability Engineer',
         mitigation:
-          'Apply in Week 14; use temporary generator for testing can continue.',
+          'Apply in Week 14; use temporary generator so testing can continue.',
         strategy: 'Mitigate',
       },
       {

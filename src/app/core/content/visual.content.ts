@@ -171,4 +171,4 @@ export const DESIGN_BLOCK_IMAGES = [
 export const DESIGN_BANNER_IMAGE = 'assets/images/sections/campus-aerial.jpg';
 
 /** Thank-you background — not reused elsewhere. */
-export const THANK_YOU_IMAGE = 'assets/images/sections/campus-plaza.jpg';
+export const THANK_YOU_IMAGE = 'assets/images/hub-courtyard.png';

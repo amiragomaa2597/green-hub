@@ -99,6 +99,7 @@ export const NAV_ITEMS: Localized<NavItem[]> = {
     { label: 'Risks', href: '#risks' },
     { label: 'Impact', href: '#impact' },
     { label: 'Conclusion', href: '#conclusion' },
+    { label: 'Opinions', href: '#opinions' },
     { label: 'Presentation', href: '#presentation' },
   ],
   ar: [
@@ -113,6 +114,7 @@ export const NAV_ITEMS: Localized<NavItem[]> = {
     { label: 'المخاطر', href: '#risks' },
     { label: 'الأثر', href: '#impact' },
     { label: 'الخاتمة', href: '#conclusion' },
+    { label: 'الآراء', href: '#opinions' },
     { label: 'العرض', href: '#presentation' },
   ],
 };

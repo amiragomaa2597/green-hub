@@ -1,145 +1,154 @@
-<div class="console" appRevealOnScroll>
-  <div class="console__intro">
-    <p class="console__label">{{ ui().riskConsoleLabel }}</p>
+<div class="map-journey" appRevealOnScroll>
+  <div class="map-journey__intro">
+    <p class="map-journey__label">{{ ui().riskConsoleLabel }}</p>
     <h3>{{ ui().riskConsoleTitle }}</h3>
-    <p>{{ ui().riskConsoleBody }}</p>
+    <p class="map-journey__hint">{{ ui().riskConsoleBody }}</p>
   </div>
 
-  <div class="filters" role="toolbar" [attr.aria-label]="ui().riskConsoleLabel">
-    @for (item of filterDefs(); track item.key) {
-      <button
-        type="button"
-        class="filter"
-        [class.is-active]="filter === item.key"
-        (click)="setFilter(item.key)"
-      >
-        {{ item.label }}
-      </button>
-    }
+  <div class="map-root">
+    <span class="map-root__glow" aria-hidden="true"></span>
+    <span class="map-root__badge">R / 8</span>
+    <strong>{{ ui().riskMapRoot }}</strong>
+    <em>{{ risks.length }} {{ ui().riskStationsLabel }}</em>
   </div>
 
-  <div class="radar panel" aria-label="Risk severity rail">
-    <div class="radar__scale">
-      <span>{{ ui().lowerExposure }}</span>
-      <span>{{ ui().higherExposure }}</span>
+  <div class="radar-map panel">
+    <div class="radar-map__axes" aria-hidden="true">
+      <span class="axis axis--y-high">{{ ui().probAxisHigh }}</span>
+      <span class="axis axis--y-low">{{ ui().probAxisMedium }}</span>
+      <span class="axis axis--x-low">{{ ui().costAxisLow }}</span>
+      <span class="axis axis--x-high">{{ ui().costAxisHigh }}</span>
     </div>
-    <div class="radar__track">
-      @for (risk of filtered; track risk.id) {
+
+    <div class="radar-map__zones">
+      <div class="zone zone--high-low" [style.--tone]="'#22c55e'" [style.--soft]="'rgba(34, 197, 94, 0.12)'">
+        <em>{{ ui().high }}</em>
+        <strong>{{ ui().lowerExposure }}</strong>
+      </div>
+      <div class="zone zone--high-high" [style.--tone]="'#a855f7'" [style.--soft]="'rgba(168, 85, 247, 0.12)'">
+        <em>{{ ui().high }}</em>
+        <strong>{{ ui().higherExposure }}</strong>
+      </div>
+      <div class="zone zone--med-low" [style.--tone]="'#3b82f6'" [style.--soft]="'rgba(59, 130, 246, 0.12)'">
+        <em>{{ ui().medium }}</em>
+        <strong>{{ ui().lowerExposure }}</strong>
+      </div>
+      <div class="zone zone--med-high" [style.--tone]="'#eab308'" [style.--soft]="'rgba(234, 179, 8, 0.14)'">
+        <em>{{ ui().medium }}</em>
+        <strong>{{ ui().higherExposure }}</strong>
+      </div>
+    </div>
+
+    <div class="radar-map__plot">
+      @for (risk of risks; track risk.id; let i = $index) {
         <button
           type="button"
-          class="radar__node"
+          class="plot-node"
           [class.is-active]="selectedId === risk.id"
-          [class.is-high]="risk.probability === 'High'"
-          [class.is-medium]="risk.probability === 'Medium'"
-          [style.--size.%]="costPercent(risk.costImpact)"
-          [style.left.%]="costPercent(risk.costImpact) * 0.82 + 6"
-          [attr.aria-pressed]="selectedId === risk.id"
+          [style.left.%]="plotLeft(risk)"
+          [style.bottom.%]="plotBottom(risk)"
+          [style.--tone]="toneFor(risk).color"
           [attr.title]="risk.risk"
+          [style.animation-delay]="0.05 * i + 's'"
           (click)="select(risk.id)"
         >
           <span>{{ risk.id }}</span>
+          <strong>{{ risk.risk }}</strong>
         </button>
       }
     </div>
-    <p class="radar__note">{{ ui().radarNote }}</p>
   </div>
 
-  <div class="console__body">
-    <aside class="threat-list" aria-label="Risk list">
-      @for (risk of filtered; track risk.id) {
-        <button
-          type="button"
-          class="threat"
-          [class.is-active]="selectedId === risk.id"
-          [class.is-high]="risk.probability === 'High'"
-          (click)="select(risk.id)"
-        >
-          <span class="threat__id">R{{ risk.id }}</span>
-          <span class="threat__copy">
-            <strong>{{ risk.risk }}</strong>
-            <em>{{ probabilityLabel(risk.probability) }} · {{ strategyLabel(risk.strategy) }}</em>
-          </span>
-          <span class="threat__meter" aria-hidden="true">
-            <i [style.width.%]="severityScore(risk)"></i>
-          </span>
+  @if (selected; as risk) {
+    <article class="dossier panel" [style.--tone]="toneFor(risk).color">
+      <div class="dossier__head">
+        <span class="dossier__pulse" aria-hidden="true"></span>
+        <div>
+          <p class="eyebrow">{{ ui().riskPrefix }} {{ risk.id }} · {{ strategyLabel(risk.strategy) }}</p>
+          <h4>{{ risk.risk }}</h4>
+          <p>{{ risk.description }}</p>
+        </div>
+      </div>
+      <dl>
+        <div>
+          <dt>{{ ui().probabilitySuffix }}</dt>
+          <dd>{{ probabilityLabel(risk.probability) }}</dd>
+        </div>
+        <div>
+          <dt>{{ ui().costImpact }}</dt>
+          <dd>
+            $<span [appCountUp]="toUsd(risk.costImpact)" [countDuration]="1000"></span>
+            <small>
+              ·
+              <span [appCountUp]="risk.costImpact" [countDuration]="1000"></span>
+              {{ ui().egpLabel }}
+            </small>
+          </dd>
+        </div>
+        <div>
+          <dt>{{ ui().timeImpact }}</dt>
+          <dd>{{ risk.timeImpact }}</dd>
+        </div>
+        <div>
+          <dt>{{ ui().owner }}</dt>
+          <dd>{{ risk.owner }}</dd>
+        </div>
+      </dl>
+      <div class="dossier__shield">
+        <span>{{ ui().mitigationResponse }}</span>
+        <p>{{ risk.mitigation }}</p>
+      </div>
+    </article>
+  }
+
+  <ol class="stations">
+    @for (risk of risks; track risk.id; let i = $index) {
+      <li
+        class="station"
+        [class.is-open]="isOpen(risk.id)"
+        [class.station--left]="i % 2 === 0"
+        [class.station--right]="i % 2 === 1"
+        [style.--tone]="toneFor(risk).color"
+      >
+        <button type="button" class="station__node" (click)="toggleStation(risk.id)">
+          <span class="station__pulse" aria-hidden="true"></span>
+          <span>{{ risk.id }}</span>
         </button>
-      }
-    </aside>
 
-    @for (risk of [selected]; track risk.id) {
-      <article class="spotlight panel" [class.is-high]="risk.probability === 'High'">
-        <header class="spotlight__head">
-          <div>
-            <span class="spotlight__code">{{ ui().riskPrefix }} {{ risk.id }}</span>
-            <h4>{{ risk.risk }}</h4>
-            <p>{{ risk.description }}</p>
-          </div>
-          <div class="spotlight__badges">
-            <span
-              class="badge"
-              [class.badge--high]="risk.probability === 'High'"
-              [class.badge--medium]="risk.probability === 'Medium'"
-            >
-              {{ probabilityLabel(risk.probability) }} {{ ui().probabilitySuffix }}
-            </span>
-            <span class="strategy-pill">{{ strategyLabel(risk.strategy) }}</span>
-          </div>
-        </header>
-
-        <div class="gauges">
-          <div class="gauge">
-            <div class="gauge__meta">
-              <span>{{ ui().costImpact }}</span>
-              <strong>
-                $<span [appCountUp]="toUsd(risk.costImpact)" [countDuration]="1200"></span>
-                <small>
-                  ·
-                  <span [appCountUp]="risk.costImpact" [countDuration]="1200"></span>
-                  {{ ui().egpLabel }}
-                </small>
-              </strong>
+        <article class="station__card">
+          <button type="button" class="station__head" (click)="toggleStation(risk.id)">
+            <div>
+              <span class="station__weeks"
+                >{{ probabilityLabel(risk.probability) }} · {{ strategyLabel(risk.strategy) }}</span
+              >
+              <h4>{{ risk.risk }}</h4>
             </div>
-            <div class="gauge__bar">
-              <i [style.width.%]="costPercent(risk.costImpact)"></i>
-            </div>
-          </div>
+            <span class="station__chevron" aria-hidden="true"></span>
+          </button>
 
-          <div class="gauge">
-            <div class="gauge__meta">
-              <span>{{ ui().timeImpact }}</span>
-              <strong>
-                <span
-                  [appCountUp]="weeksOf(risk.timeImpact)"
-                  [countSuffix]="ui().weeksSuffix"
-                  [countDuration]="1000"
-                  [countSeparator]="false"
-                ></span>
-              </strong>
+          @if (isOpen(risk.id)) {
+            <div class="station__body">
+              <p>{{ risk.description }}</p>
+              <div class="station__meta">
+                <span>
+                  {{ ui().costImpact }}: ${{ toUsd(risk.costImpact).toLocaleString() }} ·
+                  {{ risk.costImpact.toLocaleString() }} {{ ui().egpLabel }}
+                </span>
+                <span>{{ ui().timeImpact }}: {{ risk.timeImpact }}</span>
+                <span>{{ ui().owner }}: {{ risk.owner }}</span>
+              </div>
+              <div class="station__chips">
+                <span class="chip is-active">
+                  <em>{{ risk.id }}</em>
+                  {{ risk.mitigation }}
+                </span>
+              </div>
             </div>
-            <div class="gauge__bar gauge__bar--time">
-              <i [style.width.%]="timePercent(weeksOf(risk.timeImpact))"></i>
-            </div>
-          </div>
-        </div>
-
-        <div class="spotlight__grid">
-          <div>
-            <span>{{ ui().owner }}</span>
-            <strong>{{ risk.owner }}</strong>
-          </div>
-          <div>
-            <span>{{ ui().severityIndex }}</span>
-            <strong>{{ severityScore(risk) }} / 100</strong>
-          </div>
-        </div>
-
-        <div class="shield">
-          <span class="shield__label">{{ ui().mitigationResponse }}</span>
-          <p>{{ risk.mitigation }}</p>
-        </div>
-      </article>
+          }
+        </article>
+      </li>
     }
-  </div>
+  </ol>
 
   <div class="summary">
     <div>

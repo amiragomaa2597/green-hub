@@ -14,6 +14,7 @@ import { RisksSectionComponent } from './sections/risks-section/risks-section.co
 import { ImpactSectionComponent } from './sections/impact-section/impact-section.component';
 import { ConclusionSectionComponent } from './sections/conclusion-section/conclusion-section.component';
 import { PresentationSectionComponent } from './sections/presentation-section/presentation-section.component';
+import { OpinionsSectionComponent } from './sections/opinions-section/opinions-section.component';
 import { ThankYouSectionComponent } from './sections/thank-you-section/thank-you-section.component';
 
 @Component({
@@ -34,6 +35,7 @@ import { ThankYouSectionComponent } from './sections/thank-you-section/thank-you
     RisksSectionComponent,
     ImpactSectionComponent,
     ConclusionSectionComponent,
+    OpinionsSectionComponent,
     PresentationSectionComponent,
     ThankYouSectionComponent,
   ],

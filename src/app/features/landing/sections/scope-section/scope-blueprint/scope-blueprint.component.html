@@ -1,121 +1,264 @@
-<div class="blueprint" appRevealOnScroll>
-  <div class="blueprint__intro">
-    <p class="blueprint__label">{{ blueprintLabel }}</p>
-    <h3>{{ blueprintTitle }}</h3>
-    <p>{{ description }}</p>
-  </div>
-
-  <div class="req-rail panel">
-    <div class="req-rail__head">
-      <app-icon name="cpu" [size]="18" />
-      <strong>{{ requirementsLabel }}</strong>
+<div class="deck" appRevealOnScroll>
+  <header class="deck__mission">
+    <div class="deck__mission-copy">
+      <p class="deck__label">{{ blueprintLabel }}</p>
+      <h3>{{ blueprintTitle }}</h3>
+      <p>{{ description }}</p>
     </div>
-    <div class="req-rail__chips">
-      @for (item of requirements; track item; let i = $index) {
-        <span class="chip" [style.animation-delay]="0.05 * i + 's'">{{ item }}</span>
-      }
-    </div>
-  </div>
-
-  <div class="boundary panel">
-    <div class="boundary__tabs" role="tablist">
-      <button
-        type="button"
-        role="tab"
-        [class.is-active]="mode === 'in'"
-        [attr.aria-selected]="mode === 'in'"
-        (click)="setMode('in')"
-      >
-        <app-icon name="check" [size]="16" />
-        {{ includesLabel }}
-      </button>
-      <button
-        type="button"
-        role="tab"
-        [class.is-active]="mode === 'out'"
-        [attr.aria-selected]="mode === 'out'"
-        (click)="setMode('out')"
-      >
-        <app-icon name="x" [size]="16" />
-        {{ excludesLabel }}
-      </button>
-    </div>
-
-    <ul class="boundary__list" [class.is-out]="mode === 'out'">
-      @for (item of mode === 'in' ? includes : excludes; track item) {
-        <li>{{ item }}</li>
-      }
-    </ul>
-  </div>
-
-  <div class="twin-grid">
-    <article class="panel twin">
-      <h4>{{ assumptionsLabel }}</h4>
-      <ul>
-        @for (item of assumptions; track item) {
-          <li>{{ item }}</li>
-        }
-      </ul>
-    </article>
-    <article class="panel twin twin--warn">
-      <h4>{{ constraintsLabel }}</h4>
-      <ul>
-        @for (item of constraints; track item) {
-          <li>{{ item }}</li>
-        }
-      </ul>
-    </article>
-  </div>
-
-  <div class="phase-board panel">
-    <div class="phase-board__head">
-      <strong>{{ strategyLabel }}</strong>
-      <span>{{ phasesCaption }}</span>
-    </div>
-    <div class="phase-board__track">
-      @for (phase of phases; track phase.name; let i = $index) {
-        <button
-          type="button"
-          class="phase"
-          [class.is-active]="activePhase === i"
-          (click)="selectPhase(i)"
-        >
-          <em>{{ i + 1 }}</em>
-          <strong>{{ phase.name }}</strong>
-          <span>{{ phase.duration }}</span>
-        </button>
-      }
-    </div>
-    <p class="phase-board__detail">
-      {{ phases[activePhase].name }} · {{ phases[activePhase].weeks }} ·
-      {{ phases[activePhase].duration }}
-    </p>
-  </div>
-
-  <div class="accept panel">
-    <h4>{{ acceptanceLabel }}</h4>
-    <div class="accept__grid">
-      @for (item of acceptance; track item) {
-        <span><app-icon name="check" [size]="14" /> {{ item }}</span>
-      }
-    </div>
-  </div>
-
-  <div class="cost-strip panel">
-    <div class="cost-strip__head">
-      <div>
-        <strong>{{ costLabel }}</strong>
-        <p>{{ costNote }}</p>
-      </div>
+    <aside class="mission-card">
+      <span class="mission-card__tag">{{ missionBrief }}</span>
+      <strong>{{ statement }}</strong>
       <em>{{ totalBudgetLabel }}</em>
-    </div>
-    <div class="cost-strip__items">
-      @for (item of costItems; track item.label) {
-        <div class="cost-pill" [style.--tone]="item.color">
-          <span>{{ item.label }}</span>
-          <strong>{{ item.amount }}</strong>
+    </aside>
+  </header>
+
+  <div class="deck__modes" role="tablist" [attr.aria-label]="modesLabel">
+    @for (item of modes; track item.id) {
+      <button
+        type="button"
+        role="tab"
+        class="mode"
+        [class.is-active]="mode === item.id"
+        [attr.aria-selected]="mode === item.id"
+        (click)="setMode(item.id)"
+      >
+        {{ item.label }}
+      </button>
+    }
+  </div>
+
+  @if (mode === 'boundary') {
+    <div class="stage stage--boundary panel">
+      <div class="stage__toolbar">
+        <div class="fence-toggle" role="group">
+          <button
+            type="button"
+            [class.is-active]="fenceSide === 'in'"
+            (click)="setFence('in')"
+          >
+            <app-icon name="check" [size]="16" />
+            {{ includesLabel }}
+          </button>
+          <button
+            type="button"
+            [class.is-active]="fenceSide === 'out'"
+            (click)="setFence('out')"
+          >
+            <app-icon name="x" [size]="16" />
+            {{ excludesLabel }}
+          </button>
         </div>
+        <button type="button" class="flip-btn" (click)="flipFence()">
+          {{ flipBoundary }}
+        </button>
+      </div>
+
+      <div class="arena" [class.is-out]="fenceSide === 'out'">
+        <div class="arena__glow" aria-hidden="true"></div>
+        <p class="arena__caption">
+          {{ fenceSide === 'in' ? insideFence : outsideFence }}
+        </p>
+        <ul class="arena__list">
+          @for (
+            item of fenceSide === 'in' ? includes : excludes;
+            track item;
+            let i = $index
+          ) {
+            <li [style.animation-delay]="0.05 * i + 's'">
+              <span class="arena__index">{{ i + 1 }}</span>
+              <strong>{{ item }}</strong>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <div class="twin-rail">
+        <article class="rail-card">
+          <h4>{{ assumptionsLabel }}</h4>
+          <ul>
+            @for (item of assumptions; track item) {
+              <li>{{ item }}</li>
+            }
+          </ul>
+        </article>
+        <article class="rail-card rail-card--warn">
+          <h4>{{ constraintsLabel }}</h4>
+          <ul>
+            @for (item of constraints; track item) {
+              <li>{{ item }}</li>
+            }
+          </ul>
+        </article>
+      </div>
+    </div>
+  }
+
+  @if (mode === 'systems') {
+    <div class="stage stage--systems panel">
+      <div class="systems-layout">
+            <div class="constellation" [attr.aria-label]="requirementsLabel">
+          @for (item of requirements; track item; let i = $index) {
+            <button
+              type="button"
+              class="node"
+              [class.is-active]="activeSystem === i"
+              [style.--i]="i"
+              (click)="selectSystem(i)"
+            >
+              <app-icon [name]="systemIcon(i)" [size]="20" />
+              <span>{{ i + 1 }}</span>
+            </button>
+          }
+          <div class="constellation__core">
+            <app-icon name="cpu" [size]="28" />
+            <strong>{{ requirementsLabel }}</strong>
+          </div>
+        </div>
+
+        <article class="system-spotlight">
+          <span class="icon-bubble">
+            <app-icon [name]="systemIcon(activeSystem)" [size]="24" />
+          </span>
+          <p class="eyebrow">{{ requirementsLabel }} · 0{{ activeSystem + 1 }}</p>
+          <h4>{{ requirements[activeSystem] }}</h4>
+          <p>{{ description }}</p>
+        </article>
+      </div>
+    </div>
+  }
+
+  @if (mode === 'strategy') {
+    <div class="stage stage--strategy panel">
+      <div class="strategy__head">
+        <div>
+          <strong>{{ strategyLabel }}</strong>
+          <span>{{ phasesCaption }}</span>
+        </div>
+        <em>{{ phases[activePhase].duration }}</em>
+      </div>
+
+      <div class="progress">
+        <div class="progress__fill" [style.width.%]="phaseProgress()"></div>
+      </div>
+
+      <div class="path">
+        @for (phase of phases; track phase.name; let i = $index) {
+          <button
+            type="button"
+            class="path__stop"
+            [class.is-active]="activePhase === i"
+            [class.is-done]="i < activePhase"
+            (click)="selectPhase(i)"
+          >
+            <span class="path__dot">{{ i + 1 }}</span>
+            <strong>{{ phase.name }}</strong>
+            <em>{{ phase.weeks }}</em>
+          </button>
+        }
+      </div>
+
+      <div class="path__detail">
+        <span class="path__pulse" aria-hidden="true"></span>
+        <div>
+          <h4>{{ phases[activePhase].name }}</h4>
+          <p>
+            {{ phases[activePhase].weeks }} · {{ phases[activePhase].duration }}
+          </p>
+        </div>
+      </div>
+    </div>
+  }
+
+  @if (mode === 'gates') {
+    <div class="stage stage--gates panel">
+      <div class="gates__head">
+        <strong>{{ lockStatus }}</strong>
+        <span>{{ acceptanceLabel }}</span>
+      </div>
+      <div class="locks">
+        @for (item of acceptance; track item; let i = $index) {
+          <button
+            type="button"
+            class="lock"
+            [class.is-active]="activeGate === i"
+            [class.is-cleared]="isGateCleared(i)"
+            (click)="selectGate(i)"
+          >
+            <span class="lock__seal">
+              <app-icon
+                [name]="isGateCleared(i) ? 'check' : 'shield'"
+                [size]="18"
+              />
+            </span>
+            <div>
+              <strong>{{ item }}</strong>
+              @if (isGateCleared(i)) {
+                <em>{{ unlockedLabel }}</em>
+              }
+            </div>
+          </button>
+        }
+      </div>
+    </div>
+  }
+
+  @if (mode === 'budget') {
+    <div class="stage stage--budget panel">
+      <div class="budget-hero">
+        <div>
+          <strong>{{ costLabel }}</strong>
+          <p>{{ costNote }}</p>
+        </div>
+        <em>{{ totalBudgetLabel }}</em>
+      </div>
+      <div class="orbit">
+        @for (item of costItems; track item.label; let i = $index) {
+          <button
+            type="button"
+            class="orbit__pill"
+            [style.--tone]="item.color"
+            [style.animation-delay]="0.04 * i + 's'"
+          >
+            <span>{{ item.label }}</span>
+            <strong>{{ item.amount }}</strong>
+          </button>
+        }
+      </div>
+    </div>
+  }
+
+  @if (mode === 'outputs') {
+    <div class="stage stage--outputs panel">
+      <div class="outputs__nav">
+        @for (item of deliverables; track item.title; let i = $index) {
+          <button
+            type="button"
+            class="outputs__tab"
+            [class.is-active]="activeOutput === i"
+            (click)="selectOutput(i)"
+          >
+            0{{ i + 1 }} · {{ item.title }}
+          </button>
+        }
+      </div>
+
+      @for (item of deliverables; track item.title; let i = $index) {
+        @if (activeOutput === i) {
+          <article class="outputs__stage">
+            @if (item.image) {
+              <img [src]="item.image" [alt]="item.title" loading="lazy" />
+            }
+            <div>
+              <span class="icon-bubble">
+                <app-icon [name]="iconOf(item.icon)" [size]="22" />
+              </span>
+              <p class="eyebrow">{{ deliverablesLabel }}</p>
+              <h4>{{ item.title }}</h4>
+              <p>{{ item.description }}</p>
+            </div>
+          </article>
+        }
       }
     </div>
-  </div>
+  }
 </div>

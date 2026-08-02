@@ -1,0 +1,90 @@
+<section id="opinions" class="section section--alt">
+  <div class="container">
+    <app-section-header
+      [eyebrow]="content().eyebrow"
+      [title]="content().title"
+      [hook]="hook()"
+      [lead]="content().lead"
+    />
+
+    <div class="opinion-board panel" appRevealOnScroll>
+      <div class="opinion-board__privacy">
+        <app-icon name="shield" [size]="18" />
+        <p>{{ content().privacyNote }}</p>
+      </div>
+
+      <form class="opinion-form" (ngSubmit)="submit()">
+        <fieldset>
+          <legend>{{ content().interestLabel }}</legend>
+          <div class="interest-grid" role="radiogroup">
+            @for (option of content().options; track option.id) {
+              <button
+                type="button"
+                class="interest"
+                [class.is-active]="interestId() === option.id"
+                [attr.aria-pressed]="interestId() === option.id"
+                (click)="selectInterest(option.id)"
+              >
+                <strong>{{ option.label }}</strong>
+                <span>{{ option.hint }}</span>
+              </button>
+            }
+          </div>
+        </fieldset>
+
+        <label class="message-field">
+          <span>{{ content().messageLabel }}</span>
+          <textarea
+            rows="5"
+            [placeholder]="content().messagePlaceholder"
+            [ngModel]="message()"
+            (ngModelChange)="onMessageInput($event)"
+            name="opinion"
+            required
+            minlength="8"
+            maxlength="2000"
+          ></textarea>
+        </label>
+
+        <!-- Honeypot — leave empty; bots may fill it. -->
+        <input
+          class="honey"
+          type="text"
+          name="_honey"
+          tabindex="-1"
+          autocomplete="off"
+          aria-hidden="true"
+        />
+
+        <div class="opinion-form__actions">
+          <button
+            type="submit"
+            class="btn btn--primary"
+            [disabled]="!canSubmit()"
+          >
+            <app-icon name="handshake" [size]="18" />
+            {{
+              status() === 'sending'
+                ? content().sendingLabel
+                : content().submitLabel
+            }}
+          </button>
+        </div>
+      </form>
+
+      @if (status() === 'sent') {
+        <div class="toast toast--ok" role="status">
+          <strong>{{ content().successTitle }}</strong>
+          <p>{{ content().successBody }}</p>
+        </div>
+      }
+
+      @if (status() === 'error') {
+        <div class="toast toast--err" role="alert">
+          <strong>{{ content().errorTitle }}</strong>
+          <p>{{ content().errorBody }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>

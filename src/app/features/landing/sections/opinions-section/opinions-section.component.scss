@@ -1,0 +1,186 @@
+.opinion-board {
+  padding: 1.35rem 1.25rem 1.45rem;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(143, 206, 173, 0.22), transparent 42%),
+    radial-gradient(circle at 90% 100%, rgba(196, 163, 90, 0.12), transparent 40%),
+    rgba(255, 255, 255, 0.9);
+}
+
+.opinion-board__privacy {
+  display: flex;
+  gap: 0.7rem;
+  align-items: flex-start;
+  margin-bottom: 1.25rem;
+  padding: 0.85rem 1rem;
+  border-radius: 0.95rem;
+  background: rgba(31, 107, 69, 0.08);
+  color: var(--forest);
+}
+
+.opinion-board__privacy p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.opinion-form {
+  display: grid;
+  gap: 1.15rem;
+}
+
+.opinion-form fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.opinion-form legend,
+.message-field > span {
+  display: block;
+  margin-bottom: 0.7rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--leaf);
+}
+
+.interest-grid {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.interest {
+  display: grid;
+  gap: 0.25rem;
+  text-align: start;
+  border: 1px solid rgba(15, 47, 34, 0.12);
+  background: rgba(255, 255, 255, 0.82);
+  border-radius: 1rem;
+  padding: 0.9rem 1rem;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.interest strong {
+  color: var(--forest);
+}
+
+.interest span {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.interest:hover,
+.interest.is-active {
+  transform: translateY(-2px);
+  border-color: var(--leaf);
+  background: rgba(31, 107, 69, 0.1);
+  box-shadow: 0 12px 28px rgba(15, 47, 34, 0.08);
+}
+
+.interest.is-active {
+  outline: 2px solid color-mix(in srgb, var(--leaf) 55%, transparent);
+  outline-offset: 1px;
+}
+
+.message-field {
+  display: grid;
+}
+
+.message-field textarea {
+  width: 100%;
+  resize: vertical;
+  min-height: 8.5rem;
+  border: 1px solid rgba(15, 47, 34, 0.14);
+  border-radius: 1rem;
+  padding: 0.95rem 1.05rem;
+  font: inherit;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.92);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.message-field textarea:focus {
+  outline: none;
+  border-color: var(--leaf);
+  box-shadow: 0 0 0 4px rgba(31, 107, 69, 0.12);
+}
+
+.honey {
+  position: absolute;
+  left: -10000px;
+  opacity: 0;
+  height: 0;
+  width: 0;
+  pointer-events: none;
+}
+
+.opinion-form__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.opinion-form__actions .btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.toast {
+  margin-top: 1rem;
+  padding: 0.95rem 1.05rem;
+  border-radius: 0.95rem;
+  animation: toast-in 0.35s ease;
+}
+
+.toast strong {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.toast p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.toast--ok {
+  background: rgba(31, 107, 69, 0.1);
+  border: 1px solid rgba(31, 107, 69, 0.2);
+  color: var(--forest);
+}
+
+.toast--err {
+  background: rgba(194, 65, 12, 0.08);
+  border: 1px solid rgba(194, 65, 12, 0.22);
+  color: #9a3412;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (min-width: 760px) {
+  .interest-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1100px) {
+  .interest-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

@@ -31,9 +31,9 @@ export const SCOPE_CONTENT: Localized<ScopeContent> = {
       'Sustainable community center promoting environmental awareness and green living.',
     description:
       'Renewable-energy-powered facility with smart technologies, educational workshops, recycling programs, coworking spaces, and community activities.',
-    blueprintLabel: 'Scope Blueprint',
-    blueprintTitle: 'Build the boundary. Lock the criteria.',
-    phasesCaption: '7 sequential phases',
+    blueprintLabel: 'Scope Command Deck',
+    blueprintTitle: 'Draw the fence. Arm the systems. Clear the gates.',
+    phasesCaption: '7-phase delivery path',
     requirements: [
       'Solar PV system',
       'Smart lighting & HVAC controls',
@@ -144,9 +144,9 @@ export const SCOPE_CONTENT: Localized<ScopeContent> = {
       'مركز مجتمعي مستدام يعزّز الوعي البيئي والحياة الخضراء.',
     description:
       'منشأة تعمل بالطاقة المتجددة مع تقنيات ذكية وورش تعليمية وبرامج إعادة تدوير ومساحات عمل مشتركة وأنشطة مجتمعية.',
-    blueprintLabel: 'مخطط النطاق',
-    blueprintTitle: 'ارسم الحدود. ثبّت المعايير.',
-    phasesCaption: '7 مراحل متتابعة',
+    blueprintLabel: 'لوحة قيادة النطاق',
+    blueprintTitle: 'ارسم الحدود. فعّل الأنظمة. افتح البوابات.',
+    phasesCaption: 'مسار تسليم من 7 مراحل',
     requirements: [
       'نظام طاقة شمسية',
       'إضاءة ذكية وتحكم HVAC',

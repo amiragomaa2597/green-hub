@@ -73,6 +73,10 @@ h3 {
   transform-origin: left center;
 }
 
+html[dir='rtl'] .gantt-bar__fill {
+  transform-origin: right center;
+}
+
 .gantt.is-active .gantt-bar__fill {
   animation: gantt-grow 1.05s cubic-bezier(0.22, 1, 0.36, 1) both;
   animation-delay: var(--bar-delay, 0s);

@@ -3,6 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
+  NgZone,
   OnDestroy,
   ViewChild,
   computed,
@@ -17,7 +18,7 @@ import { SectionHeaderComponent } from '../../../../shared/components/section-he
 import { SectionMediaComponent } from '../../../../shared/components/section-media/section-media.component';
 import { RevealOnScrollDirective } from '../../../../shared/directives/reveal-on-scroll.directive';
 import { CountUpDirective } from '../../../../shared/directives/count-up.directive';
-import { resolveInViewTarget, whenInView } from '../../../../shared/utils/when-in-view';
+import { whenInView } from '../../../../shared/utils/when-in-view';
 import { EGP_PER_USD, usdToEgp } from '../../../../core/utils/money.util';
 import { PmbokLadderComponent } from './pmbok-ladder/pmbok-ladder.component';
 
@@ -47,6 +48,7 @@ export class BudgetSectionComponent implements AfterViewInit, OnDestroy {
   @ViewChild('distributionPanel') distributionPanel?: ElementRef<HTMLElement>;
 
   private readonly cdr = inject(ChangeDetectorRef);
+  private readonly zone = inject(NgZone);
   private readonly language = inject(LanguageService);
 
   readonly content = computed(() => BUDGET_CONTENT[this.language.lang()]);
@@ -83,10 +85,14 @@ export class BudgetSectionComponent implements AfterViewInit, OnDestroy {
       return;
     }
 
-    const target = resolveInViewTarget(node);
-    this.observer = whenInView(target, () => {
-      this.chartActive = true;
-      this.cdr.markForCheck();
+    // Observe the chart panel itself so the ring animates when it is on screen.
+    this.zone.runOutsideAngular(() => {
+      this.observer = whenInView(node, () => {
+        this.zone.run(() => {
+          this.chartActive = true;
+          this.cdr.detectChanges();
+        });
+      });
     });
   }
 

@@ -53,7 +53,7 @@ export const STAKEHOLDERS_CONTENT: Localized<StakeholdersContent> = {
         role: 'Materials and equipment supply',
         influence: 'Medium',
         interest: 'Medium',
-        strategy: 'Keep Informed',
+        strategy: 'Monitor',
       },
       {
         name: 'Local Community',
@@ -142,7 +142,7 @@ export const STAKEHOLDERS_CONTENT: Localized<StakeholdersContent> = {
         role: 'توريد المواد والمعدات',
         influence: 'متوسطة',
         interest: 'متوسطة',
-        strategy: 'إبقاء على اطلاع',
+        strategy: 'مراقبة',
       },
       {
         name: 'المجتمع المحلي',

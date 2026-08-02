@@ -3,6 +3,7 @@ import {
   Directive,
   ElementRef,
   Input,
+  NgZone,
   OnChanges,
   OnDestroy,
   SimpleChanges,
@@ -22,6 +23,7 @@ interface CompactScale {
 })
 export class CountUpDirective implements AfterViewInit, OnChanges, OnDestroy {
   private readonly el = inject(ElementRef<HTMLElement>);
+  private readonly zone = inject(NgZone);
 
   @Input({ alias: 'appCountUp', required: true }) target!: number;
   @Input() countPrefix = '';
@@ -36,16 +38,39 @@ export class CountUpDirective implements AfterViewInit, OnChanges, OnDestroy {
   private observer?: IntersectionObserver;
   private frameId = 0;
   private started = false;
+  private hasEntered = false;
+  private safetyTimer = 0;
 
   ngAfterViewInit(): void {
     this.render(0);
 
     const target = resolveInViewTarget(this.el.nativeElement);
-    this.observer = whenInView(target, () => this.animate());
+    this.zone.runOutsideAngular(() => {
+      this.observer = whenInView(target, () => this.enter());
+    });
+
+    this.safetyTimer = window.setTimeout(() => {
+      if (this.hasEntered) {
+        return;
+      }
+      const rect = this.el.nativeElement.getBoundingClientRect();
+      const viewportHeight = window.innerHeight || 0;
+      if (rect.top < viewportHeight && rect.bottom > 0) {
+        this.enter();
+      }
+    }, 2000);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['target'] && this.started) {
+    if (!changes['target'] || changes['target'].firstChange) {
+      return;
+    }
+
+    this.started = false;
+    cancelAnimationFrame(this.frameId);
+    this.render(0);
+
+    if (this.hasEntered) {
       this.animate();
     }
   }
@@ -53,6 +78,15 @@ export class CountUpDirective implements AfterViewInit, OnChanges, OnDestroy {
   ngOnDestroy(): void {
     this.observer?.disconnect();
     cancelAnimationFrame(this.frameId);
+    window.clearTimeout(this.safetyTimer);
+  }
+
+  private enter(): void {
+    if (this.hasEntered) {
+      return;
+    }
+    this.hasEntered = true;
+    this.zone.run(() => this.animate());
   }
 
   private scale(): CompactScale | null {
@@ -115,7 +149,7 @@ export class CountUpDirective implements AfterViewInit, OnChanges, OnDestroy {
       ? Math.min(this.countDuration, 1100)
       : this.countDuration;
 
-    const tick = (now: number) => {
+    const tick = (now: number): void => {
       const progress = Math.min((now - start) / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
       const current = from + (to - from) * eased;

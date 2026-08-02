@@ -63,6 +63,13 @@ export const UI_LABELS: Localized<{
   costBreakdown: string;
   financialOverview: string;
   powerInterestGrid: string;
+  stakeholderJourneyMap: string;
+  stakeholderMapHint: string;
+  powerAxisHigh: string;
+  powerAxisLow: string;
+  interestAxisLow: string;
+  interestAxisHigh: string;
+  strategiesCount: string;
   manageCloselyHint: string;
   keepSatisfiedHint: string;
   keepInformedHint: string;
@@ -72,10 +79,29 @@ export const UI_LABELS: Localized<{
   contingencyReserves: string;
   managementReserve: string;
   costBaseline: string;
+  scopeConsoleModes: string;
+  scopeModeBoundary: string;
+  scopeModeSystems: string;
+  scopeModeStrategy: string;
+  scopeModeGates: string;
+  scopeModeBudget: string;
+  scopeModeOutputs: string;
+  missionBrief: string;
+  insideFence: string;
+  outsideFence: string;
+  flipBoundary: string;
+  lockStatus: string;
+  unlocked: string;
   weeksSuffix: string;
   riskConsoleLabel: string;
   riskConsoleTitle: string;
   riskConsoleBody: string;
+  riskMapRoot: string;
+  riskStationsLabel: string;
+  probAxisHigh: string;
+  probAxisMedium: string;
+  costAxisLow: string;
+  costAxisHigh: string;
   lowerExposure: string;
   higherExposure: string;
   radarNote: string;
@@ -173,6 +199,14 @@ export const UI_LABELS: Localized<{
     costBreakdown: 'Cost Breakdown',
     financialOverview: 'Financial Overview',
     powerInterestGrid: 'Power / Interest Grid',
+    stakeholderJourneyMap: 'Engagement Journey Map',
+    stakeholderMapHint:
+      'Tap a node on the map — or open a strategy station along the path.',
+    powerAxisHigh: 'High power',
+    powerAxisLow: 'Low power',
+    interestAxisLow: 'Low interest',
+    interestAxisHigh: 'High interest',
+    strategiesCount: 'strategy stations',
     manageCloselyHint:
       'The relationships that most directly determine project success.',
     keepSatisfiedHint:
@@ -185,11 +219,30 @@ export const UI_LABELS: Localized<{
     contingencyReserves: 'Contingency Reserves',
     managementReserve: 'Management Reserve',
     costBaseline: 'Cost Baseline',
+    scopeConsoleModes: 'Scope modes',
+    scopeModeBoundary: 'Boundary',
+    scopeModeSystems: 'Systems',
+    scopeModeStrategy: 'Strategy',
+    scopeModeGates: 'Gates',
+    scopeModeBudget: 'Budget',
+    scopeModeOutputs: 'Outputs',
+    missionBrief: 'Mission brief',
+    insideFence: 'Inside the fence',
+    outsideFence: 'Outside the fence',
+    flipBoundary: 'Flip the fence',
+    lockStatus: 'Acceptance locks',
+    unlocked: 'Cleared',
     weeksSuffix: ' Weeks',
-    riskConsoleLabel: 'Risk Defense Console',
-    riskConsoleTitle: 'Scan the threats. Lock the response.',
+    riskConsoleLabel: 'Risk Management',
+    riskConsoleTitle: 'Risk Journey Map',
     riskConsoleBody:
-      'Explore the Top 8 risks on an interactive board — filter by pressure level or strategy, then open any threat to see impact and mitigation.',
+      'Tap a node on the map — or open a risk station along the path. Same Top 8 risks and values from the presentation.',
+    riskMapRoot: 'Top 8 Project Risks & Mitigation Plan',
+    riskStationsLabel: 'risk stations',
+    probAxisHigh: 'High probability',
+    probAxisMedium: 'Medium probability',
+    costAxisLow: 'Lower cost impact',
+    costAxisHigh: 'Higher cost impact',
     lowerExposure: 'Lower exposure',
     higherExposure: 'Higher exposure',
     radarNote: 'Node size & position reflect relative cost impact.',
@@ -287,6 +340,14 @@ export const UI_LABELS: Localized<{
     costBreakdown: 'تفصيل التكاليف',
     financialOverview: 'نظرة مالية',
     powerInterestGrid: 'مصفوفة القوة / المصلحة',
+    stakeholderJourneyMap: 'خريطة رحلة التواصل',
+    stakeholderMapHint:
+      'اضغط على نقطة في الخريطة — أو افتح محطة استراتيجية على المسار.',
+    powerAxisHigh: 'قوة عالية',
+    powerAxisLow: 'قوة منخفضة',
+    interestAxisLow: 'مصلحة منخفضة',
+    interestAxisHigh: 'مصلحة عالية',
+    strategiesCount: 'محطات استراتيجية',
     manageCloselyHint: 'العلاقات التي تحدد نجاح المشروع بشكل مباشر.',
     keepSatisfiedHint: 'جهات تنظيمية يمكنها إيقاف التقدم دون مشاركة يومية.',
     keepInformedHint: 'متأثرون بالمشروع بسلطة رسمية محدودة.',
@@ -296,11 +357,30 @@ export const UI_LABELS: Localized<{
     contingencyReserves: 'احتياطيات الطوارئ',
     managementReserve: 'الاحتياطي الإداري',
     costBaseline: 'خط الأساس للتكلفة',
+    scopeConsoleModes: 'أوضاع النطاق',
+    scopeModeBoundary: 'الحدود',
+    scopeModeSystems: 'الأنظمة',
+    scopeModeStrategy: 'الاستراتيجية',
+    scopeModeGates: 'البوابات',
+    scopeModeBudget: 'الميزانية',
+    scopeModeOutputs: 'المخرجات',
+    missionBrief: 'موجز المهمة',
+    insideFence: 'داخل النطاق',
+    outsideFence: 'خارج النطاق',
+    flipBoundary: 'اقلب الحدود',
+    lockStatus: 'أقفال القبول',
+    unlocked: 'تم الاجتياز',
     weeksSuffix: ' أسابيع',
-    riskConsoleLabel: 'لوحة الدفاع عن المخاطر',
-    riskConsoleTitle: 'ارصد التهديدات. ثبّت الاستجابة.',
+    riskConsoleLabel: 'إدارة المخاطر',
+    riskConsoleTitle: 'خريطة رحلة المخاطر',
     riskConsoleBody:
-      'استكشف أهم 8 مخاطر على لوحة تفاعلية — صفِّ حسب مستوى الضغط أو الاستراتيجية، ثم افتح أي تهديد لترى الأثر وخطة المعالجة.',
+      'اضغط على نقطة في الخريطة — أو افتح محطة خطر على المسار. نفس أهم 8 مخاطر وقيمها من العرض التقديمي.',
+    riskMapRoot: 'أهم 8 مخاطر للمشروع وخطة المعالجة',
+    riskStationsLabel: 'محطات مخاطر',
+    probAxisHigh: 'احتمال عالٍ',
+    probAxisMedium: 'احتمال متوسط',
+    costAxisLow: 'أثر تكلفة أقل',
+    costAxisHigh: 'أثر تكلفة أعلى',
     lowerExposure: 'تعرض أقل',
     higherExposure: 'تعرض أعلى',
     radarNote: 'حجم العقدة وموقعها يعكسان الأثر النسبي على التكلفة.',

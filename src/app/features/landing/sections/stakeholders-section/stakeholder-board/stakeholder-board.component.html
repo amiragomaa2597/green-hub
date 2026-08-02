@@ -1,105 +1,136 @@
-<div class="board" appRevealOnScroll>
-  <div class="board__intro">
-    <p class="board__label">{{ boardLabel }}</p>
+<div class="map-journey" appRevealOnScroll>
+  <div class="map-journey__intro">
+    <p class="map-journey__label">{{ boardLabel }}</p>
     <h3>{{ boardTitle }}</h3>
-    <p>{{ lead }}</p>
+    <p class="map-journey__hint">{{ mapHint }}</p>
   </div>
 
-  <div class="board__layout">
-    <aside class="roster panel">
-      <h4>{{ registerTitle }}</h4>
-      @for (row of register; track row.name) {
+  <div class="map-root">
+    <span class="map-root__glow" aria-hidden="true"></span>
+    <span class="map-root__badge">P / I</span>
+    <strong>{{ matrixTitle }}</strong>
+    <em>{{ matrix.length }} {{ strategiesLabel }}</em>
+  </div>
+
+  <div class="radar-map panel">
+    <div class="radar-map__axes" aria-hidden="true">
+      <span class="axis axis--y-high">{{ powerAxisHigh }}</span>
+      <span class="axis axis--y-low">{{ powerAxisLow }}</span>
+      <span class="axis axis--x-low">{{ interestAxisLow }}</span>
+      <span class="axis axis--x-high">{{ interestAxisHigh }}</span>
+    </div>
+
+    <div class="radar-map__zones">
+      @for (quad of matrix; track quad.title; let i = $index) {
         <button
           type="button"
-          class="roster__item"
-          [class.is-active]="selectedName === row.name"
-          (click)="selectStakeholder(row.name)"
+          class="zone"
+          [class.is-active]="activeQuad === i"
+          [style.--tone]="tone(i).color"
+          [style.--soft]="tone(i).soft"
+          (click)="selectQuad(i)"
         >
-          <strong>{{ row.name }}</strong>
-          <em>{{ row.strategy }}</em>
+          <em>{{ quad.strategy }}</em>
+          <strong>{{ quad.title }}</strong>
         </button>
       }
-    </aside>
+    </div>
 
-    <div class="grid-stage">
-      <div class="quad-tabs">
-        @for (quad of matrix; track quad.title; let i = $index) {
-          <button
-            type="button"
-            class="quad-tab"
-            [class.is-active]="activeQuad === i"
-            (click)="selectQuad(i)"
-          >
-            {{ quad.title }}
-          </button>
-        }
-      </div>
-
-      <article class="spotlight panel">
-        <p class="eyebrow">{{ active.strategy }}</p>
-        <h4>{{ active.title }}</h4>
-        <p>{{ active.hint }}</p>
-        <ul>
-          @for (name of active.stakeholders; track name) {
-            <li>
-              <button type="button" (click)="selectStakeholder(name)">{{ name }}</button>
-            </li>
-          }
-        </ul>
-      </article>
-
-      @if (selected; as row) {
-        <article class="profile panel">
-          <p class="eyebrow">{{ matrixTitle }}</p>
-          <h4>{{ row.name }}</h4>
-          <dl>
-            <div>
-              <dt>{{ roleLabel }}</dt>
-              <dd>{{ row.role }}</dd>
-            </div>
-            <div>
-              <dt>{{ powerLabel }}</dt>
-              <dd>{{ row.influence }}</dd>
-            </div>
-            <div>
-              <dt>{{ interestLabel }}</dt>
-              <dd>{{ row.interest }}</dd>
-            </div>
-            <div>
-              <dt>{{ strategyLabel }}</dt>
-              <dd>{{ row.strategy }}</dd>
-            </div>
-          </dl>
-        </article>
+    <div class="radar-map__plot">
+      @for (row of register; track row.name; let i = $index) {
+        <button
+          type="button"
+          class="plot-node"
+          [class.is-active]="selectedName === row.name"
+          [style.left.%]="plotLeft(row)"
+          [style.bottom.%]="plotBottom(row)"
+          [style.--tone]="tone(quadIndexFor(row.name)).color"
+          [attr.title]="row.name"
+          [style.animation-delay]="0.05 * i + 's'"
+          (click)="selectStakeholder(row.name)"
+        >
+          <span>{{ i + 1 }}</span>
+          <strong>{{ row.name }}</strong>
+        </button>
       }
     </div>
   </div>
 
-  <div class="table-wrap panel">
-    <table class="data-table">
-      <thead>
-        <tr>
-          <th>{{ stakeholderLabel }}</th>
-          <th>{{ roleLabel }}</th>
-          <th>{{ powerLabel }}</th>
-          <th>{{ interestLabel }}</th>
-          <th>{{ strategyLabel }}</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (row of register; track row.name) {
-          <tr
-            [class.is-active]="selectedName === row.name"
-            (click)="selectStakeholder(row.name)"
-          >
-            <td>{{ row.name }}</td>
-            <td>{{ row.role }}</td>
-            <td>{{ row.influence }}</td>
-            <td>{{ row.interest }}</td>
-            <td>{{ row.strategy }}</td>
-          </tr>
-        }
-      </tbody>
-    </table>
-  </div>
+  @if (selected; as row) {
+    <article class="dossier panel" [style.--tone]="tone(quadIndexFor(row.name)).color">
+      <div class="dossier__head">
+        <span class="dossier__pulse" aria-hidden="true"></span>
+        <div>
+          <p class="eyebrow">{{ strategyLabel }}</p>
+          <h4>{{ row.name }}</h4>
+          <p>{{ row.strategy }}</p>
+        </div>
+      </div>
+      <dl>
+        <div>
+          <dt>{{ roleLabel }}</dt>
+          <dd>{{ row.role }}</dd>
+        </div>
+        <div>
+          <dt>{{ powerLabel }}</dt>
+          <dd>{{ row.influence }}</dd>
+        </div>
+        <div>
+          <dt>{{ interestLabel }}</dt>
+          <dd>{{ row.interest }}</dd>
+        </div>
+        <div>
+          <dt>{{ strategyLabel }}</dt>
+          <dd>{{ row.strategy }}</dd>
+        </div>
+      </dl>
+    </article>
+  }
+
+  <ol class="stations">
+    @for (quad of matrix; track quad.title; let i = $index) {
+      <li
+        class="station"
+        [class.is-open]="isOpen(i)"
+        [class.station--left]="i % 2 === 0"
+        [class.station--right]="i % 2 === 1"
+        [style.--tone]="tone(i).color"
+      >
+        <button type="button" class="station__node" (click)="toggleStation(i)">
+          <span class="station__pulse" aria-hidden="true"></span>
+          <span>{{ i + 1 }}</span>
+        </button>
+
+        <article class="station__card">
+          <button type="button" class="station__head" (click)="toggleStation(i)">
+            <div>
+              <span class="station__weeks">{{ quad.strategy }}</span>
+              <h4>{{ quad.title }}</h4>
+            </div>
+            <span class="station__chevron" aria-hidden="true"></span>
+          </button>
+
+          @if (isOpen(i)) {
+            <div class="station__body">
+              <p>{{ quad.hint }}</p>
+              <div class="station__chips">
+                @for (name of quad.stakeholders; track name; let ti = $index) {
+                  <button
+                    type="button"
+                    class="chip"
+                    [class.is-active]="selectedName === name"
+                    [style.animation-delay]="0.04 * ti + 's'"
+                    (click)="selectStakeholder(name)"
+                  >
+                    <em>{{ i + 1 }}.{{ ti + 1 }}</em>
+                    {{ name }}
+                  </button>
+                }
+              </div>
+            </div>
+          }
+        </article>
+      </li>
+    }
+  </ol>
 </div>

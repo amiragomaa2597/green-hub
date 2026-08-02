@@ -1,0 +1,94 @@
+<div class="ladder" appRevealOnScroll>
+  <div class="ladder__intro">
+    <p class="ladder__label">{{ title }}</p>
+    <h3>{{ matrixTitle }}</h3>
+    <p>{{ stepsNote }}</p>
+  </div>
+
+  <div class="ladder__climb">
+    @for (step of steps; track step.step) {
+      <button
+        type="button"
+        class="rung"
+        [class.is-active]="isActive(step.step)"
+        [style.--tone]="step.color"
+        [style.--width.%]="58 + step.step * 10"
+        (click)="select(step.step)"
+      >
+        <span class="rung__step">{{ step.step }}</span>
+        <div class="rung__copy">
+          <strong>{{ step.title }}</strong>
+          <em>{{ step.detail }}</em>
+        </div>
+        <div class="rung__value">
+          <strong>
+            +$<span [appCountUp]="step.addAmount" [countDuration]="1200"></span>
+          </strong>
+          <small>
+            +<span [appCountUp]="toEgp(step.addAmount)" [countDuration]="1200"></span>
+            {{ egpLabel }}
+          </small>
+          <small>
+            =
+            $<span [appCountUp]="step.cumulative" [countDuration]="1400"></span>
+            ·
+            <span [appCountUp]="toEgp(step.cumulative)" [countDuration]="1400"></span>
+            {{ egpLabel }}
+          </small>
+        </div>
+      </button>
+    }
+  </div>
+
+  <div class="overview">
+    @for (item of overview; track item.label; let i = $index) {
+      <article class="overview__card panel" [style.--tone]="item.color">
+        <strong>
+          <span
+            [appCountUp]="item.percent"
+            countSuffix="%"
+            [countDuration]="1100 + i * 120"
+            [countSeparator]="false"
+          ></span>
+        </strong>
+        <span>{{ item.label }}</span>
+        <em>
+          $<span [appCountUp]="item.amount" [countDuration]="1200 + i * 100"></span>
+          ·
+          <span [appCountUp]="toEgp(item.amount)" [countDuration]="1200 + i * 100"></span>
+          {{ egpLabel }}
+        </em>
+      </article>
+    }
+  </div>
+
+  <div class="table-wrap matrix-wrap panel">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>{{ componentLabel }}</th>
+          <th>{{ amountLabel }}</th>
+          <th>{{ reserveLabel }}</th>
+          <th>{{ cumulativeLabel }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (row of matrix; track row.component; let i = $index) {
+          <tr [class.is-total]="i === matrix.length - 1">
+            <td>{{ row.component }}</td>
+            <td>
+              $<span [appCountUp]="row.amount" [countDuration]="1000 + i * 80"></span>
+              <small class="dual">
+                ·
+                <span [appCountUp]="toEgp(row.amount)" [countDuration]="1000 + i * 80"></span>
+                {{ egpLabel }}
+              </small>
+            </td>
+            <td>{{ row.reserveRatio }}</td>
+            <td>{{ row.cumulative }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

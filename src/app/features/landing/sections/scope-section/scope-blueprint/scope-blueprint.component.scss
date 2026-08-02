@@ -1,0 +1,274 @@
+.blueprint {
+  display: grid;
+  gap: 1.15rem;
+  margin-top: 0.5rem;
+}
+
+.blueprint__label {
+  margin: 0 0 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--leaf);
+}
+
+.blueprint__intro h3 {
+  margin: 0 0 0.5rem;
+  color: var(--forest);
+  font-size: clamp(1.45rem, 3vw, 1.9rem);
+}
+
+.blueprint__intro p {
+  margin: 0;
+  max-width: 48rem;
+  color: var(--muted);
+}
+
+.req-rail,
+.boundary,
+.phase-board,
+.accept,
+.cost-strip,
+.twin {
+  padding: 1.1rem 1.2rem;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(143, 206, 173, 0.18), transparent 40%),
+    rgba(255, 255, 255, 0.88);
+}
+
+.req-rail__head {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 0.85rem;
+  color: var(--forest);
+}
+
+.req-rail__chips,
+.accept__grid,
+.cost-strip__items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.chip,
+.accept__grid span,
+.cost-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(15, 47, 34, 0.06);
+  border: 1px solid rgba(31, 107, 69, 0.14);
+  color: var(--forest);
+  font-weight: 600;
+  font-size: 0.88rem;
+  animation: chip-in 0.45s ease both;
+}
+
+.boundary__tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.9rem;
+}
+
+.boundary__tabs button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1px solid rgba(15, 47, 34, 0.14);
+  background: rgba(255, 255, 255, 0.75);
+  color: var(--forest);
+  border-radius: 999px;
+  padding: 0.5rem 0.95rem;
+  font-weight: 650;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.boundary__tabs button.is-active {
+  background: var(--forest);
+  border-color: var(--forest);
+  color: white;
+}
+
+.boundary__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.boundary__list li {
+  padding: 0.75rem 0.9rem;
+  border-radius: 0.9rem;
+  background: rgba(31, 107, 69, 0.08);
+  border-left: 3px solid var(--leaf);
+}
+
+.boundary__list.is-out li {
+  background: rgba(194, 65, 12, 0.08);
+  border-left-color: var(--danger);
+}
+
+.twin-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.twin h4,
+.accept h4 {
+  margin: 0 0 0.75rem;
+  color: var(--forest);
+}
+
+.twin ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--muted);
+}
+
+.twin--warn {
+  background:
+    radial-gradient(circle at 88% 0%, rgba(194, 65, 12, 0.1), transparent 40%),
+    rgba(255, 255, 255, 0.88);
+}
+
+.phase-board__head {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.9rem;
+  color: var(--forest);
+}
+
+.phase-board__head span {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.phase-board__track {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.45rem;
+}
+
+.phase {
+  display: grid;
+  gap: 0.25rem;
+  text-align: start;
+  border: 1px solid rgba(15, 47, 34, 0.12);
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 0.9rem;
+  padding: 0.7rem 0.55rem;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.phase em {
+  font-style: normal;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.phase strong {
+  color: var(--forest);
+  font-size: 0.82rem;
+  line-height: 1.2;
+}
+
+.phase span {
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.phase.is-active,
+.phase:hover {
+  transform: translateY(-2px);
+  border-color: var(--leaf);
+  background: rgba(31, 107, 69, 0.1);
+}
+
+.phase-board__detail {
+  margin: 0.85rem 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.accept__grid span {
+  border-radius: 0.85rem;
+}
+
+.cost-strip__head {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.9rem;
+}
+
+.cost-strip__head strong {
+  display: block;
+  color: var(--forest);
+  margin-bottom: 0.25rem;
+}
+
+.cost-strip__head p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.86rem;
+  max-width: 36rem;
+}
+
+.cost-strip__head em {
+  font-style: normal;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--forest);
+  white-space: nowrap;
+}
+
+.cost-pill {
+  border-left: 3px solid var(--tone);
+  border-radius: 0.85rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
+}
+
+.cost-pill span {
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+@keyframes chip-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .phase-board__track {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cost-strip__head {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 860px) {
+  .twin-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}

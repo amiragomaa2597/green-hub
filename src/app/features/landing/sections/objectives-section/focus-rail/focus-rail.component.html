@@ -1,0 +1,41 @@
+<div class="focus" appRevealOnScroll>
+  <div class="focus__intro">
+    <p class="focus__label">{{ label }}</p>
+    <h3>{{ title }}</h3>
+  </div>
+
+  <div class="focus__layout">
+    <div class="focus__nav">
+      @for (area of areas; track area.title; let i = $index) {
+        <button
+          type="button"
+          class="focus__tab"
+          [class.is-active]="active === i"
+          (click)="select(i)"
+        >
+          <span>0{{ i + 1 }}</span>
+          <strong>{{ area.title }}</strong>
+        </button>
+      }
+    </div>
+
+    @for (area of areas; track area.title; let i = $index) {
+      @if (active === i) {
+        <article class="focus__stage panel">
+          @if (area.image) {
+            <div class="focus__media">
+              <img [src]="area.image" [alt]="area.title" loading="lazy" />
+            </div>
+          }
+          <div class="focus__copy">
+            <span class="icon-bubble">
+              <app-icon [name]="iconOf(area.icon)" [size]="24" />
+            </span>
+            <h4>{{ area.title }}</h4>
+            <p>{{ area.description }}</p>
+          </div>
+        </article>
+      }
+    }
+  </div>
+</div>

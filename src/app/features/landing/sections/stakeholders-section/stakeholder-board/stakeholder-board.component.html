@@ -1,0 +1,105 @@
+<div class="board" appRevealOnScroll>
+  <div class="board__intro">
+    <p class="board__label">{{ boardLabel }}</p>
+    <h3>{{ boardTitle }}</h3>
+    <p>{{ lead }}</p>
+  </div>
+
+  <div class="board__layout">
+    <aside class="roster panel">
+      <h4>{{ registerTitle }}</h4>
+      @for (row of register; track row.name) {
+        <button
+          type="button"
+          class="roster__item"
+          [class.is-active]="selectedName === row.name"
+          (click)="selectStakeholder(row.name)"
+        >
+          <strong>{{ row.name }}</strong>
+          <em>{{ row.strategy }}</em>
+        </button>
+      }
+    </aside>
+
+    <div class="grid-stage">
+      <div class="quad-tabs">
+        @for (quad of matrix; track quad.title; let i = $index) {
+          <button
+            type="button"
+            class="quad-tab"
+            [class.is-active]="activeQuad === i"
+            (click)="selectQuad(i)"
+          >
+            {{ quad.title }}
+          </button>
+        }
+      </div>
+
+      <article class="spotlight panel">
+        <p class="eyebrow">{{ active.strategy }}</p>
+        <h4>{{ active.title }}</h4>
+        <p>{{ active.hint }}</p>
+        <ul>
+          @for (name of active.stakeholders; track name) {
+            <li>
+              <button type="button" (click)="selectStakeholder(name)">{{ name }}</button>
+            </li>
+          }
+        </ul>
+      </article>
+
+      @if (selected; as row) {
+        <article class="profile panel">
+          <p class="eyebrow">{{ matrixTitle }}</p>
+          <h4>{{ row.name }}</h4>
+          <dl>
+            <div>
+              <dt>{{ roleLabel }}</dt>
+              <dd>{{ row.role }}</dd>
+            </div>
+            <div>
+              <dt>{{ powerLabel }}</dt>
+              <dd>{{ row.influence }}</dd>
+            </div>
+            <div>
+              <dt>{{ interestLabel }}</dt>
+              <dd>{{ row.interest }}</dd>
+            </div>
+            <div>
+              <dt>{{ strategyLabel }}</dt>
+              <dd>{{ row.strategy }}</dd>
+            </div>
+          </dl>
+        </article>
+      }
+    </div>
+  </div>
+
+  <div class="table-wrap panel">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>{{ stakeholderLabel }}</th>
+          <th>{{ roleLabel }}</th>
+          <th>{{ powerLabel }}</th>
+          <th>{{ interestLabel }}</th>
+          <th>{{ strategyLabel }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (row of register; track row.name) {
+          <tr
+            [class.is-active]="selectedName === row.name"
+            (click)="selectStakeholder(row.name)"
+          >
+            <td>{{ row.name }}</td>
+            <td>{{ row.role }}</td>
+            <td>{{ row.influence }}</td>
+            <td>{{ row.interest }}</td>
+            <td>{{ row.strategy }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

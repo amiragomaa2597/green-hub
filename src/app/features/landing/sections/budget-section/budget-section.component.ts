@@ -18,6 +18,8 @@ import { SectionMediaComponent } from '../../../../shared/components/section-med
 import { RevealOnScrollDirective } from '../../../../shared/directives/reveal-on-scroll.directive';
 import { CountUpDirective } from '../../../../shared/directives/count-up.directive';
 import { resolveInViewTarget, whenInView } from '../../../../shared/utils/when-in-view';
+import { EGP_PER_USD, usdToEgp } from '../../../../core/utils/money.util';
+import { PmbokLadderComponent } from './pmbok-ladder/pmbok-ladder.component';
 
 interface ChartSegment {
   category: string;
@@ -36,6 +38,7 @@ interface ChartSegment {
     SectionMediaComponent,
     RevealOnScrollDirective,
     CountUpDirective,
+    PmbokLadderComponent,
   ],
   templateUrl: './budget-section.component.html',
   styleUrl: './budget-section.component.scss',
@@ -50,11 +53,7 @@ export class BudgetSectionComponent implements AfterViewInit, OnDestroy {
   readonly hook = computed(() => SECTION_HOOKS[this.language.lang()].budget);
   readonly visual = computed(() => SECTION_VISUALS[this.language.lang()].budget);
   readonly ui = computed(() => UI_LABELS[this.language.lang()]);
-  readonly budgetLead = computed(() => {
-    const c = this.content();
-    const labels = this.ui();
-    return `${labels.timeline}: ${c.duration} · ${labels.startDate}: ${c.startDate} · ${labels.finishDate}: ${c.finishDate}`;
-  });
+  readonly budgetLead = computed(() => this.content().lead);
   readonly segments = computed<ChartSegment[]>(() => {
     let cursor = 0;
     return this.content().items.map((item, index) => {
@@ -70,8 +69,13 @@ export class BudgetSectionComponent implements AfterViewInit, OnDestroy {
 
   chartActive = false;
   hoveredIndex: number | null = null;
+  readonly egpPerUsd = EGP_PER_USD;
 
   private observer?: IntersectionObserver;
+
+  toEgp(usd: number): number {
+    return usdToEgp(usd);
+  }
 
   ngAfterViewInit(): void {
     const node = this.distributionPanel?.nativeElement;

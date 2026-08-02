@@ -13,35 +13,10 @@
       [caption]="visual().caption"
     />
 
-    <div class="impact-layout">
-      <aside class="impact-highlight panel" appRevealOnScroll>
-        <span class="impact-orb">
-          <app-icon name="leaf" [size]="36" />
-        </span>
-        <h3>{{ ui().sustainableImpact }}</h3>
-        <p>{{ content().highlight }}</p>
-      </aside>
-
-      <div class="impact-list">
-        @for (area of content().areas; track area.title; let i = $index) {
-          <article
-            class="panel panel--media impact-item"
-            [class]="'reveal-delay-' + ((i % 3) + 1)"
-            appRevealOnScroll
-          >
-            <div class="media-thumb media-thumb--square">
-              <img [src]="area.image" [alt]="area.title" loading="lazy" />
-            </div>
-            <div class="panel__body">
-              <span class="icon-bubble">
-                <app-icon [name]="iconOf(area.icon)" [size]="22" />
-              </span>
-              <h3>{{ area.title }}</h3>
-              <p>{{ area.description }}</p>
-            </div>
-          </article>
-        }
-      </div>
-    </div>
+    <app-impact-orbit
+      [label]="ui().sustainableImpact"
+      [highlight]="content().highlight"
+      [areas]="content().areas"
+    />
   </div>
 </section>

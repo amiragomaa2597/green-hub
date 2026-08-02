@@ -4,6 +4,7 @@
       [eyebrow]="content().eyebrow"
       [title]="content().title"
       [hook]="hook()"
+      [lead]="content().lead"
     />
 
     <app-section-media
@@ -12,45 +13,19 @@
       [caption]="visual().caption"
     />
 
-    <h3>{{ content().registerTitle }}</h3>
-    <div class="table-wrap" appRevealOnScroll>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>{{ ui().stakeholder }}</th>
-            <th>{{ ui().roleInterest }}</th>
-            <th>{{ ui().influencePower }}</th>
-            <th>{{ ui().interestLevel }}</th>
-            <th>{{ ui().engagementStrategy }}</th>
-          </tr>
-        </thead>
-        <tbody>
-          @for (row of content().register; track row.name) {
-            <tr>
-              <td>{{ row.name }}</td>
-              <td>{{ row.role }}</td>
-              <td>{{ row.influence }}</td>
-              <td>{{ row.interest }}</td>
-              <td>{{ row.strategy }}</td>
-            </tr>
-          }
-        </tbody>
-      </table>
-    </div>
-
-    <h3>{{ content().matrixTitle }}</h3>
-    <div class="matrix">
-      @for (quad of content().matrix; track quad.title) {
-        <article class="panel" appRevealOnScroll>
-          <p class="eyebrow">{{ quad.strategy }}</p>
-          <h4>{{ quad.title }}</h4>
-          <ul>
-            @for (name of quad.stakeholders; track name) {
-              <li>{{ name }}</li>
-            }
-          </ul>
-        </article>
-      }
-    </div>
+    <app-stakeholder-board
+      [boardLabel]="ui().powerInterestGrid"
+      [boardTitle]="content().matrixTitle"
+      [lead]="content().lead"
+      [registerTitle]="content().registerTitle"
+      [matrixTitle]="content().matrixTitle"
+      [register]="content().register"
+      [matrix]="content().matrix"
+      [stakeholderLabel]="ui().stakeholder"
+      [roleLabel]="ui().roleInterest"
+      [powerLabel]="ui().influencePower"
+      [interestLabel]="ui().interestLevel"
+      [strategyLabel]="ui().engagementStrategy"
+    />
   </div>
 </section>

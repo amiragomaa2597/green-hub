@@ -91,8 +91,12 @@
             <div class="gauge__meta">
               <span>{{ ui().costImpact }}</span>
               <strong>
-                <span [appCountUp]="risk.costImpact" [countDuration]="1200"></span>
-                EGP
+                $<span [appCountUp]="toUsd(risk.costImpact)" [countDuration]="1200"></span>
+                <small>
+                  ·
+                  <span [appCountUp]="risk.costImpact" [countDuration]="1200"></span>
+                  {{ ui().egpLabel }}
+                </small>
               </strong>
             </div>
             <div class="gauge__bar">
@@ -141,8 +145,12 @@
     <div>
       <span>{{ ui().totalPotentialCost }}</span>
       <strong>
-        <span [appCountUp]="summary.totalCostImpact" [countDuration]="1800"></span>
-        EGP
+        $<span [appCountUp]="toUsd(summary.totalCostImpact)" [countDuration]="1800"></span>
+        <small>
+          ·
+          <span [appCountUp]="summary.totalCostImpact" [countDuration]="1800"></span>
+          {{ ui().egpLabel }}
+        </small>
       </strong>
     </div>
     <div>
@@ -159,8 +167,12 @@
     <div>
       <span>{{ ui().totalMitigationCost }}</span>
       <strong>
-        <span [appCountUp]="summary.totalMitigationCost" [countDuration]="1700"></span>
-        EGP
+        $<span [appCountUp]="toUsd(summary.totalMitigationCost)" [countDuration]="1700"></span>
+        <small>
+          ·
+          <span [appCountUp]="summary.totalMitigationCost" [countDuration]="1700"></span>
+          {{ ui().egpLabel }}
+        </small>
       </strong>
     </div>
     <div class="summary__goal">

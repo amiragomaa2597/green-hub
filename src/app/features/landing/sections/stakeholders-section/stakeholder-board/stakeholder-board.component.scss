@@ -1,0 +1,198 @@
+.board {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 0.35rem;
+}
+
+.board__label {
+  margin: 0 0 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--leaf);
+}
+
+.board__intro h3 {
+  margin: 0 0 0.45rem;
+  color: var(--forest);
+  font-size: clamp(1.4rem, 3vw, 1.85rem);
+}
+
+.board__intro p {
+  margin: 0;
+  max-width: 48rem;
+  color: var(--muted);
+}
+
+.board__layout {
+  display: grid;
+  gap: 1rem;
+}
+
+.roster,
+.spotlight,
+.profile {
+  padding: 1rem 1.1rem;
+}
+
+.roster h4,
+.spotlight h4,
+.profile h4 {
+  margin: 0 0 0.85rem;
+  color: var(--forest);
+}
+
+.roster {
+  display: grid;
+  gap: 0.45rem;
+  align-content: start;
+}
+
+.roster__item {
+  display: grid;
+  gap: 0.15rem;
+  text-align: start;
+  border: 1px solid rgba(15, 47, 34, 0.12);
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 0.85rem;
+  padding: 0.7rem 0.8rem;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.roster__item strong {
+  color: var(--forest);
+}
+
+.roster__item em {
+  font-style: normal;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.roster__item.is-active,
+.roster__item:hover {
+  border-color: var(--leaf);
+  background: rgba(31, 107, 69, 0.1);
+  transform: translateX(3px);
+}
+
+.grid-stage {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.quad-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.quad-tab {
+  border: 1px solid rgba(15, 47, 34, 0.14);
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--forest);
+  border-radius: 999px;
+  padding: 0.45rem 0.85rem;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.quad-tab.is-active {
+  background: var(--forest);
+  border-color: var(--forest);
+  color: white;
+}
+
+.eyebrow {
+  margin: 0 0 0.35rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.spotlight p,
+.profile p {
+  color: var(--muted);
+}
+
+.spotlight ul {
+  margin: 0.85rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.spotlight li button {
+  border: 1px solid rgba(31, 107, 69, 0.18);
+  background: rgba(31, 107, 69, 0.08);
+  color: var(--forest);
+  border-radius: 999px;
+  padding: 0.4rem 0.75rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.profile dl {
+  margin: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.profile dl div {
+  display: grid;
+  gap: 0.15rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 1px dashed rgba(15, 47, 34, 0.12);
+}
+
+.profile dt {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.profile dd {
+  margin: 0;
+  color: var(--forest);
+  font-weight: 650;
+}
+
+.table-wrap {
+  padding: 0.35rem;
+  overflow: auto;
+}
+
+.table-wrap tr {
+  cursor: pointer;
+}
+
+.table-wrap tr.is-active {
+  background: rgba(31, 107, 69, 0.1);
+}
+
+@media (min-width: 980px) {
+  .board__layout {
+    grid-template-columns: 0.9fr 1.4fr;
+  }
+
+  .grid-stage {
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+
+  .quad-tabs {
+    grid-column: 1 / -1;
+  }
+}
+
+html[dir='rtl'] .roster__item.is-active,
+html[dir='rtl'] .roster__item:hover {
+  transform: translateX(-3px);
+}

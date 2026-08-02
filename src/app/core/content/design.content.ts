@@ -9,129 +9,116 @@ export interface DesignContent {
   blocks: FeatureBlock[];
 }
 
+/** Derived from Scope requirements — systems that define The Green Hub. */
 export const DESIGN_CONTENT: Localized<DesignContent> = {
   en: {
-    eyebrow: 'Design & Systems',
-    title: 'Site, Building & Sustainable Features',
+    eyebrow: 'Systems & Features',
+    title: 'Renewable, Smart & Responsible Design',
     intro:
-      'The Green Hub brings together responsible architecture, renewable systems, water conservation, and smart building technology in one community center.',
+      'The Scope Statement requires solar PV, smart lighting & HVAC, rainwater harvesting, a recycling center, and a Building Management System — all under LEED-oriented design.',
     blocks: [
       {
-        title: 'Site & Location',
+        title: 'Solar PV System',
         description:
-          'A community-centered site designed as a living model for greener neighborhoods, with landscaped grounds, shared outdoor space, and visible clean-energy infrastructure.',
-        icon: 'map',
-        image: DESIGN_BLOCK_IMAGES[0],
-        points: [
-          'Community-facing sustainable campus setting',
-          'Landscaped grounds and outdoor gathering space',
-          'Visible solar and wind clean-energy presence',
-          'Designed to inspire surrounding communities',
-        ],
-      },
-      {
-        title: 'Building Design',
-        description:
-          'A modern, energy-efficient community center combining green construction, engineering, and environmentally responsible architecture.',
-        icon: 'building',
-        image: DESIGN_BLOCK_IMAGES[1],
-        points: [
-          'Sustainable building design and construction',
-          'Energy-efficient envelope and interior finishes',
-          'Living-wall and green facade integration',
-          'MEP systems aligned with sustainability goals',
-          'LEED-oriented environmentally responsible design',
-        ],
-      },
-      {
-        title: 'Sustainable Features',
-        description:
-          'Renewable energy and water systems reduce environmental impact while supporting long-term operations.',
-        icon: 'leaf',
+          'Clean power generation that lets the community center run on renewable energy.',
+        icon: 'solar',
         image: DESIGN_BLOCK_IMAGES[2],
         points: [
-          'Solar PV system installation and clean energy systems',
-          'Backup energy systems and commissioning',
-          'Rainwater harvesting',
-          'Greywater recycling',
-          'Reduced carbon footprint and resource conservation',
+          'System design and panel installation',
+          'Inverter, wiring, and commissioning',
+          'Supports green operations after handover',
         ],
       },
       {
-        title: 'Smart Technologies',
+        title: 'Smart Lighting & HVAC',
         description:
-          'A Smart Building Management System (BMS) improves efficiency, automation, and sustainable operations.',
+          'Intelligent controls that cut waste while keeping spaces comfortable.',
         icon: 'cpu',
         image: DESIGN_BLOCK_IMAGES[3],
         points: [
-          'BMS system design and software development',
-          'Integration with building and energy systems',
-          'Smart controls supporting green operations',
-          'Testing, commissioning, and staff/user training',
-          'Performance monitoring after handover',
+          'Smart lighting design with sensor integration',
+          'Smart HVAC design, equipment, and controls',
+          'Testing before client handover',
+        ],
+      },
+      {
+        title: 'Water & Recycling',
+        description:
+          'Rainwater harvesting and on-site recycling reduce waste and resource demand.',
+        icon: 'water',
+        image: DESIGN_BLOCK_IMAGES[0],
+        points: [
+          'Collection, storage, filtration, and distribution',
+          'Recycling center setup and waste segregation',
+          'Composting area for organic streams',
+        ],
+      },
+      {
+        title: 'Building Management System',
+        description:
+          'A Smart BMS ties systems together for efficient, monitored operations.',
+        icon: 'building',
+        image: DESIGN_BLOCK_IMAGES[1],
+        points: [
+          'System design and hardware installation',
+          'Software configuration and integration',
+          'End-to-end testing with green systems',
         ],
       },
     ],
   },
   ar: {
-    eyebrow: 'التصميم والأنظمة',
-    title: 'الموقع والمبنى وخصائص الاستدامة',
+    eyebrow: 'الأنظمة والخصائص',
+    title: 'تصميم متجدد وذكي ومسؤول',
     intro:
-      'يجمع جرين هب بين العمارة المسؤولة والأنظمة المتجددة وترشيد المياه وتقنية المباني الذكية في مركز مجتمعي واحد.',
+      'يتطلب بيان النطاق طاقة شمسية وإضاءة وHVAC ذكية وحصاد أمطار ومركز إعادة تدوير ونظام إدارة مباني — ضمن تصميم موجّه لـ LEED.',
     blocks: [
       {
-        title: 'الموقع والمكان',
+        title: 'نظام الطاقة الشمسية',
         description:
-          'موقع مجتمعي مصمم كنموذج حي لأحياء أكثر خضرة، مع مساحات خضراء وأماكن خارجية مشتركة وبنية تحتية ظاهرة للطاقة النظيفة.',
-        icon: 'map',
-        image: DESIGN_BLOCK_IMAGES[0],
-        points: [
-          'حرم مستدام موجّه للمجتمع',
-          'مساحات خضراء وأماكن تجمع خارجية',
-          'حضور واضح للطاقة الشمسية وطاقة الرياح',
-          'مصمم لإلهام المجتمعات المحيطة',
-        ],
-      },
-      {
-        title: 'تصميم المبنى',
-        description:
-          'مركز مجتمعي حديث وموفّر للطاقة يجمع البناء الأخضر والهندسة والعمارة المسؤولة بيئيًا.',
-        icon: 'building',
-        image: DESIGN_BLOCK_IMAGES[1],
-        points: [
-          'تصميم وبناء مستدام للمبنى',
-          'غلاف داخلي وخارجي موفر للطاقة',
-          'دمج الجدران الحية والواجهات الخضراء',
-          'أنظمة MEP متوافقة مع أهداف الاستدامة',
-          'تصميم موجّه لمعايير LEED',
-        ],
-      },
-      {
-        title: 'خصائص الاستدامة',
-        description:
-          'أنظمة الطاقة المتجددة والمياه تقلل الأثر البيئي وتدعم التشغيل طويل الأمد.',
-        icon: 'leaf',
+          'توليد طاقة نظيفة يتيح تشغيل المركز المجتمعي بالطاقة المتجددة.',
+        icon: 'solar',
         image: DESIGN_BLOCK_IMAGES[2],
         points: [
-          'تركيب أنظمة الطاقة الشمسية والطاقة النظيفة',
-          'أنظمة طاقة احتياطية والتشغيل التجريبي',
-          'حصاد مياه الأمطار',
-          'إعادة تدوير المياه الرمادية',
-          'خفض البصمة الكربونية والحفاظ على الموارد',
+          'تصميم النظام وتركيب الألواح',
+          'المحولات والتمديدات والتشغيل',
+          'يدعم التشغيل الأخضر بعد التسليم',
         ],
       },
       {
-        title: 'التقنيات الذكية',
+        title: 'إضاءة وHVAC ذكية',
         description:
-          'نظام إدارة المباني الذكي (BMS) يحسّن الكفاءة والأتمتة والتشغيل المستدام.',
+          'تحكم ذكي يقلل الهدر ويحافظ على راحة المساحات.',
         icon: 'cpu',
         image: DESIGN_BLOCK_IMAGES[3],
         points: [
-          'تصميم نظام BMS وتطوير البرمجيات',
-          'التكامل مع أنظمة المبنى والطاقة',
-          'تحكم ذكي يدعم التشغيل الأخضر',
-          'الاختبار والتشغيل وتدريب العاملين والمستخدمين',
-          'مراقبة الأداء بعد التسليم',
+          'تصميم إضاءة ذكية مع حساسات',
+          'تصميم HVAC والمعدات والتحكم',
+          'اختبار قبل تسليم العميل',
+        ],
+      },
+      {
+        title: 'المياه وإعادة التدوير',
+        description:
+          'حصاد مياه الأمطار وإعادة التدوير في الموقع يقللان الهدر والطلب على الموارد.',
+        icon: 'water',
+        image: DESIGN_BLOCK_IMAGES[0],
+        points: [
+          'جمع وتخزين وترشيح وتوزيع',
+          'إعداد مركز إعادة التدوير وفرز النفايات',
+          'منطقة تسميد للتيارات العضوية',
+        ],
+      },
+      {
+        title: 'نظام إدارة المباني',
+        description:
+          'BMS ذكي يربط الأنظمة لتشغيل كفء ومراقب.',
+        icon: 'building',
+        image: DESIGN_BLOCK_IMAGES[1],
+        points: [
+          'تصميم النظام وتركيب العتاد',
+          'تهيئة البرمجيات والتكامل',
+          'اختبار شامل مع الأنظمة الخضراء',
         ],
       },
     ],

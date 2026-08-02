@@ -75,7 +75,7 @@ export const SECTION_VISUALS: Localized<Record<SectionVisualKey, SectionVisual>>
       presentation: {
         src: 'assets/images/sections/presentation-docs.jpg',
         alt: 'Notebook and study materials for a formal presentation',
-        caption: 'View or download the full MBA final presentation PDF.',
+        caption: 'Download the full MBA final presentation (PowerPoint).',
       },
     },
     ar: {
@@ -127,7 +127,7 @@ export const SECTION_VISUALS: Localized<Record<SectionVisualKey, SectionVisual>>
       presentation: {
         src: 'assets/images/sections/presentation-docs.jpg',
         alt: 'دفتر ملاحظات ومواد دراسة لعرض رسمي',
-        caption: 'اعرض أو حمّل ملف العرض النهائي لـ MBA بصيغة PDF.',
+        caption: 'حمّل ملف العرض النهائي لـ MBA بصيغة PowerPoint.',
       },
     },
   };

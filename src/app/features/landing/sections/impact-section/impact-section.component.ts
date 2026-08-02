@@ -6,8 +6,7 @@ import { UI_LABELS } from '../../../../core/content/ui.content';
 import { LanguageService } from '../../../../core/services/language.service';
 import { SectionHeaderComponent } from '../../../../shared/components/section-header/section-header.component';
 import { SectionMediaComponent } from '../../../../shared/components/section-media/section-media.component';
-import { RevealOnScrollDirective } from '../../../../shared/directives/reveal-on-scroll.directive';
-import { IconComponent, IconName } from '../../../../shared/components/icon/icon.component';
+import { ImpactOrbitComponent } from './impact-orbit/impact-orbit.component';
 
 @Component({
   selector: 'app-impact-section',
@@ -15,8 +14,7 @@ import { IconComponent, IconName } from '../../../../shared/components/icon/icon
   imports: [
     SectionHeaderComponent,
     SectionMediaComponent,
-    RevealOnScrollDirective,
-    IconComponent,
+    ImpactOrbitComponent,
   ],
   templateUrl: './impact-section.component.html',
   styleUrl: './impact-section.component.scss',
@@ -28,8 +26,4 @@ export class ImpactSectionComponent {
   readonly hook = computed(() => SECTION_HOOKS[this.language.lang()].impact);
   readonly visual = computed(() => SECTION_VISUALS[this.language.lang()].impact);
   readonly ui = computed(() => UI_LABELS[this.language.lang()]);
-
-  iconOf(name?: string): IconName {
-    return (name ?? 'leaf') as IconName;
-  }
 }

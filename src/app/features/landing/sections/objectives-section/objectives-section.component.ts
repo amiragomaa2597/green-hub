@@ -5,8 +5,7 @@ import { SECTION_VISUALS } from '../../../../core/content/visual.content';
 import { LanguageService } from '../../../../core/services/language.service';
 import { SectionHeaderComponent } from '../../../../shared/components/section-header/section-header.component';
 import { SectionMediaComponent } from '../../../../shared/components/section-media/section-media.component';
-import { RevealOnScrollDirective } from '../../../../shared/directives/reveal-on-scroll.directive';
-import { IconComponent, IconName } from '../../../../shared/components/icon/icon.component';
+import { FocusRailComponent } from './focus-rail/focus-rail.component';
 
 @Component({
   selector: 'app-objectives-section',
@@ -14,8 +13,7 @@ import { IconComponent, IconName } from '../../../../shared/components/icon/icon
   imports: [
     SectionHeaderComponent,
     SectionMediaComponent,
-    RevealOnScrollDirective,
-    IconComponent,
+    FocusRailComponent,
   ],
   templateUrl: './objectives-section.component.html',
   styleUrl: './objectives-section.component.scss',
@@ -26,8 +24,4 @@ export class ObjectivesSectionComponent {
   readonly content = computed(() => OBJECTIVES_CONTENT[this.language.lang()]);
   readonly hook = computed(() => SECTION_HOOKS[this.language.lang()].objectives);
   readonly visual = computed(() => SECTION_VISUALS[this.language.lang()].objectives);
-
-  iconOf(name?: string): IconName {
-    return (name ?? 'leaf') as IconName;
-  }
 }

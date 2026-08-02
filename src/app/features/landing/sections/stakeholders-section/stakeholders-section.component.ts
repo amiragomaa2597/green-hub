@@ -6,12 +6,16 @@ import { UI_LABELS } from '../../../../core/content/ui.content';
 import { LanguageService } from '../../../../core/services/language.service';
 import { SectionHeaderComponent } from '../../../../shared/components/section-header/section-header.component';
 import { SectionMediaComponent } from '../../../../shared/components/section-media/section-media.component';
-import { RevealOnScrollDirective } from '../../../../shared/directives/reveal-on-scroll.directive';
+import { StakeholderBoardComponent } from './stakeholder-board/stakeholder-board.component';
 
 @Component({
   selector: 'app-stakeholders-section',
   standalone: true,
-  imports: [SectionHeaderComponent, SectionMediaComponent, RevealOnScrollDirective],
+  imports: [
+    SectionHeaderComponent,
+    SectionMediaComponent,
+    StakeholderBoardComponent,
+  ],
   templateUrl: './stakeholders-section.component.html',
   styleUrl: './stakeholders-section.component.scss',
 })

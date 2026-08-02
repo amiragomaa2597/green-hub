@@ -2,6 +2,7 @@ import { Component, Input, OnChanges, computed, inject } from '@angular/core';
 import { UI_LABELS } from '../../../../../core/content/ui.content';
 import { LanguageService } from '../../../../../core/services/language.service';
 import { RiskItem } from '../../../../../core/models/project.models';
+import { egpToUsd } from '../../../../../core/utils/money.util';
 import { RevealOnScrollDirective } from '../../../../../shared/directives/reveal-on-scroll.directive';
 import { CountUpDirective } from '../../../../../shared/directives/count-up.directive';
 
@@ -92,6 +93,10 @@ export class RiskConsoleComponent implements OnChanges {
   weeksOf(timeImpact: string): number {
     const match = timeImpact.match(/\d+/);
     return match ? Number(match[0]) : 0;
+  }
+
+  toUsd(egp: number): number {
+    return egpToUsd(egp);
   }
 
   costPercent(cost: number): number {

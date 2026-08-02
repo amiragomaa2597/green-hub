@@ -13,17 +13,21 @@
         <img [src]="logo()" [alt]="content().project" class="deck__logo" />
         <div class="deck__badge">
           <app-icon name="file" [size]="18" />
-          <span>{{ content().fileType }}</span>
+          <span>{{ content().pages }}</span>
         </div>
       </div>
 
       <div class="deck__body">
-        <h3>{{ content().fileName }}</h3>
-        <p>{{ content().project }}</p>
+        <h3>{{ content().project }}</h3>
+        <p>{{ content().lead }}</p>
         <ul class="deck__meta">
           <li>
             <app-icon name="file" [size]="16" />
-            {{ content().fileType }}
+            {{ content().fileTypePptx }}
+          </li>
+          <li>
+            <app-icon name="file" [size]="16" />
+            {{ content().fileTypePdf }}
           </li>
           <li>
             <app-icon name="eye" [size]="16" />
@@ -32,55 +36,24 @@
         </ul>
 
         <div class="deck__actions">
-          <button type="button" class="btn btn--primary" (click)="openViewer()">
-            <app-icon name="eye" [size]="18" />
-            {{ ui().viewPresentation }}
-          </button>
+          <a
+            class="btn btn--primary"
+            [href]="content().filePathPptx"
+            [download]="content().fileNamePptx"
+          >
+            <app-icon name="download" [size]="18" />
+            {{ ui().downloadPptx }}
+          </a>
           <a
             class="btn btn--secondary"
-            [href]="content().filePath"
-            [download]="content().fileName"
+            [href]="content().filePathPdf"
+            [download]="content().fileNamePdf"
           >
             <app-icon name="download" [size]="18" />
             {{ ui().downloadPdf }}
           </a>
-          <button type="button" class="btn btn--ghost" (click)="openInNewTab()">
-            {{ ui().openInNewTab }}
-          </button>
         </div>
       </div>
     </article>
   </div>
 </section>
-
-@if (viewerOpen) {
-  <div class="viewer" role="dialog" aria-modal="true" [attr.aria-label]="ui().presentationViewer">
-    <div class="viewer__backdrop" (click)="closeViewer()"></div>
-    <div class="viewer__panel">
-      <header class="viewer__bar">
-        <div>
-          <strong>{{ content().fileName }}</strong>
-          <span>{{ content().project }}</span>
-        </div>
-        <div class="viewer__bar-actions">
-          <a
-            class="btn btn--secondary btn--small"
-            [href]="content().filePath"
-            [download]="content().fileName"
-          >
-            <app-icon name="download" [size]="16" />
-            {{ ui().download }}
-          </a>
-          <button type="button" class="btn btn--ghost btn--small" (click)="closeViewer()">
-            {{ ui().close }}
-          </button>
-        </div>
-      </header>
-      <iframe
-        class="viewer__frame"
-        [src]="pdfUrl()"
-        [title]="content().fileName"
-      ></iframe>
-    </div>
-  </div>
-}

@@ -1,0 +1,121 @@
+<div class="blueprint" appRevealOnScroll>
+  <div class="blueprint__intro">
+    <p class="blueprint__label">{{ blueprintLabel }}</p>
+    <h3>{{ blueprintTitle }}</h3>
+    <p>{{ description }}</p>
+  </div>
+
+  <div class="req-rail panel">
+    <div class="req-rail__head">
+      <app-icon name="cpu" [size]="18" />
+      <strong>{{ requirementsLabel }}</strong>
+    </div>
+    <div class="req-rail__chips">
+      @for (item of requirements; track item; let i = $index) {
+        <span class="chip" [style.animation-delay]="0.05 * i + 's'">{{ item }}</span>
+      }
+    </div>
+  </div>
+
+  <div class="boundary panel">
+    <div class="boundary__tabs" role="tablist">
+      <button
+        type="button"
+        role="tab"
+        [class.is-active]="mode === 'in'"
+        [attr.aria-selected]="mode === 'in'"
+        (click)="setMode('in')"
+      >
+        <app-icon name="check" [size]="16" />
+        {{ includesLabel }}
+      </button>
+      <button
+        type="button"
+        role="tab"
+        [class.is-active]="mode === 'out'"
+        [attr.aria-selected]="mode === 'out'"
+        (click)="setMode('out')"
+      >
+        <app-icon name="x" [size]="16" />
+        {{ excludesLabel }}
+      </button>
+    </div>
+
+    <ul class="boundary__list" [class.is-out]="mode === 'out'">
+      @for (item of mode === 'in' ? includes : excludes; track item) {
+        <li>{{ item }}</li>
+      }
+    </ul>
+  </div>
+
+  <div class="twin-grid">
+    <article class="panel twin">
+      <h4>{{ assumptionsLabel }}</h4>
+      <ul>
+        @for (item of assumptions; track item) {
+          <li>{{ item }}</li>
+        }
+      </ul>
+    </article>
+    <article class="panel twin twin--warn">
+      <h4>{{ constraintsLabel }}</h4>
+      <ul>
+        @for (item of constraints; track item) {
+          <li>{{ item }}</li>
+        }
+      </ul>
+    </article>
+  </div>
+
+  <div class="phase-board panel">
+    <div class="phase-board__head">
+      <strong>{{ strategyLabel }}</strong>
+      <span>{{ phasesCaption }}</span>
+    </div>
+    <div class="phase-board__track">
+      @for (phase of phases; track phase.name; let i = $index) {
+        <button
+          type="button"
+          class="phase"
+          [class.is-active]="activePhase === i"
+          (click)="selectPhase(i)"
+        >
+          <em>{{ i + 1 }}</em>
+          <strong>{{ phase.name }}</strong>
+          <span>{{ phase.duration }}</span>
+        </button>
+      }
+    </div>
+    <p class="phase-board__detail">
+      {{ phases[activePhase].name }} · {{ phases[activePhase].weeks }} ·
+      {{ phases[activePhase].duration }}
+    </p>
+  </div>
+
+  <div class="accept panel">
+    <h4>{{ acceptanceLabel }}</h4>
+    <div class="accept__grid">
+      @for (item of acceptance; track item) {
+        <span><app-icon name="check" [size]="14" /> {{ item }}</span>
+      }
+    </div>
+  </div>
+
+  <div class="cost-strip panel">
+    <div class="cost-strip__head">
+      <div>
+        <strong>{{ costLabel }}</strong>
+        <p>{{ costNote }}</p>
+      </div>
+      <em>{{ totalBudgetLabel }}</em>
+    </div>
+    <div class="cost-strip__items">
+      @for (item of costItems; track item.label) {
+        <div class="cost-pill" [style.--tone]="item.color">
+          <span>{{ item.label }}</span>
+          <strong>{{ item.amount }}</strong>
+        </div>
+      }
+    </div>
+  </div>
+</div>

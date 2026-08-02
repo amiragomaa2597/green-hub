@@ -36,11 +36,36 @@ export interface Milestone {
   week: string;
 }
 
+export interface GanttRow {
+  phase: string;
+  start: number;
+  end: number;
+  duration: string;
+  color: string;
+  wbsRef?: string;
+}
+
 export interface BudgetItem {
   category: string;
   amount: number;
   percentage: number;
   color: string;
+}
+
+export interface PmbokLevel {
+  step: number;
+  title: string;
+  detail: string;
+  addAmount: number;
+  cumulative: number;
+  color: string;
+}
+
+export interface BudgetMatrixRow {
+  component: string;
+  amount: number;
+  reserveRatio: string;
+  cumulative: string;
 }
 
 export interface Stakeholder {
@@ -54,6 +79,7 @@ export interface Stakeholder {
 export interface MatrixQuadrant {
   title: string;
   strategy: string;
+  hint: string;
   stakeholders: string[];
 }
 
@@ -88,4 +114,10 @@ export interface FeatureBlock {
   points: string[];
   icon?: string;
   image?: string;
+}
+
+export interface ScopePhase {
+  name: string;
+  weeks: string;
+  duration: string;
 }

@@ -320,7 +320,25 @@
 }
 
 .gauge__meta strong {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.3rem;
   color: var(--forest);
+}
+
+.gauge__meta strong small,
+.summary strong small {
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 0.82em;
+}
+
+.summary strong {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.3rem;
 }
 
 .gauge__bar {
@@ -433,6 +451,16 @@
 
 .summary strong {
   font-size: 1.05rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.3rem;
+}
+
+.summary strong small {
+  opacity: 0.85;
+  font-size: 0.82em;
+  font-weight: 600;
 }
 
 @keyframes spotlight-in {

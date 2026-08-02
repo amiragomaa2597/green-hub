@@ -8,6 +8,7 @@ import { SectionHeaderComponent } from '../../../../shared/components/section-he
 import { SectionMediaComponent } from '../../../../shared/components/section-media/section-media.component';
 import { RevealOnScrollDirective } from '../../../../shared/directives/reveal-on-scroll.directive';
 import { IconComponent, IconName } from '../../../../shared/components/icon/icon.component';
+import { ScopeBlueprintComponent } from './scope-blueprint/scope-blueprint.component';
 
 @Component({
   selector: 'app-scope-section',
@@ -17,6 +18,7 @@ import { IconComponent, IconName } from '../../../../shared/components/icon/icon
     SectionMediaComponent,
     RevealOnScrollDirective,
     IconComponent,
+    ScopeBlueprintComponent,
   ],
   templateUrl: './scope-section.component.html',
   styleUrl: './scope-section.component.scss',

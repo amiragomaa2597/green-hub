@@ -22,6 +22,11 @@ export const UI_LABELS: Localized<{
   keyMilestones: string;
   category: string;
   amountEgp: string;
+  amountUsd: string;
+  amountBoth: string;
+  currencyNote: string;
+  usdLabel: string;
+  egpLabel: string;
   percentOfTotal: string;
   totalProjectBudget: string;
   totalBudget: string;
@@ -43,10 +48,30 @@ export const UI_LABELS: Localized<{
   sustainableDelivery: string;
   viewPresentation: string;
   downloadPdf: string;
+  downloadPptx: string;
   openInNewTab: string;
   download: string;
   close: string;
   presentationViewer: string;
+  reserveRatio: string;
+  cumulative: string;
+  assumptions: string;
+  constraints: string;
+  strategy: string;
+  acceptanceCriteria: string;
+  requirements: string;
+  costBreakdown: string;
+  financialOverview: string;
+  powerInterestGrid: string;
+  manageCloselyHint: string;
+  keepSatisfiedHint: string;
+  keepInformedHint: string;
+  monitorHint: string;
+  pmbokLadder: string;
+  directActivity: string;
+  contingencyReserves: string;
+  managementReserve: string;
+  costBaseline: string;
   weeksSuffix: string;
   riskConsoleLabel: string;
   riskConsoleTitle: string;
@@ -96,7 +121,7 @@ export const UI_LABELS: Localized<{
     projectManager: 'Project Manager',
     teamLead: 'Instructor / Advisor and project team roles for The Green Hub.',
     designCampusLead:
-      'Architecture, renewable systems, and community space in one living campus.',
+      'Solar PV, smart lighting & HVAC, rainwater, recycling, and BMS — the systems required by the Scope Statement.',
     duration: 'Duration',
     start: 'Start',
     finish: 'Finish',
@@ -106,6 +131,11 @@ export const UI_LABELS: Localized<{
     keyMilestones: 'Key Milestones',
     category: 'Category',
     amountEgp: 'Amount (EGP)',
+    amountUsd: 'Amount (USD)',
+    amountBoth: 'Amount (USD / EGP)',
+    currencyNote: 'All money shown in USD and EGP (1 USD = 50 EGP).',
+    usdLabel: 'USD',
+    egpLabel: 'EGP',
     percentOfTotal: '% of Total',
     totalProjectBudget: 'Total Project Budget',
     totalBudget: 'Total Budget',
@@ -120,18 +150,41 @@ export const UI_LABELS: Localized<{
     wbsLabel: 'Work Breakdown Structure',
     journeyMap: 'Project Journey Map',
     journeyHint:
-      'Follow the path from initiation to monitoring — tap any station to open its work packages.',
-    workPackages: 'work packages · one delivery path',
+      'Follow the path from project management to handover — tap any station to open its work packages.',
+    workPackages: 'WBS branches · one delivery path',
     weeksLabel: 'Weeks',
     weekShort: 'Wk',
     handoverReady: 'Handover ready',
     sustainableDelivery: 'Sustainable delivery complete',
     viewPresentation: 'View presentation',
     downloadPdf: 'Download PDF',
+    downloadPptx: 'Download PowerPoint',
     openInNewTab: 'Open in new tab',
     download: 'Download',
     close: 'Close',
     presentationViewer: 'Presentation viewer',
+    reserveRatio: 'Reserve Ratio',
+    cumulative: 'Cumulative',
+    assumptions: 'Assumptions',
+    constraints: 'Constraints',
+    strategy: 'Strategy',
+    acceptanceCriteria: 'Acceptance Criteria',
+    requirements: 'Requirements',
+    costBreakdown: 'Cost Breakdown',
+    financialOverview: 'Financial Overview',
+    powerInterestGrid: 'Power / Interest Grid',
+    manageCloselyHint:
+      'The relationships that most directly determine project success.',
+    keepSatisfiedHint:
+      'Regulatory gatekeepers who can block progress without day-to-day involvement.',
+    keepInformedHint:
+      'Affected by the project but with limited formal authority.',
+    monitorHint: 'Tracked mainly for delivery-schedule risk.',
+    pmbokLadder: 'PMBOK Cost Structure',
+    directActivity: 'Direct Activity Execution',
+    contingencyReserves: 'Contingency Reserves',
+    managementReserve: 'Management Reserve',
+    costBaseline: 'Cost Baseline',
     weeksSuffix: ' Weeks',
     riskConsoleLabel: 'Risk Defense Console',
     riskConsoleTitle: 'Scan the threats. Lock the response.',
@@ -181,7 +234,8 @@ export const UI_LABELS: Localized<{
     obsEqualLevel: 'نفس المستوى · سلطة متساوية',
     projectManager: 'مدير المشروع',
     teamLead: 'أدوار المشرف وفريق المشروع لجرين هب.',
-    designCampusLead: 'عمارة وأنظمة متجددة ومساحات مجتمعية في حرم حيّ واحد.',
+    designCampusLead:
+      'طاقة شمسية وإضاءة وHVAC ذكية وحصاد أمطار وإعادة تدوير وBMS — الأنظمة التي يطلبها بيان النطاق.',
     duration: 'المدة',
     start: 'البداية',
     finish: 'النهاية',
@@ -191,6 +245,11 @@ export const UI_LABELS: Localized<{
     keyMilestones: 'المعالم الرئيسية',
     category: 'البند',
     amountEgp: 'المبلغ (جنيه)',
+    amountUsd: 'المبلغ (دولار)',
+    amountBoth: 'المبلغ (دولار / جنيه)',
+    currencyNote: 'كل المبالغ معروضة بالدولار والجنيه (1 دولار = 50 جنيهًا).',
+    usdLabel: 'دولار',
+    egpLabel: 'جنيه',
     percentOfTotal: '% من الإجمالي',
     totalProjectBudget: 'إجمالي ميزانية المشروع',
     totalBudget: 'إجمالي الميزانية',
@@ -205,18 +264,38 @@ export const UI_LABELS: Localized<{
     wbsLabel: 'هيكل تقسيم العمل',
     journeyMap: 'خريطة رحلة المشروع',
     journeyHint:
-      'اتبع المسار من البدء إلى المراقبة — اضغط على أي محطة لفتح حزم العمل الخاصة بها.',
-    workPackages: 'حزم عمل · مسار تسليم واحد',
+      'اتبع المسار من إدارة المشروع إلى التسليم — اضغط على أي محطة لفتح حزم العمل الخاصة بها.',
+    workPackages: 'فروع WBS · مسار تسليم واحد',
     weeksLabel: 'أسابيع',
     weekShort: 'أ',
     handoverReady: 'جاهز للتسليم',
     sustainableDelivery: 'اكتمل التسليم المستدام',
     viewPresentation: 'عرض التقديم',
     downloadPdf: 'تحميل PDF',
+    downloadPptx: 'تحميل PowerPoint',
     openInNewTab: 'فتح في تبويب جديد',
     download: 'تحميل',
     close: 'إغلاق',
     presentationViewer: 'عارض العرض التقديمي',
+    reserveRatio: 'نسبة الاحتياطي',
+    cumulative: 'التراكمي',
+    assumptions: 'الافتراضات',
+    constraints: 'القيود',
+    strategy: 'الاستراتيجية',
+    acceptanceCriteria: 'معايير القبول',
+    requirements: 'المتطلبات',
+    costBreakdown: 'تفصيل التكاليف',
+    financialOverview: 'نظرة مالية',
+    powerInterestGrid: 'مصفوفة القوة / المصلحة',
+    manageCloselyHint: 'العلاقات التي تحدد نجاح المشروع بشكل مباشر.',
+    keepSatisfiedHint: 'جهات تنظيمية يمكنها إيقاف التقدم دون مشاركة يومية.',
+    keepInformedHint: 'متأثرون بالمشروع بسلطة رسمية محدودة.',
+    monitorHint: 'يُتابَعون أساسًا لمخاطر جدول التسليم.',
+    pmbokLadder: 'هيكل التكلفة وفق PMBOK',
+    directActivity: 'تنفيذ الأنشطة المباشرة',
+    contingencyReserves: 'احتياطيات الطوارئ',
+    managementReserve: 'الاحتياطي الإداري',
+    costBaseline: 'خط الأساس للتكلفة',
     weeksSuffix: ' أسابيع',
     riskConsoleLabel: 'لوحة الدفاع عن المخاطر',
     riskConsoleTitle: 'ارصد التهديدات. ثبّت الاستجابة.',

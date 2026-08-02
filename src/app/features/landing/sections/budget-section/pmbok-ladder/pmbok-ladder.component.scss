@@ -1,0 +1,165 @@
+.ladder {
+  display: grid;
+  gap: 1.25rem;
+  margin: 1.25rem 0 0.5rem;
+}
+
+.ladder__label {
+  margin: 0 0 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.ladder__intro h3 {
+  margin: 0 0 0.45rem;
+  color: var(--forest);
+  font-size: clamp(1.4rem, 3vw, 1.85rem);
+}
+
+.ladder__intro p {
+  margin: 0;
+  max-width: 48rem;
+  color: var(--muted);
+}
+
+.ladder__climb {
+  display: grid;
+  gap: 0.7rem;
+  justify-items: center;
+}
+
+.rung {
+  width: min(100%, var(--width));
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.85rem;
+  align-items: center;
+  text-align: start;
+  border: 1px solid color-mix(in srgb, var(--tone) 35%, transparent);
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--tone) 16%, white), rgba(255, 255, 255, 0.92));
+  border-radius: 1rem;
+  padding: 0.9rem 1rem;
+  cursor: pointer;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    width 0.35s ease;
+}
+
+.rung:hover,
+.rung.is-active {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 14px 34px color-mix(in srgb, var(--tone) 22%, transparent);
+}
+
+.rung__step {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: var(--tone);
+  color: white;
+  font-weight: 700;
+}
+
+.rung__copy {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.rung__copy strong {
+  color: var(--forest);
+}
+
+.rung__copy em {
+  font-style: normal;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.rung__value {
+  text-align: end;
+  color: var(--forest);
+  display: grid;
+  gap: 0.15rem;
+}
+
+.rung__value span,
+.rung__value small {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.rung__value strong {
+  display: block;
+  font-size: 1.05rem;
+}
+
+.dual {
+  display: block;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.overview {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.overview__card {
+  display: grid;
+  gap: 0.25rem;
+  padding: 1rem 1.1rem;
+  border-top: 3px solid var(--tone);
+}
+
+.overview__card strong {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  color: var(--tone);
+}
+
+.overview__card span {
+  color: var(--forest);
+  font-weight: 650;
+}
+
+.overview__card em {
+  font-style: normal;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.matrix-wrap {
+  padding: 0.35rem;
+  overflow: auto;
+}
+
+.matrix-wrap .is-total {
+  font-weight: 700;
+  background: rgba(31, 107, 69, 0.08);
+}
+
+@media (min-width: 820px) {
+  .overview {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .rung {
+    width: 100% !important;
+    grid-template-columns: auto 1fr;
+  }
+
+  .rung__value {
+    grid-column: 2;
+    text-align: start;
+  }
+}

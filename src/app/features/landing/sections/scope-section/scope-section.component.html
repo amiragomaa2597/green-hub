@@ -13,30 +13,30 @@
       [caption]="visual().caption"
     />
 
-    <div class="grid-2">
-      <article class="panel reveal-delay-1" appRevealOnScroll>
-        <div class="scope-head">
-          <span class="icon-bubble icon-bubble--ok"><app-icon name="check" [size]="20" /></span>
-          <h3>{{ ui().includes }}</h3>
-        </div>
-        <ul class="list-check">
-          @for (item of content().includes; track item) {
-            <li>{{ item }}</li>
-          }
-        </ul>
-      </article>
-      <article class="panel reveal-delay-2" appRevealOnScroll>
-        <div class="scope-head">
-          <span class="icon-bubble icon-bubble--no"><app-icon name="x" [size]="20" /></span>
-          <h3>{{ ui().excludes }}</h3>
-        </div>
-        <ul class="list-cross">
-          @for (item of content().excludes; track item) {
-            <li>{{ item }}</li>
-          }
-        </ul>
-      </article>
-    </div>
+    <app-scope-blueprint
+      [blueprintLabel]="content().blueprintLabel"
+      [blueprintTitle]="content().blueprintTitle"
+      [phasesCaption]="content().phasesCaption"
+      [description]="content().description"
+      [requirementsLabel]="ui().requirements"
+      [requirements]="content().requirements"
+      [includesLabel]="ui().includes"
+      [excludesLabel]="ui().excludes"
+      [includes]="content().includes"
+      [excludes]="content().excludes"
+      [assumptionsLabel]="ui().assumptions"
+      [constraintsLabel]="ui().constraints"
+      [assumptions]="content().assumptions"
+      [constraints]="content().constraints"
+      [strategyLabel]="ui().strategy"
+      [phases]="content().phases"
+      [acceptanceLabel]="ui().acceptanceCriteria"
+      [acceptance]="content().acceptance"
+      [costLabel]="ui().costBreakdown"
+      [costNote]="content().costNote"
+      [costItems]="content().costItems"
+      [totalBudgetLabel]="content().totalBudgetLabel"
+    />
 
     <h3 class="deliverables-title">{{ ui().deliverables }}</h3>
     <div class="grid-3">

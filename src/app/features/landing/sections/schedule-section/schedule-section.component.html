@@ -32,6 +32,7 @@
     <app-wbs-journey [rootTitle]="content().wbsRoot" [packages]="content().wbs" />
 
     <h3>{{ content().ganttTitle }}</h3>
+    <p class="gantt-lead" appRevealOnScroll>{{ content().ganttLead }}</p>
     <div
       #ganttPanel
       class="gantt panel"
@@ -42,14 +43,19 @@
         <div class="gantt-row">
           <div class="gantt-row__label">
             <strong>{{ row.phase }}</strong>
-            <span>{{ row.duration }} · {{ ui().weekShort }} {{ row.start }}–{{ row.end }}</span>
+            <span>
+              {{ row.duration }} · {{ ui().weekShort }} {{ row.start }}–{{ row.end }}
+              @if (row.wbsRef) {
+                · {{ row.wbsRef }}
+              }
+            </span>
           </div>
           <div class="gantt-row__track">
             <div
               class="gantt-bar__fill"
               [style.left.%]="barLeft(row.start)"
               [style.--bar-width]="barWidth(row.start, row.end) + '%'"
-              [style.background]="content().wbs[i].color"
+              [style.background]="row.color"
               [style.--bar-delay]="0.08 + i * 0.08 + 's'"
             ></div>
           </div>

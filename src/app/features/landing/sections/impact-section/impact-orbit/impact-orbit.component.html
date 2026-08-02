@@ -1,0 +1,40 @@
+<div class="orbit" appRevealOnScroll>
+  <aside class="orbit__core panel">
+    <span class="orbit__glow" aria-hidden="true"></span>
+    <span class="icon-bubble"><app-icon name="leaf" [size]="28" /></span>
+    <h3>{{ label }}</h3>
+    <p>{{ highlight }}</p>
+  </aside>
+
+  <div class="orbit__ring">
+    @for (area of areas; track area.title; let i = $index) {
+      <button
+        type="button"
+        class="orbit__node"
+        [class.is-active]="active === i"
+        [style.--i]="i"
+        (click)="select(i)"
+      >
+        <app-icon [name]="iconOf(area.icon)" [size]="18" />
+        <span>{{ area.title }}</span>
+      </button>
+    }
+  </div>
+
+  @for (area of areas; track area.title; let i = $index) {
+    @if (active === i) {
+      <article class="orbit__detail panel">
+        @if (area.image) {
+          <img [src]="area.image" [alt]="area.title" loading="lazy" />
+        }
+        <div>
+          <span class="icon-bubble">
+            <app-icon [name]="iconOf(area.icon)" [size]="22" />
+          </span>
+          <h4>{{ area.title }}</h4>
+          <p>{{ area.description }}</p>
+        </div>
+      </article>
+    }
+  }
+</div>

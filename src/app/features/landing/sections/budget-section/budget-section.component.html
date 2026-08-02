@@ -18,16 +18,31 @@
       <div><span>{{ ui().startDate }}</span><strong>{{ content().startDate }}</strong></div>
       <div><span>{{ ui().finishDate }}</span><strong>{{ content().finishDate }}</strong></div>
     </div>
+    <p class="currency-note" appRevealOnScroll>{{ ui().currencyNote }}</p>
+
+    <app-pmbok-ladder
+      [title]="ui().pmbokLadder"
+      [steps]="content().pmbok"
+      [overview]="content().overview"
+      [matrixTitle]="content().costBreakdownTitle"
+      [matrix]="content().matrix"
+      [stepsNote]="content().stepsNote"
+      [componentLabel]="ui().category"
+      [amountLabel]="ui().amountBoth"
+      [reserveLabel]="ui().reserveRatio"
+      [cumulativeLabel]="ui().cumulative"
+      [egpLabel]="ui().egpLabel"
+    />
 
     <div class="budget-layout">
       <div appRevealOnScroll>
-        <h3 class="budget-heading">{{ content().costBreakdownTitle }}</h3>
+        <h3 class="budget-heading">{{ content().distributionTitle }}</h3>
         <div class="table-wrap cost-table-wrap">
           <table class="data-table cost-table">
             <thead>
               <tr>
                 <th>{{ ui().category }}</th>
-                <th>{{ ui().amountEgp }}</th>
+                <th>{{ ui().amountBoth }}</th>
                 <th>{{ ui().percentOfTotal }}</th>
               </tr>
             </thead>
@@ -35,11 +50,21 @@
               @for (item of content().items; track item.category; let i = $index) {
                 <tr>
                   <td [attr.data-label]="ui().category">{{ item.category }}</td>
-                  <td [attr.data-label]="ui().amountEgp">
-                    <span
-                      [appCountUp]="item.amount"
-                      [countDuration]="1200 + i * 120"
-                    ></span>
+                  <td [attr.data-label]="ui().amountBoth">
+                    <span class="money-pair">
+                      $<span
+                        [appCountUp]="item.amount"
+                        [countDuration]="1200 + i * 120"
+                      ></span>
+                      <small>
+                        ·
+                        <span
+                          [appCountUp]="toEgp(item.amount)"
+                          [countDuration]="1200 + i * 120"
+                        ></span>
+                        {{ ui().egpLabel }}
+                      </small>
+                    </span>
                   </td>
                   <td [attr.data-label]="ui().percentOfTotal">
                     <span
@@ -53,8 +78,15 @@
               }
               <tr class="total-row">
                 <td [attr.data-label]="ui().category">{{ ui().totalProjectBudget }}</td>
-                <td [attr.data-label]="ui().amountEgp">
-                  <span [appCountUp]="content().total" [countDuration]="1600"></span>
+                <td [attr.data-label]="ui().amountBoth">
+                  <span class="money-pair">
+                    $<span [appCountUp]="content().total" [countDuration]="1600"></span>
+                    <small>
+                      ·
+                      <span [appCountUp]="toEgp(content().total)" [countDuration]="1600"></span>
+                      {{ ui().egpLabel }}
+                    </small>
+                  </span>
                 </td>
                 <td [attr.data-label]="ui().percentOfTotal">
                   <span
@@ -105,9 +137,12 @@
           <div class="chart__center">
             <span>{{ ui().totalBudget }}</span>
             <strong>
-              <span [appCountUp]="content().total" [countDuration]="1800"></span>
-              <small> EGP</small>
+              $<span [appCountUp]="content().total" [countDuration]="1800"></span>
             </strong>
+            <small class="chart__egp">
+              <span [appCountUp]="toEgp(content().total)" [countDuration]="1800"></span>
+              {{ ui().egpLabel }}
+            </small>
             <em>
               <span
                 [appCountUp]="100"
@@ -149,12 +184,17 @@
                     [style.--bar-delay]="segment.delay + 's'"
                   ></div>
                 </div>
-                <small>
-                  <span
+                <small class="money-pair">
+                  $<span
                     [appCountUp]="segment.amount"
                     [countDuration]="1200 + i * 100"
                   ></span>
-                  EGP
+                  ·
+                  <span
+                    [appCountUp]="toEgp(segment.amount)"
+                    [countDuration]="1200 + i * 100"
+                  ></span>
+                  {{ ui().egpLabel }}
                 </small>
               </div>
             </li>

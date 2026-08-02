@@ -57,8 +57,17 @@ blockquote {
   align-items: start;
   padding: 1.1rem 1.15rem;
   border-radius: 1rem;
-  background: rgba(255, 255, 255, 0.8);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(232, 245, 238, 0.75));
   border: 1px solid rgba(31, 107, 69, 0.12);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.pillar-list__item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px rgba(15, 47, 34, 0.1);
 }
 
 .icon-bubble {

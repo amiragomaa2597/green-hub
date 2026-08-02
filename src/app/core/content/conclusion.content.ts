@@ -22,39 +22,39 @@ export const CONCLUSION_CONTENT: Localized<ConclusionContent> = {
     eyebrow: 'Conclusion & Final Remarks',
     title: 'A Successful Project. A Sustainable Legacy.',
     quote:
-      'The Green Hub is a living example of how professional project management and sustainable innovation come together to create lasting value for people and the planet.',
+      'The Green Hub is a living embodiment of how professional project management converges with environmental sustainability to achieve a real, lasting impact on the community.',
     thanks:
       'Thank you to our team, stakeholders, partners, and supporters for their dedication and collaboration in making The Green Hub a reality.',
-    closing: 'Together, we build a better future.',
+    closing: 'Together for a greener tomorrow.',
     takeaways: [
       {
         title: 'On Time',
         description:
-          'Delivered within the 40-week timeline with a structured plan and effective execution.',
+          'Delivered within the 40-week timeline with sequential phases and overlapping construction branches.',
         icon: 'clock',
       },
       {
         title: 'On Budget',
         description:
-          'Completed within the approved budget of 10,800,000 EGP with strong cost control.',
+          'Completed within the approved $1.2M / 60M EGP budget with PMBOK reserves and cost baseline control.',
         icon: 'coins',
       },
       {
-        title: 'High Quality',
+        title: 'LEED Quality',
         description:
-          'Achieved the highest quality standards in construction, systems, and sustainability.',
+          'Acceptance criteria target LEED certification, smart systems online, and zero lost-time accidents.',
         icon: 'award',
       },
       {
         title: 'Community Impact',
         description:
-          'Delivering long-term environmental, social, and economic value to the community.',
+          'Education, training, coworking, and shared spaces create lasting social value.',
         icon: 'users',
       },
       {
         title: 'Sustainable Future',
         description:
-          'Built to operate efficiently, reduce environmental impact, and inspire a greener tomorrow.',
+          'A scalable model powered by renewable energy, water conservation, and smart controls.',
         icon: 'recycle',
       },
     ],
@@ -68,19 +68,17 @@ export const CONCLUSION_CONTENT: Localized<ConclusionContent> = {
       },
       {
         label: 'Total Budget',
-        value: '10,800,000 EGP',
+        value: '$1,200,000 · 60,000,000 EGP',
         icon: 'coins',
-        count: 10_800_000,
-        suffix: ' EGP',
       },
       {
         label: 'Quality',
-        value: 'High Quality Standards',
+        value: 'LEED-oriented standards',
         icon: 'award',
       },
       {
         label: 'Community',
-        value: 'Positive Community Impact',
+        value: 'Positive community impact',
         icon: 'users',
       },
       {
@@ -94,39 +92,39 @@ export const CONCLUSION_CONTENT: Localized<ConclusionContent> = {
     eyebrow: 'الخاتمة والملاحظات الختامية',
     title: 'مشروع ناجح. إرث مستدام.',
     quote:
-      'جرين هب مثال حي على التقاء إدارة المشاريع المهنية والابتكار المستدام لخلق قيمة دائمة للناس والكوكب.',
+      'جرين هب تجسيد حي لالتقاء إدارة المشاريع المهنية برؤية الاستدامة البيئية لتحقيق أثر حقيقي ودائم على المجتمع.',
     thanks:
       'شكرًا لفريقنا وأصحاب المصلحة وشركائنا وداعمينا على تفانيهم وتعاونهم في جعل جرين هب حقيقة.',
-    closing: 'معًا نبني مستقبلًا أفضل.',
+    closing: 'معًا من أجل غدٍ أكثر خضرة.',
     takeaways: [
       {
         title: 'في الموعد',
         description:
-          'تم التسليم ضمن جدول 40 أسبوعًا بخطة منظمة وتنفيذ فعّال.',
+          'تم التسليم ضمن جدول 40 أسبوعًا بمراحل متتابعة وفروع إنشاء متداخلة.',
         icon: 'clock',
       },
       {
         title: 'ضمن الميزانية',
         description:
-          'اكتمل ضمن الميزانية المعتمدة 10,800,000 جنيه مع رقابة قوية على التكاليف.',
+          'اكتمل ضمن الميزانية المعتمدة 1.2 مليون دولار / 60 مليون جنيه باحتياطيات PMBOK ورقابة خط الأساس.',
         icon: 'coins',
       },
       {
-        title: 'جودة عالية',
+        title: 'جودة LEED',
         description:
-          'تحقق أعلى معايير الجودة في الإنشاءات والأنظمة والاستدامة.',
+          'معايير القبول تستهدف اعتماد LEED وتشغيل الأنظمة الذكية وصفر حوادث توقف.',
         icon: 'award',
       },
       {
         title: 'أثر مجتمعي',
         description:
-          'تقديم قيمة بيئية واجتماعية واقتصادية طويلة الأمد للمجتمع.',
+          'التعليم والتدريب والعمل المشترك والمساحات المشتركة تخلق قيمة اجتماعية دائمة.',
         icon: 'users',
       },
       {
         title: 'مستقبل مستدام',
         description:
-          'بُني ليعمل بكفاءة ويقلل الأثر البيئي ويلهم غدًا أكثر خضرة.',
+          'نموذج قابل للتوسع بالطاقة المتجددة وترشيد المياه والتحكم الذكي.',
         icon: 'recycle',
       },
     ],
@@ -140,14 +138,12 @@ export const CONCLUSION_CONTENT: Localized<ConclusionContent> = {
       },
       {
         label: 'إجمالي الميزانية',
-        value: '10,800,000 جنيه',
+        value: '$1,200,000 · 60,000,000 جنيه',
         icon: 'coins',
-        count: 10_800_000,
-        suffix: ' جنيه',
       },
       {
         label: 'الجودة',
-        value: 'معايير جودة عالية',
+        value: 'معايير موجّهة لـ LEED',
         icon: 'award',
       },
       {

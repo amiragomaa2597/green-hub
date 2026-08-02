@@ -4,6 +4,12 @@ h3 {
   font-size: 1.45rem;
 }
 
+.gantt-lead {
+  margin: -0.35rem 0 1rem;
+  color: var(--muted);
+  max-width: 48rem;
+}
+
 .meta-strip {
   display: grid;
   gap: 0.85rem;

@@ -18,7 +18,7 @@ export interface TeamContent {
   pmName: string;
 }
 
-/** Source of truth: OBS slide — Project Manager + equal-authority peers. */
+/** Source of truth: Governance + OBS slides — PM at top, equal-authority peers. */
 export const TEAM_CONTENT: Localized<TeamContent> = {
   en: {
     eyebrow: 'Governance',
@@ -30,26 +30,26 @@ export const TEAM_CONTENT: Localized<TeamContent> = {
     members: [
       { name: 'Armia Kamal', role: 'Project Manager', icon: 'person' },
       { name: 'Mohamed Ahab', role: 'Planning & Scheduling Lead', icon: 'calendar' },
+      { name: 'Michael Atef', role: 'Scope & Risk Officer', icon: 'target' },
       { name: 'Salwa Michel', role: 'Finance & Partners Officer', icon: 'coins' },
       { name: 'Shehab Badr', role: 'QA & Governance Officer', icon: 'shield' },
-      { name: 'Michael Atef', role: 'QA & Audit Assistant', icon: 'person' },
-      { name: 'Amira Gomaa', role: 'Scope & Risk Officer', icon: 'target' },
+      { name: 'Amira Gomaa', role: 'QA & Audit Assistant', icon: 'person' },
     ],
     obsNote:
-      'OBS shows the authority map once: Project Manager at the top, and every role on the same row shares equal authority — role and name, nothing repeated.',
+      'Per the instructor’s rule: PM at the top, same horizontal level = same authority, titles with names.',
     obsPeers: [
       { name: 'Mohamed Ahab', role: 'Planning & Scheduling Lead', icon: 'calendar' },
+      { name: 'Michael Atef', role: 'Scope & Risk Officer', icon: 'target' },
       { name: 'Salwa Michel', role: 'Finance & Partners Officer', icon: 'coins' },
       { name: 'Shehab Badr', role: 'QA & Governance Officer', icon: 'shield' },
-      { name: 'Michael Atef', role: 'QA & Audit Assistant', icon: 'person' },
-      { name: 'Amira Gomaa', role: 'Scope & Risk Officer', icon: 'target' },
+      { name: 'Amira Gomaa', role: 'QA & Audit Assistant', icon: 'person' },
     ],
     thankYouNames: [
       'Armia Kamal',
       'Mohamed Ahab',
+      'Michael Atef',
       'Salwa Michel',
       'Shehab Badr',
-      'Michael Atef',
       'Amira Gomaa',
     ],
     pmName: 'Armia Kamal',
@@ -64,26 +64,26 @@ export const TEAM_CONTENT: Localized<TeamContent> = {
     members: [
       { name: 'أرميا كمال', role: 'مدير المشروع', icon: 'person' },
       { name: 'محمد إيهاب', role: 'مسؤول التخطيط والجدولة', icon: 'calendar' },
+      { name: 'مايكل عاطف', role: 'مسؤول النطاق والمخاطر', icon: 'target' },
       { name: 'سلوى ميشيل', role: 'مسؤولة المالية والشركاء', icon: 'coins' },
       { name: 'شهاب بدر', role: 'مسؤول الجودة والحوكمة', icon: 'shield' },
-      { name: 'مايكل عاطف', role: 'مساعد الجودة والمراجعة', icon: 'person' },
-      { name: 'أميرة جمعة', role: 'مسؤولة النطاق والمخاطر', icon: 'target' },
+      { name: 'أميرة جمعة', role: 'مساعدة الجودة والمراجعة', icon: 'person' },
     ],
     obsNote:
-      'OBS يعرض خريطة السلطة مرة واحدة: مدير المشروع في الأعلى، وكل دور في الصف نفسه يملك سلطة متساوية — الدور والاسم فقط، بدون تكرار.',
+      'وفق قاعدة المشرف: مدير المشروع في الأعلى، ونفس المستوى الأفقي = نفس السلطة، مع العناوين والأسماء.',
     obsPeers: [
       { name: 'محمد إيهاب', role: 'مسؤول التخطيط والجدولة', icon: 'calendar' },
+      { name: 'مايكل عاطف', role: 'مسؤول النطاق والمخاطر', icon: 'target' },
       { name: 'سلوى ميشيل', role: 'مسؤولة المالية والشركاء', icon: 'coins' },
       { name: 'شهاب بدر', role: 'مسؤول الجودة والحوكمة', icon: 'shield' },
-      { name: 'مايكل عاطف', role: 'مساعد الجودة والمراجعة', icon: 'person' },
-      { name: 'أميرة جمعة', role: 'مسؤولة النطاق والمخاطر', icon: 'target' },
+      { name: 'أميرة جمعة', role: 'مساعدة الجودة والمراجعة', icon: 'person' },
     ],
     thankYouNames: [
       'أرميا كمال',
       'محمد إيهاب',
+      'مايكل عاطف',
       'سلوى ميشيل',
       'شهاب بدر',
-      'مايكل عاطف',
       'أميرة جمعة',
     ],
     pmName: 'أرميا كمال',

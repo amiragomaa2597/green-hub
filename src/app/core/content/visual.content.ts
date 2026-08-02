@@ -164,7 +164,7 @@ export const DESIGN_BLOCK_IMAGES = [
   'assets/images/sections/design-site.jpg',
   'assets/images/sections/design-building.jpg',
   'assets/images/sections/design-features.jpg',
-  'assets/images/sections/design-smart.jpg',
+  'assets/images/sections/campus-facade.jpg',
 ] as const;
 
 /** Design section banner — not reused elsewhere. */

@@ -18,7 +18,7 @@ export type SectionVisualKey =
   | 'conclusion'
   | 'presentation';
 
-/** Stock photography for section visuals (Unsplash — not PDF slides). */
+/** Stock photography for section visuals — each path used once across the site. */
 export const SECTION_VISUALS: Localized<Record<SectionVisualKey, SectionVisual>> =
   {
     en: {
@@ -63,8 +63,8 @@ export const SECTION_VISUALS: Localized<Record<SectionVisualKey, SectionVisual>>
           'Identify, assess, and mitigate — zero surprises, on time, on budget.',
       },
       impact: {
-        src: 'assets/images/sections/impact-nature.jpg',
-        alt: 'Sunlight through a lush green forest canopy',
+        src: 'assets/images/sections/campus-garden.jpg',
+        alt: 'Lush green courtyard garden in a sustainable campus',
         caption: 'Beyond construction: lasting environmental and social value.',
       },
       conclusion: {
@@ -115,8 +115,8 @@ export const SECTION_VISUALS: Localized<Record<SectionVisualKey, SectionVisual>>
         caption: 'حدّد، قيّم، عالج — صفر مفاجآت، في الموعد، ضمن الميزانية.',
       },
       impact: {
-        src: 'assets/images/sections/impact-nature.jpg',
-        alt: 'ضوء الشمس عبر غطاء غابة خضراء',
+        src: 'assets/images/sections/campus-garden.jpg',
+        alt: 'حديقة فناء خضراء في حرم مستدام',
         caption: 'ما بعد البناء: قيمة بيئية واجتماعية دائمة.',
       },
       conclusion: {
@@ -132,6 +132,7 @@ export const SECTION_VISUALS: Localized<Record<SectionVisualKey, SectionVisual>>
     },
   };
 
+/** Unique image per objective card. */
 export const OBJECTIVE_IMAGES = [
   'assets/images/sections/obj-solar.jpg',
   'assets/images/sections/obj-smart.jpg',
@@ -139,15 +140,17 @@ export const OBJECTIVE_IMAGES = [
   'assets/images/sections/obj-design.jpg',
 ] as const;
 
+/** Unique image per scope deliverable — no overlap with objectives/impact. */
 export const DELIVERABLE_IMAGES = [
   'assets/images/sections/deliverable-building.jpg',
-  'assets/images/sections/obj-solar.jpg',
-  'assets/images/sections/obj-smart.jpg',
-  'assets/images/sections/obj-community.jpg',
+  'assets/images/sections/campus-sunset.jpg',
+  'assets/images/sections/campus-glass.jpg',
+  'assets/images/sections/campus-courtyard.jpg',
   'assets/images/sections/deliverable-education.jpg',
-  'assets/images/sections/impact-nature.jpg',
+  'assets/images/sections/campus-dusk.jpg',
 ] as const;
 
+/** Unique image per impact card. */
 export const IMPACT_IMAGES = [
   'assets/images/sections/impact-carbon.jpg',
   'assets/images/sections/impact-energy.jpg',
@@ -156,9 +159,16 @@ export const IMPACT_IMAGES = [
   'assets/images/sections/impact-growth.jpg',
 ] as const;
 
+/** Unique image per design block. */
 export const DESIGN_BLOCK_IMAGES = [
   'assets/images/sections/design-site.jpg',
   'assets/images/sections/design-building.jpg',
   'assets/images/sections/design-features.jpg',
   'assets/images/sections/design-smart.jpg',
 ] as const;
+
+/** Design section banner — not reused elsewhere. */
+export const DESIGN_BANNER_IMAGE = 'assets/images/sections/campus-aerial.jpg';
+
+/** Thank-you background — not reused elsewhere. */
+export const THANK_YOU_IMAGE = 'assets/images/sections/campus-plaza.jpg';

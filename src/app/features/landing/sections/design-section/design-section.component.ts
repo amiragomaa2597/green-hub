@@ -1,6 +1,6 @@
 import { Component, computed, inject } from '@angular/core';
 import { DESIGN_CONTENT } from '../../../../core/content/design.content';
-import { PROJECT_META } from '../../../../core/content/hero.content';
+import { DESIGN_BANNER_IMAGE } from '../../../../core/content/visual.content';
 import { SECTION_HOOKS } from '../../../../core/content/hooks.content';
 import { UI_LABELS } from '../../../../core/content/ui.content';
 import { LanguageService } from '../../../../core/services/language.service';
@@ -21,7 +21,7 @@ export class DesignSectionComponent {
   readonly content = computed(() => DESIGN_CONTENT[this.language.lang()]);
   readonly hook = computed(() => SECTION_HOOKS[this.language.lang()].design);
   readonly ui = computed(() => UI_LABELS[this.language.lang()]);
-  readonly image = computed(() => PROJECT_META[this.language.lang()].heroImage);
+  readonly image = DESIGN_BANNER_IMAGE;
 
   iconOf(name?: string): IconName {
     return (name ?? 'leaf') as IconName;

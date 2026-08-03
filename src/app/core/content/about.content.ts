@@ -12,33 +12,34 @@ export interface AboutContent {
   overviewPillars: Pillar[];
 }
 
+/** Source: final.docx — About (letter-perfect). */
 export const ABOUT_CONTENT: Localized<AboutContent> = {
   en: {
     eyebrow: 'Project Overview',
     title: 'About',
     lead:
-      'The Green Hub is a community center project that runs entirely on renewable energy and combines construction, engineering, and sustainability.',
+      'The Green Hub is a community center powered entirely by renewable energy, combining construction, engineering, and sustainability. It exemplifies integrating project management with sustainable development, providing environmental, social, and economic benefits to the community.',
     body:
-      'It represents the successful integration of professional project management principles with sustainable development practices — delivering measurable environmental, social, and economic value by combining renewable energy, smart technologies, and environmentally responsible design to inspire greener communities and foster a culture of green living.',
+      'The project aims to inspire greener communities and create a lasting positive impact, while fostering a culture of green living.',
     quote:
-      '“The Green Hub is a living embodiment of how professional project management converges with a vision of environmental sustainability to achieve a real, lasting impact on the community.”',
+      '“The Green Hub serves as a sustainable community center fueled by renewable energy and advanced smart technologies.”',
     aboutHubTitle: 'About The Green Hub',
     aboutHubBody:
-      'The Green Hub is a sustainable community center powered by renewable energy and smart technologies. It combines green construction, environmental education, and community services to create long-term environmental, social, and economic value.',
+      'The Green Hub serves as a sustainable community center fueled by renewable energy and advanced smart technologies. It combines environmental education, community services, and eco-friendly design to generate lasting social, environmental, and economic benefits.',
     overviewPillars: [
       {
-        title: 'Renewable Energy',
-        description: 'Solar PV, rainwater harvesting, smart systems',
+        title: 'Renewable energy',
+        description: 'Powered entirely by renewable energy.',
         icon: 'solar',
       },
       {
-        title: 'Community Impact',
-        description: 'Education, coworking, training programs',
-        icon: 'users',
+        title: 'Smart technologies',
+        description: 'Advanced smart technologies for green operations.',
+        icon: 'cpu',
       },
       {
-        title: 'LEED Certified',
-        description: 'Environmentally responsible design standard',
+        title: 'Environmentally Responsible Design',
+        description: 'Eco-friendly design for lasting community value.',
         icon: 'leaf',
       },
     ],
@@ -47,28 +48,28 @@ export const ABOUT_CONTENT: Localized<AboutContent> = {
     eyebrow: 'نظرة عامة على المشروع',
     title: 'نبذة',
     lead:
-      'جرين هب مشروع لمركز مجتمعي يعمل بالكامل بالطاقة المتجددة ويجمع بين البناء والهندسة والاستدامة.',
+      'جرين هب مركز مجتمعي يعمل بالكامل بالطاقة المتجددة، ويجمع بين البناء والهندسة والاستدامة. يجسّد دمج إدارة المشاريع مع التنمية المستدامة، ويقدّم منافع بيئية واجتماعية واقتصادية للمجتمع.',
     body:
-      'يمثّل التكامل الناجح بين مبادئ إدارة المشاريع المهنية وممارسات التنمية المستدامة — ليقدّم قيمة بيئية واجتماعية واقتصادية قابلة للقياس عبر الجمع بين الطاقة المتجددة والتقنيات الذكية والتصميم المسؤول بيئيًا، بما يلهم مجتمعات أكثر خضرة ويعزّز ثقافة الحياة الخضراء.',
+      'يهدف المشروع إلى إلهام مجتمعات أكثر خضرة وخلق أثر إيجابي دائم، مع تعزيز ثقافة الحياة الخضراء.',
     quote:
-      '«جرين هب تجسيد حي لالتقاء إدارة المشاريع المهنية برؤية الاستدامة البيئية لتحقيق أثر حقيقي ودائم على المجتمع.»',
+      '«جرين هب مركز مجتمعي مستدام يغذّيه الطاقة المتجددة والتقنيات الذكية المتقدمة.»',
     aboutHubTitle: 'عن جرين هب',
     aboutHubBody:
-      'جرين هب مركز مجتمعي مستدام يعمل بالطاقة المتجددة والتقنيات الذكية. يجمع بين البناء الأخضر والتعليم البيئي والخدمات المجتمعية لخلق قيمة بيئية واجتماعية واقتصادية طويلة الأمد.',
+      'جرين هب مركز مجتمعي مستدام يعمل بالطاقة المتجددة والتقنيات الذكية المتقدمة. يجمع بين التعليم البيئي والخدمات المجتمعية والتصميم الصديق للبيئة لخلق قيمة اجتماعية وبيئية واقتصادية دائمة.',
     overviewPillars: [
       {
         title: 'الطاقة المتجددة',
-        description: 'طاقة شمسية، حصاد مياه الأمطار، وأنظمة ذكية',
+        description: 'تشغيل بالكامل بالطاقة المتجددة.',
         icon: 'solar',
       },
       {
-        title: 'الأثر المجتمعي',
-        description: 'تعليم، مساحات عمل مشتركة، وبرامج تدريب',
-        icon: 'users',
+        title: 'التقنيات الذكية',
+        description: 'تقنيات ذكية متقدمة للتشغيل الأخضر.',
+        icon: 'cpu',
       },
       {
-        title: 'معتمد LEED',
-        description: 'معيار تصميم مسؤول بيئيًا',
+        title: 'تصميم مسؤول بيئيًا',
+        description: 'تصميم صديق للبيئة بقيمة مجتمعية دائمة.',
         icon: 'leaf',
       },
     ],

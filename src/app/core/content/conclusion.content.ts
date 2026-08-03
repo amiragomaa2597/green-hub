@@ -83,7 +83,7 @@ export const CONCLUSION_CONTENT: Localized<ConclusionContent> = {
       },
       {
         label: 'Date',
-        value: 'July 6, 2026',
+        value: 'July 6, 2025',
         icon: 'calendar',
       },
     ],
@@ -153,7 +153,7 @@ export const CONCLUSION_CONTENT: Localized<ConclusionContent> = {
       },
       {
         label: 'التاريخ',
-        value: '6 يوليو 2026',
+        value: '6 يوليو 2025',
         icon: 'calendar',
       },
     ],

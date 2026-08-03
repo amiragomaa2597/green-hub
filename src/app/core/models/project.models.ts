@@ -43,6 +43,7 @@ export interface GanttRow {
   duration: string;
   color: string;
   wbsRef?: string;
+  predecessor?: string;
 }
 
 export interface BudgetItem {

@@ -18,7 +18,7 @@ export interface TeamContent {
   pmName: string;
 }
 
-/** Source of truth: Governance + OBS slides — PM at top, equal-authority peers. */
+/** Source: final.docx — Deliverable 3 OBS named members (letter-perfect). */
 export const TEAM_CONTENT: Localized<TeamContent> = {
   en: {
     eyebrow: 'Governance',
@@ -28,31 +28,24 @@ export const TEAM_CONTENT: Localized<TeamContent> = {
       role: 'Instructor / Advisor',
     },
     members: [
-      { name: 'Armia Kamal', role: 'Project Manager', icon: 'person' },
-      { name: 'Mohamed Ahab', role: 'Planning & Scheduling Lead', icon: 'calendar' },
-      { name: 'Michael Atef', role: 'Scope & Risk Officer', icon: 'target' },
-      { name: 'Salwa Michel', role: 'Finance & Partners Officer', icon: 'coins' },
-      { name: 'Shehab Badr', role: 'QA & Governance Officer', icon: 'shield' },
-      { name: 'Amira Gomaa', role: 'QA & Audit Assistant', icon: 'person' },
+      { name: 'Armia', role: 'Project Manager', icon: 'person' },
+      { name: 'Ehab', role: 'Planning & Scheduling Lead', icon: 'calendar' },
+      { name: 'Amira', role: 'Scope & Risk Officer', icon: 'target' },
+      { name: 'Salwa', role: 'Finance & Partners Officer', icon: 'coins' },
+      { name: 'Shehab', role: 'QA & Governance Officer', icon: 'shield' },
+      { name: 'Michael', role: 'QA & Audit Assistant', icon: 'person' },
     ],
     obsNote:
-      'Per the instructor’s rule: PM at the top, same horizontal level = same authority, titles with names.',
+      'OBS assigned members from the final document — PM at the top; equal lead level for peer officers.',
     obsPeers: [
-      { name: 'Mohamed Ahab', role: 'Planning & Scheduling Lead', icon: 'calendar' },
-      { name: 'Michael Atef', role: 'Scope & Risk Officer', icon: 'target' },
-      { name: 'Salwa Michel', role: 'Finance & Partners Officer', icon: 'coins' },
-      { name: 'Shehab Badr', role: 'QA & Governance Officer', icon: 'shield' },
-      { name: 'Amira Gomaa', role: 'QA & Audit Assistant', icon: 'person' },
+      { name: 'Ehab', role: 'Planning & Scheduling Lead', icon: 'calendar' },
+      { name: 'Amira', role: 'Scope & Risk Officer', icon: 'target' },
+      { name: 'Salwa', role: 'Finance & Partners Officer', icon: 'coins' },
+      { name: 'Shehab', role: 'QA & Governance Officer', icon: 'shield' },
+      { name: 'Michael', role: 'QA & Audit Assistant', icon: 'person' },
     ],
-    thankYouNames: [
-      'Armia Kamal',
-      'Mohamed Ahab',
-      'Michael Atef',
-      'Salwa Michel',
-      'Shehab Badr',
-      'Amira Gomaa',
-    ],
-    pmName: 'Armia Kamal',
+    thankYouNames: ['Armia', 'Ehab', 'Amira', 'Salwa', 'Shehab', 'Michael'],
+    pmName: 'Armia',
   },
   ar: {
     eyebrow: 'الحوكمة',
@@ -62,30 +55,23 @@ export const TEAM_CONTENT: Localized<TeamContent> = {
       role: 'المشرف / المستشار',
     },
     members: [
-      { name: 'أرميا كمال', role: 'مدير المشروع', icon: 'person' },
-      { name: 'محمد إيهاب', role: 'مسؤول التخطيط والجدولة', icon: 'calendar' },
-      { name: 'مايكل عاطف', role: 'مسؤول النطاق والمخاطر', icon: 'target' },
-      { name: 'سلوى ميشيل', role: 'مسؤولة المالية والشركاء', icon: 'coins' },
-      { name: 'شهاب بدر', role: 'مسؤول الجودة والحوكمة', icon: 'shield' },
-      { name: 'أميرة جمعة', role: 'مساعدة الجودة والمراجعة', icon: 'person' },
+      { name: 'أرميا', role: 'مدير المشروع', icon: 'person' },
+      { name: 'إيهاب', role: 'مسؤول التخطيط والجدولة', icon: 'calendar' },
+      { name: 'أميرة', role: 'مسؤولة النطاق والمخاطر', icon: 'target' },
+      { name: 'سلوى', role: 'مسؤولة المالية والشركاء', icon: 'coins' },
+      { name: 'شهاب', role: 'مسؤول الجودة والحوكمة', icon: 'shield' },
+      { name: 'مايكل', role: 'مساعد الجودة والمراجعة', icon: 'person' },
     ],
     obsNote:
-      'وفق قاعدة المشرف: مدير المشروع في الأعلى، ونفس المستوى الأفقي = نفس السلطة، مع العناوين والأسماء.',
+      'أعضاء OBS المعيّنون من المستند النهائي — مدير المشروع في الأعلى؛ مستوى قيادة متساوٍ للزملاء.',
     obsPeers: [
-      { name: 'محمد إيهاب', role: 'مسؤول التخطيط والجدولة', icon: 'calendar' },
-      { name: 'مايكل عاطف', role: 'مسؤول النطاق والمخاطر', icon: 'target' },
-      { name: 'سلوى ميشيل', role: 'مسؤولة المالية والشركاء', icon: 'coins' },
-      { name: 'شهاب بدر', role: 'مسؤول الجودة والحوكمة', icon: 'shield' },
-      { name: 'أميرة جمعة', role: 'مساعدة الجودة والمراجعة', icon: 'person' },
+      { name: 'إيهاب', role: 'مسؤول التخطيط والجدولة', icon: 'calendar' },
+      { name: 'أميرة', role: 'مسؤولة النطاق والمخاطر', icon: 'target' },
+      { name: 'سلوى', role: 'مسؤولة المالية والشركاء', icon: 'coins' },
+      { name: 'شهاب', role: 'مسؤول الجودة والحوكمة', icon: 'shield' },
+      { name: 'مايكل', role: 'مساعد الجودة والمراجعة', icon: 'person' },
     ],
-    thankYouNames: [
-      'أرميا كمال',
-      'محمد إيهاب',
-      'مايكل عاطف',
-      'سلوى ميشيل',
-      'شهاب بدر',
-      'أميرة جمعة',
-    ],
-    pmName: 'أرميا كمال',
+    thankYouNames: ['أرميا', 'إيهاب', 'أميرة', 'سلوى', 'شهاب', 'مايكل'],
+    pmName: 'أرميا',
   },
 };

@@ -23,26 +23,22 @@
         <ul class="deck__meta">
           <li>
             <app-icon name="file" [size]="16" />
-            {{ content().fileTypePptx }}
+            {{ content().fileTypeDocx }}
           </li>
           <li>
             <app-icon name="file" [size]="16" />
             {{ content().fileTypePdf }}
-          </li>
-          <li>
-            <app-icon name="eye" [size]="16" />
-            {{ content().pages }}
           </li>
         </ul>
 
         <div class="deck__actions">
           <a
             class="btn btn--primary"
-            [href]="content().filePathPptx"
-            [download]="content().fileNamePptx"
+            [href]="content().filePathDocx"
+            [download]="content().fileNameDocx"
           >
             <app-icon name="download" [size]="18" />
-            {{ ui().downloadPptx }}
+            Download DOCX
           </a>
           <a
             class="btn btn--secondary"

@@ -1,6 +1,6 @@
 /**
  * Case-study conversion for dual USD / EGP display.
- * Budget slides are authored in USD; risk impacts are authored in EGP.
+ * Budget and risk impacts in the final document are authored in USD.
  */
 export const EGP_PER_USD = 50;
 

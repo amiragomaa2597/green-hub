@@ -107,49 +107,21 @@
   font-weight: 600;
 }
 
-.overview {
-  display: grid;
-  gap: 0.85rem;
-}
-
-.overview__card {
-  display: grid;
-  gap: 0.25rem;
-  padding: 1rem 1.1rem;
-  border-top: 3px solid var(--tone);
-}
-
-.overview__card strong {
-  font-family: var(--font-display);
-  font-size: 1.7rem;
-  color: var(--tone);
-}
-
-.overview__card span {
-  color: var(--forest);
-  font-weight: 650;
-}
-
-.overview__card em {
-  font-style: normal;
-  color: var(--muted);
-  font-size: 0.9rem;
-}
-
 .matrix-wrap {
-  padding: 0.35rem;
+  padding: 0.85rem 1rem 1rem;
   overflow: auto;
+}
+
+.matrix-title {
+  margin: 0 0 0.85rem;
+  color: var(--forest);
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.5vw, 1.55rem);
 }
 
 .matrix-wrap .is-total {
   font-weight: 700;
   background: rgba(31, 107, 69, 0.08);
-}
-
-@media (min-width: 820px) {
-  .overview {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
 }
 
 @media (max-width: 720px) {

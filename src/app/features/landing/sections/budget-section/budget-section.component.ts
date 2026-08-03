@@ -58,13 +58,16 @@ export class BudgetSectionComponent implements AfterViewInit, OnDestroy {
   readonly budgetLead = computed(() => this.content().lead);
   readonly segments = computed<ChartSegment[]>(() => {
     let cursor = 0;
-    return this.content().items.map((item, index) => {
+    return this.content().overview.map((item, index) => {
       const segment: ChartSegment = {
-        ...item,
+        category: item.shortLabel,
+        amount: item.amount,
+        percentage: item.percent,
+        color: item.color,
         dashOffset: 25 - cursor,
         delay: 0.12 + index * 0.12,
       };
-      cursor += item.percentage;
+      cursor += item.percent;
       return segment;
     });
   });

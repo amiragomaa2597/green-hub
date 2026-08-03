@@ -254,6 +254,66 @@
   padding: 0 1.05rem 1.1rem;
 }
 
+.station__branches {
+  display: grid;
+  gap: 0.55rem;
+  padding: 0 1.05rem 1.1rem;
+}
+
+.branch {
+  border-radius: 0.9rem;
+  background: color-mix(in srgb, var(--tone) 8%, #f7faf8);
+  border: 1px solid color-mix(in srgb, var(--tone) 22%, transparent);
+  overflow: hidden;
+  animation: chip-in 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.branch__head {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.7rem 0.85rem;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  color: var(--ink);
+}
+
+.branch__head em {
+  font-style: normal;
+  font-weight: 800;
+  font-size: 0.78rem;
+  color: color-mix(in srgb, var(--tone) 85%, #0f2f22);
+}
+
+.branch__head span {
+  font-weight: 650;
+  font-size: 0.92rem;
+}
+
+.branch__chevron {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-right: 2px solid var(--muted);
+  border-bottom: 2px solid var(--muted);
+  transform: rotate(45deg);
+  transition: transform 0.25s ease;
+}
+
+.branch.is-open .branch__chevron {
+  transform: rotate(225deg);
+}
+
+.branch__packages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  padding: 0 0.85rem 0.85rem;
+}
+
 .task-chip {
   display: inline-flex;
   align-items: center;

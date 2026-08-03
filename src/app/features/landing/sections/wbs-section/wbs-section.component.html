@@ -1,0 +1,20 @@
+<section id="wbs" class="section wbs-stage">
+  <div class="wbs-stage__bg" aria-hidden="true"></div>
+  <div class="container">
+    <div class="wbs-stage__head" appRevealOnScroll>
+      <p class="speaker">
+        <span class="speaker__dot" aria-hidden="true"></span>
+        Presented by {{ content().speaker }}
+      </p>
+      <p class="eyebrow">{{ content().eyebrow }}</p>
+      <h2>{{ content().title }}</h2>
+      <p class="wbs-stage__hint">{{ content().hint }}</p>
+    </div>
+
+    <app-wbs-journey
+      [rootTitle]="content().rootTitle"
+      [packages]="content().packages"
+      [showWeeks]="false"
+    />
+  </div>
+</section>

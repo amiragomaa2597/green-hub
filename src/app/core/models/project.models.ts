@@ -23,12 +23,26 @@ export interface Deliverable {
   image?: string;
 }
 
+export interface WbsWorkItem {
+  code: string;
+  title: string;
+}
+
+export interface WbsBranch {
+  code: string;
+  title: string;
+  packages: WbsWorkItem[];
+}
+
 export interface WbsPackage {
   id: number;
   title: string;
-  tasks: string[];
-  weeks: string;
   color: string;
+  weeks?: string;
+  /** Flat Level-2 labels (schedule overview). */
+  tasks?: string[];
+  /** Full Level-2 → Level-3 tree (Deliverable 2). */
+  branches?: WbsBranch[];
 }
 
 export interface Milestone {
@@ -65,6 +79,7 @@ export interface PmbokLevel {
 export interface BudgetMatrixRow {
   component: string;
   amount: number;
+  amountDisplay?: string;
   reserveRatio: string;
   cumulative: string;
 }

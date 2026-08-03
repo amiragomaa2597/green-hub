@@ -36,21 +36,62 @@
           <article class="station__card">
             <button type="button" class="station__head" (click)="toggle(pkg.id)">
               <div>
-                <span class="station__weeks">{{ ui().weeksLabel }} {{ pkg.weeks }}</span>
+                @if (showWeeks && pkg.weeks) {
+                  <span class="station__weeks">{{ ui().weeksLabel }} {{ pkg.weeks }}</span>
+                } @else {
+                  <span class="station__weeks">Level 1 · {{ pkg.id }}</span>
+                }
                 <h4>{{ pkg.title }}</h4>
               </div>
               <span class="station__chevron" aria-hidden="true"></span>
             </button>
 
             @if (isActive(pkg.id)) {
-              <div class="station__tasks">
-                @for (task of pkg.tasks; track task; let ti = $index) {
-                  <span class="task-chip" [style.animation-delay]="0.04 * ti + 's'">
-                    <em>{{ taskCode(pkg.id, ti) }}</em>
-                    {{ task }}
-                  </span>
-                }
-              </div>
+              @if (hasBranches(pkg)) {
+                <div class="station__branches">
+                  @for (branch of pkg.branches!; track branch.code; let bi = $index) {
+                    <div
+                      class="branch"
+                      [class.is-open]="isBranchOpen(branch.code)"
+                      [style.animation-delay]="0.04 * bi + 's'"
+                    >
+                      <button
+                        type="button"
+                        class="branch__head"
+                        [attr.aria-expanded]="isBranchOpen(branch.code)"
+                        (click)="toggleBranch(branch.code)"
+                      >
+                        <em>{{ branch.code }}</em>
+                        <span>{{ branch.title }}</span>
+                        <i class="branch__chevron" aria-hidden="true"></i>
+                      </button>
+
+                      @if (isBranchOpen(branch.code)) {
+                        <div class="branch__packages">
+                          @for (item of branch.packages; track item.code; let pi = $index) {
+                            <span
+                              class="task-chip"
+                              [style.animation-delay]="0.03 * pi + 's'"
+                            >
+                              <em>{{ item.code }}</em>
+                              {{ item.title }}
+                            </span>
+                          }
+                        </div>
+                      }
+                    </div>
+                  }
+                </div>
+              } @else {
+                <div class="station__tasks">
+                  @for (task of flatTasks(pkg); track task; let ti = $index) {
+                    <span class="task-chip" [style.animation-delay]="0.04 * ti + 's'">
+                      <em>{{ taskCode(pkg.id, ti) }}</em>
+                      {{ task }}
+                    </span>
+                  }
+                </div>
+              }
             }
           </article>
         </li>

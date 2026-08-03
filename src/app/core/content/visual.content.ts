@@ -49,7 +49,7 @@ export const SECTION_VISUALS: Localized<Record<SectionVisualKey, SectionVisual>>
         src: 'assets/images/sections/budget-finance.jpg',
         alt: 'Financial planning documents and calculator',
         caption:
-          'A clear cost structure for construction, systems, and community programs.',
+          'PMBOK cost aggregation from direct activity costs to the approved $1.2M project budget.',
       },
       stakeholders: {
         src: 'assets/images/sections/stakeholders-meeting.jpg',
@@ -102,7 +102,8 @@ export const SECTION_VISUALS: Localized<Record<SectionVisualKey, SectionVisual>>
       budget: {
         src: 'assets/images/sections/budget-finance.jpg',
         alt: 'مستندات تخطيط مالي وآلة حاسبة',
-        caption: 'هيكل تكلفة واضح للإنشاءات والأنظمة والبرامج المجتمعية.',
+        caption:
+          'PMBOK cost aggregation from direct activity costs to the approved $1.2M project budget.',
       },
       stakeholders: {
         src: 'assets/images/sections/stakeholders-meeting.jpg',

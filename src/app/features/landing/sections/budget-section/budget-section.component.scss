@@ -30,6 +30,64 @@
   font-size: 0.92rem;
 }
 
+.overview-total-line {
+  margin: 0 0 1rem;
+  color: var(--forest);
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2.4vw, 1.45rem);
+  font-weight: 700;
+}
+
+.finance-cards {
+  display: grid;
+  gap: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
+.finance-card {
+  display: grid;
+  gap: 0.35rem;
+  padding: 1rem 1.1rem;
+  border-top: 3px solid var(--tone);
+  animation: finance-in 0.45s ease both;
+}
+
+.finance-card strong {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.5vw, 1.55rem);
+  color: var(--tone);
+}
+
+.finance-card__pct {
+  margin-inline-start: 0.35rem;
+  font-size: 0.85em;
+  opacity: 0.85;
+}
+
+.finance-card p {
+  margin: 0;
+  color: var(--forest);
+  font-weight: 650;
+  line-height: 1.45;
+}
+
+.finance-card em {
+  font-style: normal;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+@keyframes finance-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .money-pair {
   display: inline-flex;
   flex-wrap: wrap;
@@ -499,6 +557,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .finance-card,
+  .chart__segment,
+  .budget-bar__fill,
   .distribution.is-active .chart__segment,
   .distribution.is-active .budget-bar__fill,
   .distribution.is-active .budget-bar__fill::after,

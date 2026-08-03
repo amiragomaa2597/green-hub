@@ -22,12 +22,12 @@
 
     <app-pmbok-ladder
       [title]="ui().pmbokLadder"
+      [levelsTitle]="content().operationalTitle"
       [steps]="content().pmbok"
-      [overview]="content().overview"
       [matrixTitle]="content().costBreakdownTitle"
       [matrix]="content().matrix"
       [stepsNote]="content().stepsNote"
-      [componentLabel]="ui().category"
+      [componentLabel]="content().matrixTitle"
       [amountLabel]="ui().amountBoth"
       [reserveLabel]="ui().reserveRatio"
       [cumulativeLabel]="ui().cumulative"
@@ -37,68 +37,29 @@
     <div class="budget-layout">
       <div appRevealOnScroll>
         <h3 class="budget-heading">{{ content().distributionTitle }}</h3>
-        <div class="table-wrap cost-table-wrap">
-          <table class="data-table cost-table">
-            <thead>
-              <tr>
-                <th>{{ ui().category }}</th>
-                <th>{{ ui().amountBoth }}</th>
-                <th>{{ ui().percentOfTotal }}</th>
-              </tr>
-            </thead>
-            <tbody>
-              @for (item of content().items; track item.category; let i = $index) {
-                <tr>
-                  <td [attr.data-label]="ui().category">{{ item.category }}</td>
-                  <td [attr.data-label]="ui().amountBoth">
-                    <span class="money-pair">
-                      $<span
-                        [appCountUp]="item.amount"
-                        [countDuration]="1200 + i * 120"
-                      ></span>
-                      <small>
-                        ·
-                        <span
-                          [appCountUp]="toEgp(item.amount)"
-                          [countDuration]="1200 + i * 120"
-                        ></span>
-                        {{ ui().egpLabel }}
-                      </small>
-                    </span>
-                  </td>
-                  <td [attr.data-label]="ui().percentOfTotal">
-                    <span
-                      [appCountUp]="item.percentage"
-                      countSuffix="%"
-                      [countDuration]="1000 + i * 100"
-                      [countSeparator]="false"
-                    ></span>
-                  </td>
-                </tr>
-              }
-              <tr class="total-row">
-                <td [attr.data-label]="ui().category">{{ ui().totalProjectBudget }}</td>
-                <td [attr.data-label]="ui().amountBoth">
-                  <span class="money-pair">
-                    $<span [appCountUp]="content().total" [countDuration]="1600"></span>
-                    <small>
-                      ·
-                      <span [appCountUp]="toEgp(content().total)" [countDuration]="1600"></span>
-                      {{ ui().egpLabel }}
-                    </small>
-                  </span>
-                </td>
-                <td [attr.data-label]="ui().percentOfTotal">
-                  <span
-                    [appCountUp]="100"
+        <p class="overview-total-line">{{ content().totalApprovedLabel }}</p>
+
+        <div class="finance-cards">
+          @for (item of content().overview; track item.label; let i = $index) {
+            <article class="finance-card panel" [style.--tone]="item.color">
+              <strong>
+                $<span [appCountUp]="item.amount" [countDuration]="1200 + i * 100"></span>
+                <span class="finance-card__pct">
+                  (<span
+                    [appCountUp]="item.percent"
                     countSuffix="%"
-                    [countDuration]="1400"
+                    [countDuration]="1100 + i * 120"
                     [countSeparator]="false"
-                  ></span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                  ></span>)
+                </span>
+              </strong>
+              <p>{{ item.label }}</p>
+              <em>
+                <span [appCountUp]="toEgp(item.amount)" [countDuration]="1200 + i * 100"></span>
+                {{ ui().egpLabel }}
+              </em>
+            </article>
+          }
         </div>
       </div>
 

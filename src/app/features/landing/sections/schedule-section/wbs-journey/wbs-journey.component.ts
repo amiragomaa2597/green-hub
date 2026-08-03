@@ -16,20 +16,44 @@ export class WbsJourneyComponent {
 
   @Input({ required: true }) rootTitle!: string;
   @Input({ required: true }) packages: WbsPackage[] = [];
+  @Input() showWeeks = true;
 
   readonly ui = computed(() => UI_LABELS[this.language.lang()]);
 
   activeId: number | null = 1;
+  openBranch: string | null = null;
 
   toggle(id: number): void {
-    this.activeId = this.activeId === id ? null : id;
+    if (this.activeId === id) {
+      this.activeId = null;
+      this.openBranch = null;
+      return;
+    }
+    this.activeId = id;
+    this.openBranch = null;
   }
 
   isActive(id: number): boolean {
     return this.activeId === id;
   }
 
+  toggleBranch(code: string): void {
+    this.openBranch = this.openBranch === code ? null : code;
+  }
+
+  isBranchOpen(code: string): boolean {
+    return this.openBranch === code;
+  }
+
   taskCode(pkgId: number, index: number): string {
     return `${pkgId}.${index + 1}`;
+  }
+
+  hasBranches(pkg: WbsPackage): boolean {
+    return !!pkg.branches?.length;
+  }
+
+  flatTasks(pkg: WbsPackage): string[] {
+    return pkg.tasks ?? [];
   }
 }

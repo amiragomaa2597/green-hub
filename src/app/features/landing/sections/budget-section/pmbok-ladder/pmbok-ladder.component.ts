@@ -13,13 +13,8 @@ import { usdToEgp } from '../../../../../core/utils/money.util';
 })
 export class PmbokLadderComponent {
   @Input({ required: true }) title!: string;
+  @Input({ required: true }) levelsTitle!: string;
   @Input({ required: true }) steps!: PmbokLevel[];
-  @Input({ required: true }) overview!: Array<{
-    label: string;
-    percent: number;
-    amount: number;
-    color: string;
-  }>;
   @Input({ required: true }) matrixTitle!: string;
   @Input({ required: true }) matrix!: BudgetMatrixRow[];
   @Input({ required: true }) stepsNote!: string;

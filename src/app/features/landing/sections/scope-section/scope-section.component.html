@@ -1,51 +1,86 @@
-<section id="scope" class="section">
+<section id="scope" class="section scope-stage">
+  <div class="scope-stage__bg" aria-hidden="true"></div>
   <div class="container">
-    <app-section-header
-      [eyebrow]="content().eyebrow"
-      [title]="content().title"
-      [hook]="hook()"
-      [lead]="content().statement"
-    />
+    <div class="scope-stage__head" appRevealOnScroll>
+      <p class="speaker">
+        <span class="speaker__dot" aria-hidden="true"></span>
+        Presented by {{ content().speaker }}
+      </p>
+      <h2>{{ content().title }}</h2>
+      <p class="scope-stage__hint">Tap any component to open its content.</p>
+    </div>
 
-    <app-scope-blueprint
-      [blueprintLabel]="content().blueprintLabel"
-      [blueprintTitle]="content().blueprintTitle"
-      [phasesCaption]="content().phasesCaption"
-      [description]="content().description"
-      [statement]="content().statement"
-      [missionBrief]="ui().missionBrief"
-      [requirementsLabel]="ui().requirements"
-      [requirements]="content().requirements"
-      [includesLabel]="ui().includes"
-      [excludesLabel]="ui().excludes"
-      [includes]="content().includes"
-      [excludes]="content().excludes"
-      [assumptionsLabel]="ui().assumptions"
-      [constraintsLabel]="ui().constraints"
-      [assumptions]="content().assumptions"
-      [constraints]="content().constraints"
-      [strategyLabel]="ui().strategy"
-      [phases]="content().phases"
-      [acceptanceLabel]="ui().acceptanceCriteria"
-      [acceptance]="content().acceptance"
-      [costLabel]="ui().costBreakdown"
-      [costNote]="content().costNote"
-      [costItems]="content().costItems"
-      [totalBudgetLabel]="content().totalBudgetLabel"
-      [deliverablesLabel]="ui().deliverables"
-      [deliverables]="content().deliverables"
-      [modesLabel]="ui().scopeConsoleModes"
-      [modeBoundary]="ui().scopeModeBoundary"
-      [modeSystems]="ui().scopeModeSystems"
-      [modeStrategy]="ui().scopeModeStrategy"
-      [modeGates]="ui().scopeModeGates"
-      [modeBudget]="ui().scopeModeBudget"
-      [modeOutputs]="ui().scopeModeOutputs"
-      [insideFence]="ui().insideFence"
-      [outsideFence]="ui().outsideFence"
-      [flipBoundary]="ui().flipBoundary"
-      [lockStatus]="ui().lockStatus"
-      [unlockedLabel]="ui().unlocked"
-    />
+    <div class="scope-board">
+      <aside class="scope-nav panel" appRevealOnScroll>
+        <p class="scope-nav__label">Component</p>
+        @for (row of content().rows; track row.component; let i = $index) {
+          <button
+            type="button"
+            class="scope-nav__item"
+            [class.is-active]="active === i"
+            [style.--tone]="tones[i % tones.length]"
+            (click)="select(i)"
+          >
+            <em>{{ i + 1 }}</em>
+            <span>{{ row.component }}</span>
+          </button>
+        }
+      </aside>
+
+      @if (activeRow; as row) {
+        <article
+          class="scope-panel panel"
+          [style.--tone]="tones[active % tones.length]"
+          appRevealOnScroll
+        >
+          <div class="scope-panel__top">
+            <span class="scope-panel__pulse" aria-hidden="true"></span>
+            <div>
+              <p class="scope-panel__kicker">Content</p>
+              <h3>{{ row.component }}</h3>
+            </div>
+            <strong class="scope-panel__index">{{ active + 1 }} / {{ content().rows.length }}</strong>
+          </div>
+          <p class="scope-panel__body">{{ row.content }}</p>
+          <div class="scope-panel__actions">
+            <button type="button" class="ghost" (click)="prev()" [disabled]="active === 0">
+              Prev
+            </button>
+            <button
+              type="button"
+              class="ghost"
+              (click)="next()"
+              [disabled]="active === content().rows.length - 1"
+            >
+              Next
+            </button>
+          </div>
+        </article>
+      }
+    </div>
+
+    <section class="life-cycle" appRevealOnScroll>
+      <div class="life-cycle__head">
+        <p class="life-cycle__label">Scope Statement</p>
+        <h3>{{ content().lifeCycleTitle }}</h3>
+      </div>
+
+      <ol class="life-cycle__path">
+        @for (para of content().lifeCycle; track para; let i = $index) {
+          <li
+            class="life-cycle__stop"
+            [class.life-cycle__stop--left]="i % 2 === 0"
+            [class.life-cycle__stop--right]="i % 2 === 1"
+            [style.--tone]="lifeTones[i % lifeTones.length]"
+            [style.animation-delay]="0.08 * i + 's'"
+          >
+            <span class="life-cycle__node">{{ i + 1 }}</span>
+            <article class="life-cycle__card">
+              <p>{{ para }}</p>
+            </article>
+          </li>
+        }
+      </ol>
+    </section>
   </div>
 </section>

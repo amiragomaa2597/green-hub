@@ -1,41 +1,42 @@
-<section id="about" class="section section--alt">
+<section id="about" class="section about-stage">
+  <div class="about-stage__bg" aria-hidden="true"></div>
   <div class="container">
-    <app-section-header
-      [eyebrow]="content().eyebrow"
-      [title]="content().title"
-      [hook]="hook()"
-      [lead]="content().lead"
-    />
-
-    <div class="about-visual" appRevealOnScroll>
-      <img [src]="image()" [alt]="content().aboutHubTitle" />
-      <div class="about-visual__badge">
-        <app-icon name="leaf" [size]="20" />
-        <span>{{ ui().sustainableCenter }}</span>
-      </div>
+    <div class="about-stage__head" appRevealOnScroll>
+      <p class="speaker">
+        <span class="speaker__dot" aria-hidden="true"></span>
+        Presented by {{ content().speaker }}
+      </p>
+      <p class="eyebrow">{{ content().title }}</p>
+      <h2>{{ meta().brand }}</h2>
+      <p class="about-stage__meta">
+        {{ meta().subtitle }} · {{ meta().project }}
+      </p>
+      <p class="about-stage__program">
+        {{ meta().program }} · Instructor: {{ meta().instructor }}
+      </p>
     </div>
 
-    <div class="grid-2 about-grid">
-      <article class="panel" appRevealOnScroll>
-        <h3>{{ content().aboutHubTitle }}</h3>
-        <p>{{ content().aboutHubBody }}</p>
-        <p>{{ content().body }}</p>
-        <blockquote>{{ content().quote }}</blockquote>
-      </article>
+    <article class="story panel" appRevealOnScroll>
+      <p class="story__lead">{{ content().lead }}</p>
 
-      <aside class="pillar-list">
+      <div class="pillar-rail" role="list">
         @for (item of content().overviewPillars; track item.title; let i = $index) {
-          <div class="pillar-list__item" [class]="'reveal-delay-' + (i + 1)" appRevealOnScroll>
-            <span class="icon-bubble">
+          <div
+            class="pillar-rail__item"
+            role="listitem"
+            [style.animation-delay]="0.08 * i + 's'"
+            appRevealOnScroll
+          >
+            <span class="pillar-rail__icon">
               <app-icon [name]="iconOf(item.icon)" [size]="22" />
             </span>
-            <div>
-              <h3>{{ item.title }}</h3>
-              <p>{{ item.description }}</p>
-            </div>
+            <strong>{{ item.title }}</strong>
           </div>
         }
-      </aside>
-    </div>
+      </div>
+
+      <p class="story__body">{{ content().body }}</p>
+      <p class="story__hub">{{ content().hubBody }}</p>
+    </article>
   </div>
 </section>

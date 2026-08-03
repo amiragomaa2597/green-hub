@@ -1,0 +1,170 @@
+<section id="obs" class="section obs-stage">
+  <div class="obs-stage__bg" aria-hidden="true"></div>
+  <div class="container">
+    <div class="obs-stage__head" appRevealOnScroll>
+      <p class="speaker">
+        <span class="speaker__dot" aria-hidden="true"></span>
+        Presented by {{ content().speaker }}
+      </p>
+      <p class="eyebrow">{{ content().eyebrow }}</p>
+      <h2>{{ content().title }}</h2>
+      <p class="obs-stage__hint">{{ content().hint }}</p>
+    </div>
+
+    <div class="obs-board">
+      <aside class="obs-nav panel" appRevealOnScroll>
+        <p class="obs-nav__label">{{ content().columns.title }}</p>
+        @for (role of content().roles; track role.title; let i = $index) {
+          <button
+            type="button"
+            class="obs-nav__item"
+            [class.is-active]="active === i"
+            [style.--tone]="toneOf(i)"
+            (click)="select(i)"
+          >
+            <em>{{ i + 1 }}</em>
+            <span>
+              <strong>{{ role.title }}</strong>
+              <small>{{ role.assignee }}</small>
+            </span>
+          </button>
+        }
+      </aside>
+
+      @if (activeRole; as role) {
+        <article
+          class="obs-panel panel"
+          [style.--tone]="toneOf(active)"
+          appRevealOnScroll
+        >
+          <div class="obs-panel__top">
+            <span class="obs-panel__pulse" aria-hidden="true"></span>
+            <div>
+              <p class="obs-panel__kicker">Role {{ active + 1 }} of {{ content().roles.length }}</p>
+              <h3>{{ role.title }}</h3>
+            </div>
+          </div>
+
+          <div class="obs-chain" aria-label="Reporting line">
+            @for (step of reportChain(role); track step; let last = $last) {
+              <span class="obs-chain__node">{{ step }}</span>
+              @if (!last) {
+                <span class="obs-chain__arrow" aria-hidden="true">reports to</span>
+              }
+            }
+          </div>
+
+          <dl class="obs-facts">
+            <div>
+              <dt>{{ content().columns.seniority }}</dt>
+              <dd>
+                <span class="obs-pill">{{ role.seniority }}</span>
+              </dd>
+            </div>
+            <div>
+              <dt>{{ content().columns.assignee }}</dt>
+              <dd [class.is-person]="isNamedPerson(role.assignee)">
+                {{ role.assignee }}
+              </dd>
+            </div>
+            <div>
+              <dt>{{ content().columns.reportsTo }}</dt>
+              <dd>{{ role.reportsTo }}</dd>
+            </div>
+          </dl>
+
+          <div class="obs-orbit" aria-hidden="true">
+            <span class="obs-orbit__ring"></span>
+            <span class="obs-orbit__core">{{ active + 1 }}</span>
+          </div>
+        </article>
+      }
+    </div>
+
+    <div class="obs-strip" appRevealOnScroll>
+      @for (role of content().roles; track role.title; let i = $index) {
+        <button
+          type="button"
+          class="obs-strip__dot"
+          [class.is-active]="active === i"
+          [style.--tone]="toneOf(i)"
+          [attr.aria-label]="role.title"
+          (click)="select(i)"
+        ></button>
+      }
+    </div>
+
+    <section class="resource-deck" appRevealOnScroll>
+      <div class="resource-deck__head">
+        <p class="resource-deck__label">Deliverable 3 · continued</p>
+        <h3>{{ content().resourcesTitle }}</h3>
+        <p>{{ content().resourcesHint }}</p>
+      </div>
+
+      <div class="resource-tabs">
+        @for (row of content().resources; track row.category; let i = $index) {
+          <button
+            type="button"
+            class="resource-tab"
+            [class.is-active]="activeResource === i"
+            [style.--tone]="resourceTone(i)"
+            (click)="selectResource(i)"
+          >
+            <em>{{ i + 1 }}</em>
+            <span>{{ row.category }}</span>
+          </button>
+        }
+      </div>
+
+      @if (activeResourceRow; as row) {
+        <article
+          class="resource-stage panel"
+          [style.--tone]="resourceTone(activeResource)"
+          [style.--inside]="insideShare(row) + '%'"
+          [style.--outside]="outsideShare(row) + '%'"
+        >
+          <div class="resource-stage__copy">
+            <p class="resource-stage__kicker">{{ content().resourceColumns.category }}</p>
+            <h4>{{ row.category }}</h4>
+            <p class="resource-stage__resource">
+              <span>{{ content().resourceColumns.resource }}</span>
+              {{ row.resource }}
+            </p>
+          </div>
+
+          <div class="balance" aria-label="Inside vs outside company">
+            <div class="balance__side balance__side--in">
+              <span>{{ content().resourceColumns.inside }}</span>
+              <strong>{{ row.inside }}</strong>
+            </div>
+
+            <div class="balance__meter">
+              <div class="balance__beam">
+                <span class="balance__fill balance__fill--in"></span>
+                <span class="balance__fill balance__fill--out"></span>
+                <span class="balance__fulcrum" aria-hidden="true"></span>
+              </div>
+              <div class="balance__total">
+                <em>{{ content().resourceColumns.total }}</em>
+                <strong>{{ row.total }}</strong>
+              </div>
+            </div>
+
+            <div class="balance__side balance__side--out">
+              <span>{{ content().resourceColumns.outside }}</span>
+              <strong>{{ row.outside }}</strong>
+            </div>
+          </div>
+
+          <div class="resource-spark" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </article>
+      }
+
+      <p class="resource-basis panel">{{ content().resourceBasis }}</p>
+    </section>
+  </div>
+</section>

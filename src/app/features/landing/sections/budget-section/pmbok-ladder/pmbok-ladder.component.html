@@ -1,7 +1,7 @@
 <div class="ladder" appRevealOnScroll>
   <div class="ladder__intro">
     <p class="ladder__label">{{ title }}</p>
-    <h3>{{ matrixTitle }}</h3>
+    <h3>{{ levelsTitle }}</h3>
     <p>{{ stepsNote }}</p>
   </div>
 
@@ -40,29 +40,8 @@
     }
   </div>
 
-  <div class="overview">
-    @for (item of overview; track item.label; let i = $index) {
-      <article class="overview__card panel" [style.--tone]="item.color">
-        <strong>
-          <span
-            [appCountUp]="item.percent"
-            countSuffix="%"
-            [countDuration]="1100 + i * 120"
-            [countSeparator]="false"
-          ></span>
-        </strong>
-        <span>{{ item.label }}</span>
-        <em>
-          $<span [appCountUp]="item.amount" [countDuration]="1200 + i * 100"></span>
-          ·
-          <span [appCountUp]="toEgp(item.amount)" [countDuration]="1200 + i * 100"></span>
-          {{ egpLabel }}
-        </em>
-      </article>
-    }
-  </div>
-
   <div class="table-wrap matrix-wrap panel">
+    <h3 class="matrix-title">{{ matrixTitle }}</h3>
     <table class="data-table">
       <thead>
         <tr>
@@ -77,7 +56,7 @@
           <tr [class.is-total]="i === matrix.length - 1">
             <td>{{ row.component }}</td>
             <td>
-              $<span [appCountUp]="row.amount" [countDuration]="1000 + i * 80"></span>
+              <strong>{{ row.amountDisplay || ('$' + row.amount) }}</strong>
               <small class="dual">
                 ·
                 <span [appCountUp]="toEgp(row.amount)" [countDuration]="1000 + i * 80"></span>

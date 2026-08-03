@@ -389,6 +389,20 @@
   line-height: 1.45;
 }
 
+@media (max-width: 1099px) {
+  .nav__brand span {
+    max-width: 11rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .nav__lang {
+    min-width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
 @media (min-width: 1100px) {
   .nav__actions,
   .nav__backdrop,

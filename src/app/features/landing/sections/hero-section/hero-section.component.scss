@@ -229,6 +229,55 @@
   }
 }
 
+@media (max-width: 700px) {
+  .hero {
+    padding: 0.55rem;
+    min-height: calc(100svh - var(--header-h));
+    align-items: end;
+  }
+
+  .hero__frame {
+    inset: 0.55rem;
+  }
+
+  .hero__content {
+    width: 100%;
+    max-width: none;
+    padding: 1.6rem 0.35rem 1.75rem;
+  }
+
+  .hero__brand {
+    font-size: clamp(2.1rem, 11vw, 3rem);
+  }
+
+  .hero h1 {
+    max-width: none;
+  }
+
+  .hero__cta {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero__cta .btn {
+    width: 100%;
+  }
+
+  .hero__pillars {
+    gap: 0.45rem;
+  }
+
+  .hero__pillars li {
+    max-width: 100%;
+    padding: 0.45rem 0.7rem;
+  }
+
+  .hero__pillars strong {
+    font-size: 0.82rem;
+    line-height: 1.25;
+  }
+}
+
 @media (min-width: 1024px) {
   .hero {
     align-items: center;

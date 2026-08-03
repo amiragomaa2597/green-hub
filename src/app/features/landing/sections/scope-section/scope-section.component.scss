@@ -334,7 +334,13 @@
 
   .life-cycle__path::before {
     left: 1.3rem;
+    right: auto;
     transform: none;
+  }
+
+  html[dir='rtl'] .life-cycle__path::before {
+    left: auto;
+    right: 1.3rem;
   }
 
   .life-cycle__stop {

@@ -16,7 +16,7 @@
   --warn: #ea580c;
   --shadow: 0 18px 50px rgba(15, 47, 34, 0.12);
   --radius: 1.25rem;
-  --container: min(1120px, calc(100% - 2rem));
+  --container: min(1120px, calc(100% - 1.5rem));
   --header-h: 4.25rem;
   --font-display: 'Fraunces', Georgia, serif;
   --font-body: 'Outfit', 'Segoe UI', sans-serif;
@@ -85,7 +85,7 @@ p {
 }
 
 .section {
-  padding: clamp(3.5rem, 7vw, 6rem) 0;
+  padding: clamp(2.75rem, 7vw, 6rem) 0;
   position: relative;
 }
 
@@ -165,7 +165,7 @@ html[dir='rtl'] .section-title {
   background: rgba(255, 255, 255, 0.78);
   border: 1px solid rgba(31, 107, 69, 0.12);
   border-radius: var(--radius);
-  padding: 1.35rem;
+  padding: clamp(1rem, 3vw, 1.35rem);
   box-shadow: var(--shadow);
 }
 
@@ -203,6 +203,7 @@ html[dir='rtl'] .section-title {
 
 .table-wrap {
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   border-radius: var(--radius);
   border: 1px solid rgba(31, 107, 69, 0.12);
   background: rgba(255, 255, 255, 0.85);
@@ -211,7 +212,7 @@ html[dir='rtl'] .section-title {
 table.data-table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 720px;
+  min-width: 640px;
 }
 
 table.data-table th,
@@ -220,6 +221,33 @@ table.data-table td {
   text-align: start;
   border-bottom: 1px solid rgba(31, 107, 69, 0.1);
   vertical-align: top;
+}
+
+@media (max-width: 640px) {
+  :root {
+    --container: min(1120px, calc(100% - 1.1rem));
+    --header-h: 3.85rem;
+    --radius: 1.05rem;
+  }
+
+  .section-title {
+    max-width: none;
+  }
+
+  .section-lead {
+    max-width: none;
+    font-size: 1rem;
+  }
+
+  table.data-table th,
+  table.data-table td {
+    padding: 0.7rem 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .panel--media .panel__body {
+    padding: 1rem;
+  }
 }
 
 table.data-table th {

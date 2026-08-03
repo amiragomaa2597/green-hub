@@ -47,7 +47,7 @@
 
 .deck__badge {
   position: absolute;
-  left: 1rem;
+  inset-inline-start: 1rem;
   bottom: 1rem;
   display: inline-flex;
   align-items: center;
@@ -211,6 +211,34 @@
   height: 100%;
   border: 0;
   background: #f3f5f4;
+}
+
+@media (max-width: 700px) {
+  .deck__body {
+    padding: 0 1rem 1.15rem;
+  }
+
+  .deck__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .deck__actions .btn {
+    width: 100%;
+  }
+
+  .viewer {
+    padding: 0.5rem;
+  }
+
+  .viewer__panel {
+    height: calc(100svh - 1rem);
+    border-radius: 0.85rem;
+  }
+
+  .viewer__bar {
+    padding: 0.75rem;
+  }
 }
 
 @media (min-width: 860px) {

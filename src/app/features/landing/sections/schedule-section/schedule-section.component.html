@@ -48,12 +48,12 @@
         <tbody>
           @for (row of content().gantt; track row.phase) {
             <tr>
-              <td>{{ row.phase }}</td>
-              <td>{{ row.start }}</td>
-              <td>{{ row.end }}</td>
-              <td>{{ row.duration }}</td>
-              <td>{{ row.predecessor }}</td>
-              <td>{{ row.wbsRef }}</td>
+              <td [attr.data-label]="content().phaseLabel">{{ row.phase }}</td>
+              <td [attr.data-label]="content().startLabel">{{ row.start }}</td>
+              <td [attr.data-label]="content().endLabel">{{ row.end }}</td>
+              <td [attr.data-label]="content().durationLabel">{{ row.duration }}</td>
+              <td [attr.data-label]="content().predecessorLabel">{{ row.predecessor || '—' }}</td>
+              <td [attr.data-label]="content().wbsRefLabel">{{ row.wbsRef || '—' }}</td>
             </tr>
           }
         </tbody>

@@ -387,6 +387,13 @@
 @media (max-width: 860px) {
   .journey__path::before {
     left: 1.5rem;
+    right: auto;
+    transform: none;
+  }
+
+  html[dir='rtl'] .journey__path::before {
+    left: auto;
+    right: 1.5rem;
   }
 
   .station {

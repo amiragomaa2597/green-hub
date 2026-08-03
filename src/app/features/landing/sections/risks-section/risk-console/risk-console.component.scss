@@ -91,7 +91,7 @@
     rgba(194, 65, 12, 0.28)
   );
   border: 1px solid rgba(15, 47, 34, 0.08);
-  overflow: hidden;
+  overflow: visible;
 }
 
 .radar__node {
@@ -117,6 +117,60 @@
     transform 0.25s ease,
     box-shadow 0.25s ease,
     background 0.25s ease;
+}
+
+@media (max-width: 700px) {
+  .radar {
+    padding: 0.9rem;
+  }
+
+  .radar__track {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.45rem;
+    height: auto;
+    min-height: 0;
+    padding: 0.75rem;
+    border-radius: 1rem;
+    overflow: visible;
+  }
+
+  .radar__node {
+    position: static;
+    transform: none;
+    width: 2.35rem;
+    height: 2.35rem;
+    min-width: 2.35rem;
+    min-height: 2.35rem;
+    max-width: none;
+    max-height: none;
+  }
+
+  .radar__node.is-active {
+    transform: scale(1.12);
+  }
+
+  .filters {
+    gap: 0.4rem;
+  }
+
+  .filter {
+    padding: 0.4rem 0.7rem;
+    font-size: 0.8rem;
+  }
+
+  .threat {
+    padding: 0.75rem;
+  }
+
+  .spotlight {
+    padding: 1rem;
+  }
+
+  .summary {
+    grid-template-columns: 1fr;
+  }
 }
 
 .radar__node.is-medium {

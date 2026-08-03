@@ -4,7 +4,7 @@
     <div class="about-stage__head" appRevealOnScroll>
       <p class="speaker">
         <span class="speaker__dot" aria-hidden="true"></span>
-        Presented by {{ content().speaker }}
+        {{ ui().presentedBy }} {{ content().speaker }}
       </p>
       <p class="eyebrow">{{ content().title }}</p>
       <h2>{{ meta().brand }}</h2>
@@ -12,9 +12,15 @@
         {{ meta().subtitle }} · {{ meta().project }}
       </p>
       <p class="about-stage__program">
-        {{ meta().program }} · Instructor: {{ meta().instructor }}
+        {{ meta().program }} · {{ ui().instructorLabel }}: {{ meta().instructor }}
       </p>
     </div>
+
+    <app-section-media
+      [src]="visual().src"
+      [alt]="visual().alt"
+      [caption]="visual().caption"
+    />
 
     <article class="story panel" appRevealOnScroll>
       <p class="story__lead">{{ content().lead }}</p>

@@ -21,10 +21,14 @@ export class RiskConsoleComponent implements OnChanges {
   @Input({ required: true }) risks: RiskItem[] = [];
   @Input({ required: true }) summary!: {
     totalCostImpact: number;
+    totalCostImpactLabel: string;
     totalDelay: number;
+    totalDelayLabel: string;
     totalMitigationCost: number;
+    totalMitigationCostLabel: string;
     goal: string;
     reserveCheck?: string;
+    reserveCheckLabel?: string;
   };
 
   readonly ui = computed(() => UI_LABELS[this.language.lang()]);

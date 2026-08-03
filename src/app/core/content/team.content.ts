@@ -10,7 +10,7 @@ export interface TeamContent {
   thankYouNames: string[];
 }
 
-/** Team section (presented by Salwa) — no OBS. */
+/** Team section (presented by Salwa). */
 export const TEAM_CONTENT: Localized<TeamContent> = {
   en: {
     eyebrow: 'Presented by Salwa',
@@ -35,17 +35,17 @@ export const TEAM_CONTENT: Localized<TeamContent> = {
     title: 'الفريق',
     speaker: 'سلوى',
     advisor: {
-      name: 'Dr. Ehab EL Nezamy',
-      role: 'Instructor / Advisor',
+      name: 'د. إيهاب النظامي',
+      role: 'المشرف / المستشار',
     },
     members: [
-      { name: 'Armia', role: 'Project Manager', icon: 'person' },
-      { name: 'Ehab', role: 'Planning & Scheduling Lead', icon: 'calendar' },
-      { name: 'Amira', role: 'Scope & Risk Officer', icon: 'target' },
-      { name: 'Salwa', role: 'Finance & Partners Officer', icon: 'coins' },
-      { name: 'Shehab', role: 'QA & Governance Officer', icon: 'shield' },
-      { name: 'Michael', role: 'QA & Audit Assistant', icon: 'person' },
+      { name: 'أرميا', role: 'مدير المشروع', icon: 'person' },
+      { name: 'إيهاب', role: 'قائد التخطيط والجدولة', icon: 'calendar' },
+      { name: 'أميرة', role: 'مسؤولة النطاق والمخاطر', icon: 'target' },
+      { name: 'سلوى', role: 'مسؤولة المالية والشراكات', icon: 'coins' },
+      { name: 'شهاب', role: 'مسؤول الجودة والحوكمة', icon: 'shield' },
+      { name: 'مايكل', role: 'مساعد الجودة والتدقيق', icon: 'person' },
     ],
-    thankYouNames: ['Armia', 'Ehab', 'Amira', 'Salwa', 'Shehab', 'Michael'],
+    thankYouNames: ['أرميا', 'إيهاب', 'أميرة', 'سلوى', 'شهاب', 'مايكل'],
   },
 };

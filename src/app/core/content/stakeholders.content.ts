@@ -4,22 +4,26 @@ import { MatrixQuadrant, Stakeholder } from '../models/project.models';
 export interface StakeholdersContent {
   eyebrow: string;
   title: string;
+  speaker: string;
   lead: string;
   registerTitle: string;
   matrixTitle: string;
+  quadrantSummaryTitle: string;
   register: Stakeholder[];
   matrix: MatrixQuadrant[];
 }
 
-/** Source: final.docx — Deliverable 5 (letter-perfect). */
+/** Deliverable 5 — Stakeholder Analysis (presented by Shehab). */
 export const STAKEHOLDERS_CONTENT: Localized<StakeholdersContent> = {
   en: {
     eyebrow: 'Deliverable 5',
     title: 'Stakeholder Analysis',
+    speaker: 'Shehab',
     lead:
       'Stakeholders were assessed using four clear categories only: H H, H L, L H, and L L. Customer/Investor, Sponsor, and Project Manager are treated as separate stakeholders. Municipality/Local Authorities are H L—not H H—because they have high regulatory power but comparatively low day-to-day interest beyond compliance and permits.',
     registerTitle: 'Stakeholder Register',
     matrixTitle: 'Power / Interest Grid',
+    quadrantSummaryTitle: 'Quadrant Summary',
     register: [
       {
         name: 'Customer/Investor',
@@ -155,12 +159,14 @@ export const STAKEHOLDERS_CONTENT: Localized<StakeholdersContent> = {
     ],
   },
   ar: {
-    eyebrow: 'المخرج 5',
+    eyebrow: 'التسليم 5',
     title: 'تحليل أصحاب المصلحة',
+    speaker: 'شهاب',
     lead:
-      'تم تقييم أصحاب المصلحة بأربع فئات فقط: ع ع، ع م، م ع، م م. العميل/المستثمر والراعي ومدير المشروع كيانات منفصلة. البلدية/السلطات المحلية ع م وليست ع ع — لأنها تملك سلطة تنظيمية عالية مع مصلحة يومية أقل خارج الامتثال والتصاريح.',
+      'تم تقييم أصحاب المصلحة بأربع فئات واضحة فقط: ع ع، ع م، م ع، وم م. العميل/المستثمر والراعي ومدير المشروع يُعاملون كأصحاب مصلحة منفصلين. البلدية/السلطات المحلية ع م — وليست ع ع — لأنها تملك سلطة تنظيمية عالية مع مصلحة يومية أقل نسبيًا خارج الامتثال والتصاريح.',
     registerTitle: 'سجل أصحاب المصلحة',
     matrixTitle: 'مصفوفة القوة / المصلحة',
+    quadrantSummaryTitle: 'ملخص الأرباع',
     register: [
       {
         name: 'العميل/المستثمر',

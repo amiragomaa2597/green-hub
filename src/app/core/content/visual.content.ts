@@ -7,9 +7,12 @@ export interface SectionVisual {
 }
 
 export type SectionVisualKey =
+  | 'about'
   | 'objectives'
   | 'team'
   | 'scope'
+  | 'wbs'
+  | 'obs'
   | 'schedule'
   | 'budget'
   | 'stakeholders'
@@ -22,6 +25,12 @@ export type SectionVisualKey =
 export const SECTION_VISUALS: Localized<Record<SectionVisualKey, SectionVisual>> =
   {
     en: {
+      about: {
+        src: 'assets/images/sections/campus-living-wall.jpg',
+        alt: 'Sustainable modern building with greenery',
+        caption:
+          'Clean energy, smart systems, community value, and responsible design.',
+      },
       objectives: {
         src: 'assets/images/sections/campus-living-wall.jpg',
         alt: 'Sustainable modern building with greenery',
@@ -38,6 +47,16 @@ export const SECTION_VISUALS: Localized<Record<SectionVisualKey, SectionVisual>>
         src: 'assets/images/sections/scope-construction.jpg',
         alt: 'Sustainable construction site and architectural plans',
         caption: 'What we deliver — and what stays outside the project boundary.',
+      },
+      wbs: {
+        src: 'assets/images/sections/schedule-planning.jpg',
+        alt: 'Project planning workspace with timeline materials',
+        caption: 'Work packages from project management through testing and handover.',
+      },
+      obs: {
+        src: 'assets/images/sections/stakeholders-meeting.jpg',
+        alt: 'Project organization collaborating in a workshop',
+        caption: 'Roles, seniority, assignment sources, and reporting lines.',
       },
       schedule: {
         src: 'assets/images/sections/schedule-planning.jpg',
@@ -79,6 +98,11 @@ export const SECTION_VISUALS: Localized<Record<SectionVisualKey, SectionVisual>>
       },
     },
     ar: {
+      about: {
+        src: 'assets/images/sections/campus-living-wall.jpg',
+        alt: 'مبنى حديث مستدام مع مساحات خضراء',
+        caption: 'طاقة نظيفة وأنظمة ذكية وقيمة مجتمعية وتصميم مسؤول.',
+      },
       objectives: {
         src: 'assets/images/sections/campus-living-wall.jpg',
         alt: 'مبنى حديث مستدام مع مساحات خضراء',
@@ -94,6 +118,16 @@ export const SECTION_VISUALS: Localized<Record<SectionVisualKey, SectionVisual>>
         alt: 'موقع بناء مستدام ومخططات معمارية',
         caption: 'ما نسلّمه — وما يبقى خارج حدود المشروع.',
       },
+      wbs: {
+        src: 'assets/images/sections/schedule-planning.jpg',
+        alt: 'مساحة تخطيط مشروع مع مواد الجدول الزمني',
+        caption: 'حزم العمل من إدارة المشروع حتى الاختبار والتسليم.',
+      },
+      obs: {
+        src: 'assets/images/sections/stakeholders-meeting.jpg',
+        alt: 'تنظيم المشروع يتعاون في ورشة عمل',
+        caption: 'الأدوار ومستويات الأقدمية ومصادر التعيين وخطوط التقارير.',
+      },
       schedule: {
         src: 'assets/images/sections/schedule-planning.jpg',
         alt: 'مساحة تخطيط مشروع مع مواد الجدول الزمني',
@@ -103,7 +137,7 @@ export const SECTION_VISUALS: Localized<Record<SectionVisualKey, SectionVisual>>
         src: 'assets/images/sections/budget-finance.jpg',
         alt: 'مستندات تخطيط مالي وآلة حاسبة',
         caption:
-          'PMBOK cost aggregation from direct activity costs to the approved $1.2M project budget.',
+          'تجميع التكاليف وفق PMBOK من تكاليف الأنشطة المباشرة إلى الميزانية المعتمدة 1.2 مليون دولار.',
       },
       stakeholders: {
         src: 'assets/images/sections/stakeholders-meeting.jpg',

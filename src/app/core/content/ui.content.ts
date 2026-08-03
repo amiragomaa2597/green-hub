@@ -7,6 +7,16 @@ export const UI_LABELS: Localized<{
   deliverables: string;
   sustainableCenter: string;
   instructorAdvisor: string;
+  presentedBy: string;
+  instructorLabel: string;
+  scopeTapHint: string;
+  componentLabel: string;
+  contentLabel: string;
+  lifeCycleBadge: string;
+  reportsToArrow: string;
+  levelOneLabel: string;
+  prevLabel: string;
+  nextLabelAction: string;
   obsBadge: string;
   obsTitle: string;
   obsEqualLevel: string;
@@ -48,6 +58,7 @@ export const UI_LABELS: Localized<{
   sustainableDelivery: string;
   viewPresentation: string;
   downloadPdf: string;
+  downloadDocx: string;
   downloadPptx: string;
   openInNewTab: string;
   download: string;
@@ -109,6 +120,7 @@ export const UI_LABELS: Localized<{
   timeImpact: string;
   owner: string;
   severityIndex: string;
+  solutionCost: string;
   mitigationResponse: string;
   totalPotentialCost: string;
   totalPotentialDelay: string;
@@ -141,6 +153,16 @@ export const UI_LABELS: Localized<{
     deliverables: 'Scope Deliverables',
     sustainableCenter: 'Sustainable Community Center',
     instructorAdvisor: 'Instructor / Advisor',
+    presentedBy: 'Presented by',
+    instructorLabel: 'Instructor',
+    scopeTapHint: 'Tap any component to open its content.',
+    componentLabel: 'Component',
+    contentLabel: 'Content',
+    lifeCycleBadge: 'Scope Statement',
+    reportsToArrow: 'reports to',
+    levelOneLabel: 'Level 1',
+    prevLabel: 'Prev',
+    nextLabelAction: 'Next',
     obsBadge: 'OBS',
     obsTitle: 'Organizational Breakdown Structure',
     obsEqualLevel: 'Same level · equal authority',
@@ -184,6 +206,7 @@ export const UI_LABELS: Localized<{
     sustainableDelivery: 'Sustainable delivery complete',
     viewPresentation: 'View presentation',
     downloadPdf: 'Download PDF',
+    downloadDocx: 'Download DOCX',
     downloadPptx: 'Download PowerPoint',
     openInNewTab: 'Open in new tab',
     download: 'Download',
@@ -250,7 +273,8 @@ export const UI_LABELS: Localized<{
     timeImpact: 'Time Impact',
     owner: 'Owner',
     severityIndex: 'Severity Index',
-    mitigationResponse: 'Mitigation Response',
+    solutionCost: 'Solution Cost (USD)',
+    mitigationResponse: 'Mitigation / Cost Effect',
     totalPotentialCost: 'Total Potential Cost Impact',
     totalPotentialDelay: 'Total Potential Delay',
     totalMitigationCost: 'Total Mitigation Cost',
@@ -282,6 +306,16 @@ export const UI_LABELS: Localized<{
     deliverables: 'مخرجات النطاق',
     sustainableCenter: 'مركز مجتمعي مستدام',
     instructorAdvisor: 'المشرف / المستشار',
+    presentedBy: 'يقدّمه',
+    instructorLabel: 'المشرف',
+    scopeTapHint: 'اضغط على أي عنصر لفتح محتواه.',
+    componentLabel: 'العنصر',
+    contentLabel: 'المحتوى',
+    lifeCycleBadge: 'بيان النطاق',
+    reportsToArrow: 'يرفع تقاريره إلى',
+    levelOneLabel: 'المستوى 1',
+    prevLabel: 'السابق',
+    nextLabelAction: 'التالي',
     obsBadge: 'OBS',
     obsTitle: 'الهيكل التنظيمي',
     obsEqualLevel: 'نفس المستوى · سلطة متساوية',
@@ -325,6 +359,7 @@ export const UI_LABELS: Localized<{
     sustainableDelivery: 'اكتمل التسليم المستدام',
     viewPresentation: 'عرض التقديم',
     downloadPdf: 'تحميل PDF',
+    downloadDocx: 'تحميل DOCX',
     downloadPptx: 'تحميل PowerPoint',
     openInNewTab: 'فتح في تبويب جديد',
     download: 'تحميل',
@@ -388,7 +423,8 @@ export const UI_LABELS: Localized<{
     timeImpact: 'أثر الوقت',
     owner: 'المسؤول',
     severityIndex: 'مؤشر الخطورة',
-    mitigationResponse: 'استجابة المعالجة',
+    solutionCost: 'تكلفة الحل (دولار)',
+    mitigationResponse: 'المعالجة / أثر التكلفة',
     totalPotentialCost: 'إجمالي الأثر المحتمل على التكلفة',
     totalPotentialDelay: 'إجمالي التأخير المحتمل',
     totalMitigationCost: 'إجمالي تكلفة المعالجة',

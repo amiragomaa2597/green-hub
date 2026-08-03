@@ -128,8 +128,23 @@
             <strong>{{ risk.owner }}</strong>
           </div>
           <div>
+            <span>{{ ui().solutionCost }}</span>
+            <strong>
+              $<span [appCountUp]="risk.solutionCost" [countDuration]="1200"></span>
+              <small>
+                ·
+                <span [appCountUp]="toEgp(risk.solutionCost)" [countDuration]="1200"></span>
+                {{ ui().egpLabel }}
+              </small>
+            </strong>
+          </div>
+          <div>
             <span>{{ ui().severityIndex }}</span>
             <strong>{{ severityScore(risk) }} / 100</strong>
+          </div>
+          <div>
+            <span>{{ ui().engagementStrategy }}</span>
+            <strong>{{ strategyLabel(risk.strategy).toUpperCase() }}</strong>
           </div>
         </div>
 
@@ -144,44 +159,31 @@
   <div class="summary">
     <div>
       <span>{{ ui().totalPotentialCost }}</span>
-      <strong>
+      <strong>{{ summary.totalCostImpactLabel }}</strong>
+      <small class="summary__dual">
         $<span [appCountUp]="summary.totalCostImpact" [countDuration]="1800"></span>
-        <small>
-          ?
-          <span [appCountUp]="toEgp(summary.totalCostImpact)" [countDuration]="1800"></span>
-          {{ ui().egpLabel }}
-        </small>
-      </strong>
+        ·
+        <span [appCountUp]="toEgp(summary.totalCostImpact)" [countDuration]="1800"></span>
+        {{ ui().egpLabel }}
+      </small>
     </div>
     <div>
       <span>{{ ui().totalPotentialDelay }}</span>
-      <strong>
-        <span
-          [appCountUp]="summary.totalDelay"
-          [countSuffix]="ui().weeksSuffix"
-          [countDuration]="1600"
-          [countSeparator]="false"
-        ></span>
-      </strong>
+      <strong>{{ summary.totalDelayLabel }}</strong>
     </div>
     <div>
       <span>{{ ui().totalMitigationCost }}</span>
-      <strong>
+      <strong>{{ summary.totalMitigationCostLabel }}</strong>
+      <small class="summary__dual">
         $<span [appCountUp]="summary.totalMitigationCost" [countDuration]="1700"></span>
-        <small>
-          ?
-          <span [appCountUp]="toEgp(summary.totalMitigationCost)" [countDuration]="1700"></span>
-          {{ ui().egpLabel }}
-        </small>
-      </strong>
-    </div>
-    <div class="summary__goal">
-      <span>{{ ui().ourGoal }}</span>
-      <strong>{{ summary.goal }}</strong>
+        ·
+        <span [appCountUp]="toEgp(summary.totalMitigationCost)" [countDuration]="1700"></span>
+        {{ ui().egpLabel }}
+      </small>
     </div>
     @if (summary.reserveCheck) {
       <div class="summary__goal">
-        <span>Reserve Check</span>
+        <span>{{ summary.reserveCheckLabel || 'Reserve Check' }}</span>
         <strong>{{ summary.reserveCheck }}</strong>
       </div>
     }

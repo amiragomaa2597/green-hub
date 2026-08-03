@@ -20,6 +20,7 @@ export interface ProjectMeta {
   secondaryImage: string;
   exploreCta: string;
   impactCta: string;
+  scopeCta: string;
   metaProject: string;
   metaProgram: string;
   metaInstructor: string;
@@ -49,6 +50,7 @@ export const PROJECT_META: Localized<ProjectMeta> = {
     secondaryImage: 'assets/images/hub-courtyard.png',
     exploreCta: 'Explore the project',
     impactCta: 'See the impact',
+    scopeCta: 'Scope Statement',
     metaProject: 'Project',
     metaProgram: 'Program',
     metaInstructor: 'Instructor',
@@ -76,6 +78,7 @@ export const PROJECT_META: Localized<ProjectMeta> = {
     secondaryImage: 'assets/images/hub-courtyard.png',
     exploreCta: 'استكشف المشروع',
     impactCta: 'شاهد الأثر',
+    scopeCta: 'بيان النطاق',
     metaProject: 'المشروع',
     metaProgram: 'البرنامج',
     metaInstructor: 'المشرف',
@@ -94,6 +97,11 @@ export const NAV_ITEMS: Localized<NavItem[]> = {
     { label: 'WBS', href: '#wbs' },
     { label: 'OBS', href: '#obs' },
     { label: 'Budget', href: '#budget' },
+    { label: 'Stakeholders', href: '#stakeholders' },
+    { label: 'Schedule', href: '#schedule' },
+    { label: 'Risks', href: '#risks' },
+    { label: 'Opinions', href: '#opinions' },
+    { label: 'Download', href: '#presentation' },
   ],
   ar: [
     { label: 'نبذة', href: '#about' },
@@ -102,6 +110,11 @@ export const NAV_ITEMS: Localized<NavItem[]> = {
     { label: 'WBS', href: '#wbs' },
     { label: 'OBS', href: '#obs' },
     { label: 'الميزانية', href: '#budget' },
+    { label: 'أصحاب المصلحة', href: '#stakeholders' },
+    { label: 'الجدول', href: '#schedule' },
+    { label: 'المخاطر', href: '#risks' },
+    { label: 'الآراء', href: '#opinions' },
+    { label: 'تحميل', href: '#presentation' },
   ],
 };
 
@@ -116,10 +129,10 @@ export const CORE_PILLARS: Localized<Pillar[]> = {
     },
   ],
   ar: [
-    { title: 'Renewable energy', description: '', icon: 'solar' },
-    { title: 'Smart technologies', description: '', icon: 'cpu' },
+    { title: 'الطاقة المتجددة', description: '', icon: 'solar' },
+    { title: 'التقنيات الذكية', description: '', icon: 'cpu' },
     {
-      title: 'Environmentally Responsible Design',
+      title: 'تصميم مسؤول بيئيًا',
       description: '',
       icon: 'leaf',
     },

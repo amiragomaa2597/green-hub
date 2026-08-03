@@ -4,12 +4,18 @@
     <div class="obs-stage__head" appRevealOnScroll>
       <p class="speaker">
         <span class="speaker__dot" aria-hidden="true"></span>
-        Presented by {{ content().speaker }}
+        {{ ui().presentedBy }} {{ content().speaker }}
       </p>
       <p class="eyebrow">{{ content().eyebrow }}</p>
       <h2>{{ content().title }}</h2>
       <p class="obs-stage__hint">{{ content().hint }}</p>
     </div>
+
+    <app-section-media
+      [src]="visual().src"
+      [alt]="visual().alt"
+      [caption]="visual().caption"
+    />
 
     <div class="obs-board">
       <aside class="obs-nav panel" appRevealOnScroll>
@@ -40,7 +46,7 @@
           <div class="obs-panel__top">
             <span class="obs-panel__pulse" aria-hidden="true"></span>
             <div>
-              <p class="obs-panel__kicker">Role {{ active + 1 }} of {{ content().roles.length }}</p>
+              <p class="obs-panel__kicker">{{ active + 1 }} / {{ content().roles.length }}</p>
               <h3>{{ role.title }}</h3>
             </div>
           </div>
@@ -49,7 +55,7 @@
             @for (step of reportChain(role); track step; let last = $last) {
               <span class="obs-chain__node">{{ step }}</span>
               @if (!last) {
-                <span class="obs-chain__arrow" aria-hidden="true">reports to</span>
+                <span class="obs-chain__arrow" aria-hidden="true">{{ ui().reportsToArrow }}</span>
               }
             }
           </div>
@@ -96,7 +102,7 @@
 
     <section class="resource-deck" appRevealOnScroll>
       <div class="resource-deck__head">
-        <p class="resource-deck__label">Deliverable 3 · continued</p>
+        <p class="resource-deck__label">{{ content().resourcesContinued }}</p>
         <h3>{{ content().resourcesTitle }}</h3>
         <p>{{ content().resourcesHint }}</p>
       </div>

@@ -1,11 +1,15 @@
-<section id="risks" class="section section--alt">
+<section id="risks" class="section risks-stage section--alt">
+  <div class="risks-stage__bg" aria-hidden="true"></div>
   <div class="container">
-    <app-section-header
-      [eyebrow]="content().eyebrow"
-      [title]="content().title"
-      [hook]="hook()"
-      [lead]="content().motto"
-    />
+    <div class="risks-stage__head" appRevealOnScroll>
+      <p class="speaker">
+        <span class="speaker__dot" aria-hidden="true"></span>
+        {{ ui().presentedBy }} {{ content().speaker }}
+      </p>
+      <p class="eyebrow">{{ content().eyebrow }}</p>
+      <h2>{{ content().title }}</h2>
+      <p class="risks-stage__lead">{{ content().motto }}</p>
+    </div>
 
     <app-section-media
       [src]="visual().src"

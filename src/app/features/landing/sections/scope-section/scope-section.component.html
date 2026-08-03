@@ -4,15 +4,21 @@
     <div class="scope-stage__head" appRevealOnScroll>
       <p class="speaker">
         <span class="speaker__dot" aria-hidden="true"></span>
-        Presented by {{ content().speaker }}
+        {{ ui().presentedBy }} {{ content().speaker }}
       </p>
       <h2>{{ content().title }}</h2>
-      <p class="scope-stage__hint">Tap any component to open its content.</p>
+      <p class="scope-stage__hint">{{ content().hint }}</p>
     </div>
+
+    <app-section-media
+      [src]="visual().src"
+      [alt]="visual().alt"
+      [caption]="visual().caption"
+    />
 
     <div class="scope-board">
       <aside class="scope-nav panel" appRevealOnScroll>
-        <p class="scope-nav__label">Component</p>
+        <p class="scope-nav__label">{{ ui().componentLabel }}</p>
         @for (row of content().rows; track row.component; let i = $index) {
           <button
             type="button"
@@ -36,7 +42,7 @@
           <div class="scope-panel__top">
             <span class="scope-panel__pulse" aria-hidden="true"></span>
             <div>
-              <p class="scope-panel__kicker">Content</p>
+              <p class="scope-panel__kicker">{{ ui().contentLabel }}</p>
               <h3>{{ row.component }}</h3>
             </div>
             <strong class="scope-panel__index">{{ active + 1 }} / {{ content().rows.length }}</strong>
@@ -44,7 +50,7 @@
           <p class="scope-panel__body">{{ row.content }}</p>
           <div class="scope-panel__actions">
             <button type="button" class="ghost" (click)="prev()" [disabled]="active === 0">
-              Prev
+              {{ ui().prevLabel }}
             </button>
             <button
               type="button"
@@ -52,7 +58,7 @@
               (click)="next()"
               [disabled]="active === content().rows.length - 1"
             >
-              Next
+              {{ ui().nextLabelAction }}
             </button>
           </div>
         </article>
@@ -61,7 +67,7 @@
 
     <section class="life-cycle" appRevealOnScroll>
       <div class="life-cycle__head">
-        <p class="life-cycle__label">Scope Statement</p>
+        <p class="life-cycle__label">{{ ui().lifeCycleBadge }}</p>
         <h3>{{ content().lifeCycleTitle }}</h3>
       </div>
 

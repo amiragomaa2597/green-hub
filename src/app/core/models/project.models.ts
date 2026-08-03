@@ -108,6 +108,7 @@ export interface RiskItem {
   timeImpact: string;
   owner: string;
   mitigation: string;
+  solutionCost: number;
   strategy: string;
 }
 

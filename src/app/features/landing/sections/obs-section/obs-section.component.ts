@@ -4,13 +4,16 @@ import {
   ObsResourceRow,
   ObsRole,
 } from '../../../../core/content/obs.content';
+import { SECTION_VISUALS } from '../../../../core/content/visual.content';
+import { UI_LABELS } from '../../../../core/content/ui.content';
 import { LanguageService } from '../../../../core/services/language.service';
 import { RevealOnScrollDirective } from '../../../../shared/directives/reveal-on-scroll.directive';
+import { SectionMediaComponent } from '../../../../shared/components/section-media/section-media.component';
 
 @Component({
   selector: 'app-obs-section',
   standalone: true,
-  imports: [RevealOnScrollDirective],
+  imports: [RevealOnScrollDirective, SectionMediaComponent],
   templateUrl: './obs-section.component.html',
   styleUrl: './obs-section.component.scss',
 })
@@ -18,6 +21,8 @@ export class ObsSectionComponent {
   private readonly language = inject(LanguageService);
 
   readonly content = computed(() => OBS_CONTENT[this.language.lang()]);
+  readonly visual = computed(() => SECTION_VISUALS[this.language.lang()].obs);
+  readonly ui = computed(() => UI_LABELS[this.language.lang()]);
 
   readonly tones = [
     '#0e7490',
@@ -77,14 +82,15 @@ export class ObsSectionComponent {
   }
 
   isNamedPerson(assignee: string): boolean {
-    return !/(appointment|contractor|consultants)/i.test(assignee);
+    return /^(Armia|Ehab|Amira|Salwa|Shehab|Michael|أرميا|إيهاب|أميرة|سلوى|شهاب|مايكل)/u.test(
+      assignee.trim(),
+    );
   }
 
   reportChain(role: ObsRole): string[] {
     return [role.title, role.reportsTo];
   }
 
-  /** Extract leading number for balance visualization; fall back to 0. */
   measure(value: string): number {
     const match = value.match(/[\d.]+/);
     return match ? Number(match[0]) : 0;

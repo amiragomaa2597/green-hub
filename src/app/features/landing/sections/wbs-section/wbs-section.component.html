@@ -4,12 +4,18 @@
     <div class="wbs-stage__head" appRevealOnScroll>
       <p class="speaker">
         <span class="speaker__dot" aria-hidden="true"></span>
-        Presented by {{ content().speaker }}
+        {{ ui().presentedBy }} {{ content().speaker }}
       </p>
       <p class="eyebrow">{{ content().eyebrow }}</p>
       <h2>{{ content().title }}</h2>
       <p class="wbs-stage__hint">{{ content().hint }}</p>
     </div>
+
+    <app-section-media
+      [src]="visual().src"
+      [alt]="visual().alt"
+      [caption]="visual().caption"
+    />
 
     <app-wbs-journey
       [rootTitle]="content().rootTitle"

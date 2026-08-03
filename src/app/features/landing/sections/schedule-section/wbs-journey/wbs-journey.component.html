@@ -39,7 +39,7 @@
                 @if (showWeeks && pkg.weeks) {
                   <span class="station__weeks">{{ ui().weeksLabel }} {{ pkg.weeks }}</span>
                 } @else {
-                  <span class="station__weeks">Level 1 · {{ pkg.id }}</span>
+                  <span class="station__weeks">{{ ui().levelOneLabel }} · {{ pkg.id }}</span>
                 }
                 <h4>{{ pkg.title }}</h4>
               </div>

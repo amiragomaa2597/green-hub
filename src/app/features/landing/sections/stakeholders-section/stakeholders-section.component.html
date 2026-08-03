@@ -1,17 +1,34 @@
-<section id="stakeholders" class="section">
+<section id="stakeholders" class="section stakeholders-stage">
+  <div class="stakeholders-stage__bg" aria-hidden="true"></div>
   <div class="container">
-    <app-section-header
-      [eyebrow]="content().eyebrow"
-      [title]="content().title"
-      [hook]="hook()"
-      [lead]="content().lead"
-    />
+    <div class="stakeholders-stage__head" appRevealOnScroll>
+      <p class="speaker">
+        <span class="speaker__dot" aria-hidden="true"></span>
+        {{ ui().presentedBy }} {{ content().speaker }}
+      </p>
+      <p class="eyebrow">{{ content().eyebrow }}</p>
+      <h2>{{ content().title }}</h2>
+      <p class="stakeholders-stage__lead">{{ content().lead }}</p>
+    </div>
 
     <app-section-media
       [src]="visual().src"
       [alt]="visual().alt"
       [caption]="visual().caption"
     />
+
+    <div class="quadrant-summary" appRevealOnScroll>
+      <h3>{{ content().quadrantSummaryTitle }}</h3>
+      <div class="quadrant-summary__grid">
+        @for (quad of content().matrix; track quad.strategy; let i = $index) {
+          <article class="quadrant-card panel" [style.--tone]="quadTones[i % quadTones.length]">
+            <p class="quadrant-card__code">{{ quad.strategy }}</p>
+            <h4>{{ quad.title }}</h4>
+            <p>{{ quad.hint }}</p>
+          </article>
+        }
+      </div>
+    </div>
 
     <app-stakeholder-board
       [boardLabel]="ui().powerInterestGrid"
